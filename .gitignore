@@ -1,4 +1,12 @@
 #################
+## THINKPHP
+#################
+application/Runtime/
+application/Conf/db.php
+
+
+
+#################
 ## Jetbrains
 #################
 /.idea/
