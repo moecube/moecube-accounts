@@ -94,18 +94,18 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="js/jquery-2.0.3.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="__ROOT__/assets/js/jquery-2.0.3.min.js"></script>
+<script src="__ROOT__/assets/js/bootstrap.min.js"></script>
 
 <!-- 这段只需要在有验证码的页面有 但是在模板架构下不知道如何实现-->
-<script src="js/jquery-ui.min.js"></script>
-<script src="captcha/jquery.captcha.js"></script>
+<script src="__ROOT__/assets/js/jquery-ui.min.js"></script>
+<script src="__ROOT__/assets/captcha/jquery.captcha.js"></script>
 <script>
     $(".ajax-fc-container").captcha({
         text: "验证码<br />请把 <span>Loading</span> 拖进右侧圆圈.",
         items: Array("青眼白龙", "黑魔导少女", "星尘龙", "死者苏生", "神之宣告"),
         borderColor: "silver",
-        url: "/?s=users/captcha"
+        url: "{:U('/users/captcha')}"
     });
 </script>
 <!-- /这段只需要在有验证码的页面有 但是在模板架构下不知道如何实现 -->
