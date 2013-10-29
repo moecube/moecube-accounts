@@ -1,8 +1,8 @@
 #################
 ## THINKPHP
 #################
-application/Runtime/
-application/Conf/db.php
+/application/Runtime/
+/application/Conf/db.php
 
 
 
