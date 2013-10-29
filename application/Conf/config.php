@@ -4,7 +4,7 @@ return array(
 
     //调试
     'APP_STATUS' => 'debug',
-    'PATH_MODE' => 3,
+	'URL_MODEL' => 3,
     'SHOW_PAGE_TRACE' =>true, // 显示页面Trace信息
 	'LOAD_EXT_CONFIG' => 'db',
     //其他项目配置参数
