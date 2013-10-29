@@ -101,11 +101,12 @@
 <script src="__ROOT__/assets/js/jquery-ui.min.js"></script>
 <script src="__ROOT__/captcha/jquery.captcha.js"></script>
 <script>
-    $(".ajax-fc-container").captcha({
+    $(".ajax-fc- 	").captcha({
         text: "验证码<br />请把 <span>Loading</span> 拖进右侧圆圈.",
         items: Array("青眼白龙", "黑魔导少女", "星尘龙", "死者苏生", "神之宣告"),
         borderColor: "silver",
-        url: "{:U('/users/captcha')}"
+        captchaDir : "__ROOT__/captcha",
+        url: "{:U('users/captcha')}"
     });
 </script>
 <!-- /这段只需要在有验证码的页面有 但是在模板架构下不知道如何实现 -->
