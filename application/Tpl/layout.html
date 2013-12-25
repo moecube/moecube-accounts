@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!--<link rel="shortcut icon" href="__ROOT__/assets/ico/favicon.png">-->
+    <link rel="shortcut icon" href="{$app.favicon}">
 
-    <title>{$app.name} - 用户登录</title>
+    <title>{$app.name}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="__ROOT__/assets/css/bootstrap.css" rel="stylesheet">
@@ -106,7 +106,8 @@
         items: Array("青眼白龙", "黑魔导少女", "星尘龙", "死者苏生", "神之宣告"),
         borderColor: "silver",
         captchaDir : "__ROOT__/captcha",
-        url: "{:U('users/captcha')}"
+        url: "{:U('users/captcha')}",
+        formId: "sign_form"
     });
 </script>
 <!-- /这段只需要在有验证码的页面有 但是在模板架构下不知道如何实现 -->

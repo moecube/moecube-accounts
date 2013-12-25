@@ -1,17 +1,12 @@
+<link rel="stylesheet" type="text/css" href="__ROOT__/assets/css/sign.css" />
 <div class="page-header">
     <h1>登录</h1>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-8" style="text-align: center">
-            <p class="lead" style="margin-bottom: 5px;">呜喵</p>
-
-            <p>呜喵呜喵呜喵呜喵</p>
-            <img style="width:36px;height:36px" src="__ROOT__/assets/img/iduel.png">
-            <img style="width:36px;height:36px" src="__ROOT__/assets/img/mycard.png">
-        </div>
-        <div class="col-md-4" style="background: #f1f1f1;padding: 25px;">
-            <form role="form">
+        <div id="app_info">{$app.info}</div>
+        <div id="sign_form">
+            <form role="form" method="POST">
                 <div class="form-group">
                     <label for="name">用户名 / 电子邮件</label>
                     <input type="text" class="form-control" id="name" placeholder="">

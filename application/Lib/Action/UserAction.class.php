@@ -3,9 +3,8 @@
 class UserAction extends Action{
 
     protected function _initialize() {
-        //$app_id = $this->_param('app'); //为什么不能用
-        $app_id = $_REQUEST['app'];
-        $App = M('App');
+        $app_id = $_REQUEST['app']; //为什么不能用
+        $App = D('App');
         if($app_id){
             $app = $App->find($app_id);
             if(!$app){
@@ -30,11 +29,23 @@ class UserAction extends Action{
         $this->display();
     }
     public function do_sign_up() {
-        if(!session('captcha') or session('captcha') != $this->_request('captcha')){
-            //验证码错误
+        $User = D('User');
+        if(!session('captcha') or session('captcha') != $_REQUEST['captcha']){
+            echo '验证码错误';
         }else{
-            session('captcha', null);
+            $data = array(
+                'name' => $_REQUEST['name'],
+                'password' => $_REQUEST['password'],
+                'repassword' => $_REQUEST['repassword'],
+                'email' => $_REQUEST['email']
+            );
+            if($User->add($data)){
+                echo 'success';
+            }else{
+                var_dump($User->getError());
+            }
         }
+        session('captcha', null);
     }
     public function captcha() {
         $rand = rand(0,4);
