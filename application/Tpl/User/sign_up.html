@@ -6,26 +6,33 @@
     <div class="row">
         <div id="app_info">{$app.info}</div>
             <form id="sign_form" role="form" method="POST">
-                <div class="form-group">
+                <!--  带php代码的那段应该通过标签也能完成 -->
+                <if condition="is_string($error)"><div class="alert alert-danger">{$error}</div></if>
+
+                <div class="form-group <?php if(isset($error['name'])) echo 'has-error'; ?>">
                     <label for="name">用户名</label>
-                    <input type="text" class="form-control" id="name" placeholder="">
+                    <if condition="isset($error['name'])"><span class="error">{$error['name']}</span></if>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="" value="{$user['name']}">
                 </div>
-                <div class="form-group">
+                <div class="form-group <?php if(isset($error['password'])) echo 'has-error'; ?>">
                     <label for="password">密码</label>
-                    <input type="password" class="form-control" id="password" placeholder="">
+                    <if condition="isset($error['password'])"><span class="error">{$error['password']}</span></if>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="" value="{$user['password']}">
                 </div>
-                <div class="form-group">
+                <div class="form-group <?php if(isset($error['repassword'])) echo 'has-error'; ?>">
                     <label for="password-confirm">密码确认</label>
-                    <input type="password" class="form-control" id="password-confirm" placeholder="">
+                    <if condition="isset($error['repassword'])"><span class="error">{$error['repassword']}</span></if>
+                    <input type="password" class="form-control" id="password-confirm" name="repassword" placeholder="" value="{$user['repassword']}">
                 </div>
-                <div class="form-group">
+                <div class="form-group <?php if(isset($error['email'])) echo 'has-error'; ?>">
                     <label for="email">电子邮件</label>
-                    <input type="email" class="form-control" id="email" placeholder="">
+                    <if condition="isset($error['email'])"><span class="error">{$error['email']}</span></if>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="" value="{$user['email']}">
                 </div>
-                <div class="ajax-fc-container">You must enable javascript to see captcha here!</div>
+                <div class="ajax-fc-container">验证码加载中...</div>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" checked> 我同意接受 <a href="{$app.tos}">{$app.name} 服务条款</a> 。
+                        <input type="checkbox" checked> 我同意接受 <a href="{$app.tos}" target="_blank">{$app.name} 服务条款</a> 。
                     </label>
                 </div>
                 <button type="submit" class="btn btn-primary pull-right">提交</button>

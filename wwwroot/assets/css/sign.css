@@ -1,18 +1,22 @@
 #sign_form {
     background: #f1f1f1;padding: 25px;
-
+}
+#sign_form .error {
+    float: right;
+    color: red;
 }
 #app_info {
-    text-align: center;
     display: none;
 }
 @media(min-width: 768px){
-    #sign_form {
-        width: 366px;
-        float:right;
-    }
     #app_info {
         display: block;
         float: left;
+        padding-right: 390px;
+    }
+    #sign_form {
+        width: 366px;
+        margin-left: -366px;
+        float:right;
     }
 }

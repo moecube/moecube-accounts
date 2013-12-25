@@ -6,6 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="{$app.favicon}">
+    <base href="http://{$Think.server.http_host}/__ROOT__" />
 
     <title>{$app.name}</title>
 
@@ -74,9 +75,9 @@
     <div class="container">
         <ul id="footer-list" class="list-inline pull-left">
             <li><span dir="ltr" class="text-muted">© 2013 {$app.name}</span></li>
-            <li><a href="https://accounts.google.com/TOS?hl=zh-CN">服务条款</a></li>
-            <li><a href="http://www.google.com/intl/zh-CN/privacy/">隐私权政策</a></li>
-            <li><a href="http://www.google.com/support/accounts?hl=zh-CN">帮助</a></li>
+            <li><a href="{$app.tos}">服务条款</a></li>
+            <!--<li><a href="http://www.google.com/intl/zh-CN/privacy/">隐私权政策</a></li>
+            <li><a href="http://www.google.com/support/accounts?hl=zh-CN">帮助</a></li>-->
         </ul>
   <span id="lang-chooser-wrap" class="lang-chooser-wrap pull-right" style="">
   <img src="//ssl.gstatic.com/images/icons/ui/common/universal_language_settings-21.png">
@@ -100,11 +101,15 @@
 <!-- 这段只需要在有验证码的页面有 但是在模板架构下不知道如何实现-->
 <script src="__ROOT__/assets/js/jquery-ui.min.js"></script>
 <script src="__ROOT__/captcha/jquery.captcha.js"></script>
+<!-- Cross-Domain AJAX for IE8 and IE9 -->
+<!--[if lt IE 10]>
+<script src="__ROOT__/assets/js/jquery.xdomainrequest.min.js"></script>
+<![endif]-->
 <script>
     $(".ajax-fc-container").captcha({
-        text: "验证码<br />请把 <span>Loading</span> 拖进右侧圆圈.",
+        text: "<if condition="isset($error['captcha'])"><b style=\\"color:red\\">{$error['captcha']}</b><else />验证码</if><br />请把 <span>Loading</span> 拖进右侧圆圈.",
         items: Array("青眼白龙", "黑魔导少女", "星尘龙", "死者苏生", "神之宣告"),
-        borderColor: "silver",
+        borderColor: "<if condition="isset($error['captcha'])">red<else/>silver</if>",
         captchaDir : "__ROOT__/captcha",
         url: "{:U('users/captcha')}",
         formId: "sign_form"
