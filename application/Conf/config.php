@@ -19,6 +19,7 @@ return array(
         array('users/sign_in','User/sign_in','','get','html,'),
         array('users/sign_in','User/do_sign_in','','post','html,'),
         array('users/sign_up','User/sign_up','','get','html,'),
+        array('users/:name','User/avatar','','get','png'),
         array('users/sign_up','User/do_sign_up','','post','html,'),
         array('users/captcha','User/captcha','','get','html,'),
     ),

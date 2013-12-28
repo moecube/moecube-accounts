@@ -29,6 +29,26 @@ class UserAction extends Action{
         $this->assign('error',array());
         $this->display();
     }
+    public function avatar(){
+        $User = D('User');
+        $user = $User->where(array('name'=>$_REQUEST['name']))->find();
+        if($user){
+            if($user['avatar']){
+                $url = "http://$_SERVER[HTTP_HOST]/avatars/$user[avatar]";
+                #if(in_array($size, array('middle','small'))){
+                #    $url = str_replace('/original/', "/$size/", $user['avatar']);
+                #}
+                header('Location: '.$url);
+            }else if($user['email']){
+                $url = 'https://en.gravatar.com/avatar/'.md5(strtolower(trim($user['email']))).'?s=120';
+                header('Location: '.$url);
+            }else{
+                header('HTTP/1.1 404 Not Found');  #fallback
+            }
+        }else{
+            header('HTTP/1.1 404 Not Found');
+        }
+    }
     public function do_sign_up() {
         $User = D('User');
         if($User->

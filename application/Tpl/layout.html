@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="__ROOT__/assets/css/bootstrap.css" rel="stylesheet">
+    <link href="__ROOT__/assets/css/sign.css" rel="stylesheet">
 
     <!-- 这段只需要在有验证码的页面有 但是在模板架构下不知道如何实现-->
     <link href="__ROOT__/captcha/captcha.css" rel="stylesheet" type="text/css" />
@@ -95,23 +96,23 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="__ROOT__/assets/js/jquery-2.0.3.min.js"></script>
+<script src="__ROOT__/assets/js/jquery-1.10.2.min.js"></script>
 <script src="__ROOT__/assets/js/bootstrap.min.js"></script>
 
 <!-- 这段只需要在有验证码的页面有 但是在模板架构下不知道如何实现-->
 <script src="__ROOT__/assets/js/jquery-ui.min.js"></script>
-<script src="__ROOT__/captcha/jquery.captcha.js"></script>
-<!-- Cross-Domain AJAX for IE8 and IE9 -->
 <!--[if lt IE 10]>
 <script src="__ROOT__/assets/js/jquery.xdomainrequest.min.js"></script>
 <![endif]-->
+<script src="__ROOT__/captcha/jquery.captcha.js"></script>
+<!-- Cross-Domain AJAX for IE8 and IE9 -->
 <script>
     $(".ajax-fc-container").captcha({
         text: "<if condition="isset($error['captcha'])"><b style=\\"color:red\\">{$error['captcha']}</b><else />验证码</if><br />请把 <span>Loading</span> 拖进右侧圆圈.",
         items: Array("青眼白龙", "黑魔导少女", "星尘龙", "死者苏生", "神之宣告"),
         borderColor: "<if condition="isset($error['captcha'])">red<else/>silver</if>",
         captchaDir : "__ROOT__/captcha",
-        url: "{:U('users/captcha')}",
+        url: "http://{$Think.server.http_host}{:U('users/captcha')}",
         formId: "sign_form"
     });
 </script>
