@@ -34,10 +34,12 @@ class UserAction extends Action{
         $user = $User->where(array('name'=>$_REQUEST['name']))->find();
         if($user){
             if($user['avatar']){
-                $url = "http://$_SERVER[HTTP_HOST]/avatars/$user[avatar]";
-                #if(in_array($size, array('middle','small'))){
-                #    $url = str_replace('/original/', "/$size/", $user['avatar']);
-                #}
+                $url = "https://moeid.my-card.in/avatars/$user[avatar]";
+                $size = 'middle';
+                if(in_array($size, array('middle','small'))){
+                    $url = str_replace('/original/', "/$size/", $url);
+                    $url = str_replace('.jpg', ".png", $url);
+                }
                 header('Location: '.$url);
             }else if($user['email']){
                 $url = 'https://en.gravatar.com/avatar/'.md5(strtolower(trim($user['email']))).'?s=120';

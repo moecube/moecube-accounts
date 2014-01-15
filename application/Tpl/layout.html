@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="{$app.favicon}">
-    <base href="http://{$Think.server.http_host}/__ROOT__" />
+    <base href="//moeid.my-card.in/__ROOT__" />
 
     <title>{$app.name}</title>
 
@@ -112,7 +112,7 @@
         items: Array("青眼白龙", "黑魔导少女", "星尘龙", "死者苏生", "神之宣告"),
         borderColor: "<if condition="isset($error['captcha'])">red<else/>silver</if>",
         captchaDir : "__ROOT__/captcha",
-        url: "http://{$Think.server.http_host}{:U('users/captcha')}",
+        url: "https://moeid.my-card.in{:U('users/captcha')}",
         formId: "sign_form"
     });
 </script>
