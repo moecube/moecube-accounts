@@ -1,14 +1,7 @@
 <?php
+    require_once "database.php";
+
     $emailOrUsername=$_POST['emailOrUsername'];
-
-    try {
-        $pdo = new PDO('pgsql:host=postgres;dbname=userinfo;', 'postgres','');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo 'Connection failed: ' . $e->getMessage();
-    }
-
-
     $sql='SELECT * FROM users WHERE (email=:emailOrUsername or username=:emailOrUsername)';
     $sth=$pdo->prepare($sql,array(PDO::ATTR_CURSOR=>PDO::CURSOR_FWDONLY));
     $sth->execute(array(':emailOrUsername'=>$emailOrUsername));

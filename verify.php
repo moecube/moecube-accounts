@@ -1,4 +1,6 @@
 <?php
+	require_once 'database.php';
+
 	$email		=$_POST['email'];
 	$username	=$_POST['username']	;
 	$nickname 	=$_POST['nickname'];
@@ -6,8 +8,6 @@
 	$password2	=$_POST['password2'];
 
 	$submit 	=$_POST['submit'];
-
-	$pdo = new PDO('pgsql:host=postgres;dbname=userinfo;', 'postgres','');
 	//$email		=$_GET['email']		||$_POST['email']		;
 	//$username		=$_GET['username']	||$_POST['username']	;
 	//$password 	=$_GET['password']	||$_POST['password']	;
@@ -77,7 +77,6 @@
 	}
 	function usernameOK($pdo,$username){
 		global $json_arr;
-		$pdo = new PDO('pgsql:host=postgres;dbname=userinfo;', 'postgres','');
 		$sql=' SELECT * FROM users WHERE username=:username ';
 		$sth=$pdo->prepare($sql,array(PDO::ATTR_CURSOR=>PDO::CURSOR_FWDONLY));
 		$sth->execute(array(':username'=>$username));

@@ -1,16 +1,10 @@
 <?php
+	require_once "database.php";
+
 	$key		=$_GET	['key'];
 	$username	=$_GET	['username'];
 	$password	=$_POST	['password'];
 	$password2	=$_POST	['password2'];
-
-
-	try {
-        $pdo = new PDO('pgsql:host=postgres;dbname=userinfo;', 'postgres','');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        echo 'Connection failed: ' . $e->getMessage();
-    }
 
 
     $sql='SELECT * FROM forgotpassword WHERE key=:key AND username=:username';
