@@ -1,0 +1,15 @@
+
+users table
+username char(60) not null primary key
+email	 char(60) not null
+password char(120) not null
+nickname char(60) 
+status   int default 0	#邮箱验证过否 验证过1  未过验证0
+
+==========================================================
+
+forgotpassword table
+username char(60) not null primary key
+email	 char(60)
+key		 char(60)
+time	 time/date...  #抱歉忘了啥类型  插入当前时间

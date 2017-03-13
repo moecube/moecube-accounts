@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./pic/MoeCube.png">
+    <title>Signin</title>
+    <link href="./Signin Template for Bootstrap_files/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="./Signin Template for Bootstrap_files/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+    <link href="./Signin Template for Bootstrap_files/signin.css" rel="stylesheet">
+    <!-- <script src="./Signin Template for Bootstrap_files/ie-emulation-modes-warning.js.下载"></script> -->
+<!--=====================表单css======================-->
+    <style type="text/css">
+        .red{
+            color:red;
+        }
+        .green{
+            color:green;
+        }
+        .form-red{
+            border-color: red;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,0,0,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,0,0,.6);
+            z-index: 2
+        }
+        .form-green{
+            border-color: green;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0,255,0,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0,255,0,.6);
+            z-index: 2
+        }
+        .btn-half-left{
+            width:calc(50% - 5px);
+            margin: 5px 5px 0 0;
+        }
+        .btn-half-right{
+            width:calc(50% - 5px);
+            margin: 5px 0 0 5px;
+            padding: 10px 5px;
+        }
+        .formsBox{
+            margin: 0 2px;
+            width:330px;
+            position: relative;
+            z-index: 10;
+        }
+        .background{
+            background: rgba(0,0,0,0.08);
+        }
+        .btn-primary{
+            margin-top: 10px;
+        }
+    </style>
+<!--=========================左边logo===========================-->
+    <style>
+        .other-accounts{
+            padding: 10px 0;
+            width: 250px;
+            position: relative;
+            z-index: 10;
+        }
+        .other-accounts ul{
+            padding: 0;
+        }
+        .other-accounts li{
+            list-style-type:none;
+            padding:10px;
+            display: block;
+        }
+        .other-accounts li:hover{
+            background: rgba(0,0,0,0.1);
+        }
+
+        .bigbox{
+            display: flex;
+            justify-content:center;
+        }
+        .smalllogo{
+            width:30px;
+        }
+        .biglogo{
+            width:100px;
+        }
+        .logofont{
+            font-size: 50px;
+        }
+
+    </style>
+<!--==================canvas背景CSS===============================-->
+    <style>
+        #particles-js {position: fixed;top: 0;left: 0;z-index: 1;width: 100%;height: 100%}
+        canvas{
+            display:block;
+            vertical-align:bottom;
+        }
+        html {background: none}
+
+        html body {
+          background-color:  #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+<!--=========================canvas背景==========================-->
+    <div id="particles-js"></div>
+    <script type="text/javascript" src="./canvas/particles.js"></script>
+    <script type="text/javascript" src="./canvas/active.js"></script>
+
+    <div class="bigbox">
+<!--=========================左边logo===========================-->
+        <div class="other-accounts">
+            <img class="biglogo" src="./pic/MoeCube.png"><span class="logofont">萌立方</span>
+            <span>您可使用以下几种账号登陆</span>
+            <ul>
+                <li>
+                    <img class="smalllogo" src="./pic/MoeCube.png">MoeCube
+                </li>
+                <li>
+                    <img class="smalllogo" src="./pic/yonghuan.icon.png">永幻
+                </li> 
+            </ul>
+        </div>
+
+        <div class="formsBox background">
+<!--=========================注册========================-->
+            <form id="form-signup" class="form-signin hidden" action="Signup.php" method="post">
+                <h2 class="form-signup-heading show">Please sign up</h2>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input name='email' type="text" id="email" class="form-control" placeholder="Email address" required="" autofocus="">
+                <span data-ok='email_ok'></span>
+                <label class="sr-only">Username</label>
+                <input name='username' maxlength="20" type="text" id='username' class="form-control" placeholder="Username" required="">
+                <span data-ok='username_ok'></span>
+                <label class="sr-only">Nickname</label>
+                <input name='nickname' type="text" class="form-control" placeholder="nickname(选填)" required="">
+                <span data-ok='nickname_ok'></span>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input name='password' id="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required="" >
+                <span data-ok='password_ok'></span>
+                <label for="inputPassword" class="sr-only">Password Again</label>
+                <input name='password2' id="password2" type="password" id="inputPassword2" class="form-control" placeholder="Password Again" required="" >
+                <span data-ok='password2_ok'></span>
+
+                <button name="sub" class="btn btn-lg btn-primary btn-block" type="button">Sign Up</button>
+                <button class="btn btn-lg btn-default btn-half-left" type="button" onclick="showSignIn()" >Sign In</button><button class="btn btn-lg btn-default btn-half-right" type="button" onclick="showForgot()">Forgot Password</button>
+            </form>
+<!--=========================登陆========================-->
+            <form id="form-signin" class="form-signin" action="Signin.php" method="post">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input name='emailOrUsername' class="form-control" placeholder="Email address Or Username" required="" autofocus="">
+                <span data-ok='emailOrUsername_ok'></span>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input name='password' type="password" id="inputPassword" class="form-control" placeholder="Password" required="" >
+                <span data-ok='password_ok'></span>
+                <!--         <div class="checkbox">
+                    <label>
+                    <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                </div> -->
+                <button name='sub' class="btn btn-lg btn-primary btn-block" type="button" >Sign in</button>
+                <button class="btn btn-lg btn-default btn-half-left" type="button" onclick="showSignUp()">Sign Up</button><button class="btn btn-lg btn-default btn-half-right" type="button" onclick="showForgot()">Forgot Password</button>
+            </form>
+<!--=======================忘记密码======================-->
+            <form id="form-forgot" class="form-signin hidden" action="forgotPassword.php" method="post">
+                <h2 class="form-signin-heading">Forgot Password</h2>
+                <input name='emailOrUsername' class="form-control" placeholder="Email address Or Username" required="" autofocus="">
+                <button name='sub' class="btn btn-lg btn-primary btn-block" type="button" >Sell Emaill</button>
+                <button class="btn btn-lg btn-default btn-half-left" type="button" onclick="showSignUp()">Sign Up</button><button class="btn btn-lg btn-default btn-half-right" type="button" onclick="showSignIn()" >Sign In</button>
+            </form>
+
+        <div>
+    </div>
+
+
+
+    <script src="./Signin Template for Bootstrap_files/ie10-viewport-bug-workaround.js.下载"></script>
+  
+
+</body></html>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+<script type="text/javascript">
+// =======================切换表单===================
+    function showSignUp(){
+        $("#form-signup").removeClass('hidden');
+        $("#form-signin").addClass('hidden');
+        $("#form-forgot").addClass('hidden');
+        console.log('showSignUp');
+    }
+    function showSignIn(){
+        $("#form-signup").addClass('hidden');
+        $("#form-signin").removeClass('hidden');
+        $("#form-forgot").addClass('hidden');
+        console.log('showSignIn');
+    }
+    function showForgot(){
+        $("#form-signup").addClass('hidden');
+        $("#form-signin").addClass('hidden');
+        $("#form-forgot").removeClass('hidden');
+        console.log('showForgot');
+    }
+    $(document).ready(function(){
+// ==========================注册事件====================== 
+        (function(){
+            let $form       = $('#form-signup');
+            let $email      = $form.find('[name="email"]');
+            let $username   = $form.find('[name="username"]');
+            let $nickname   = $form.find('[name="nickname"]');
+            let $password   = $form.find('[name="password"]');
+            let $password2  = $form.find('[name="password2"]');
+            let $sub        = $form.find('[name="sub"]');
+            
+            let $email_ok       = $form.find('[data-ok="email_ok"]');
+            let $username_ok    = $form.find('[data-ok="username_ok"]');
+            let $password_ok    = $form.find('[data-ok="password_ok"]');
+            let $password2_ok   = $form.find('[data-ok="password2_ok"]');
+
+            let email_ok        = true;
+            let username_ok     = true;
+            let password_ok     = true;
+            let password2_ok    = true;
+
+
+            $email.change(function(){
+                let email=this.value;
+                console.log(email);
+                let reg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+                let ok=email.match(reg);
+                if(ok){
+                    console.log('邮箱格式正确');
+
+                    $.ajax({
+                        type:"POST",
+                        url:"./verify.php",
+                        data:{"email":email},
+                        dataType:"json",
+                        success:function(x){
+                            email_ok=x.email.class=='green' ? true : false;
+                            $email_ok.attr('class',x.email.class).html(x.email.html);
+                        }
+                    })
+                }
+                else {
+                    console.log('请填写正确的邮箱地址');
+                    email_ok=false;
+                    $email_ok.attr('class','red').html('请填写正确的邮箱地址');
+                };
+            });
+
+
+            $username.change(function(){
+                let str=this.value;
+                let username=str;
+                let reg=/^[A-Za-z0-9_\u4E00-\u9FD5\u3400-\u4DBF\u{20000}-\u{2A6DF}\u{2A700}-\u{2CEAF}\uF900–\uFAFF\u{2F800}-\u{2FA1D}\uAC00–\uD7AF\u3040-\u30FF\u31F0–\u31FF\u{1B000}–\u{1B0FF}\u3005]+$/u;
+
+                let ok=str.match(reg);
+
+                if(ok){
+                    $.ajax({
+                        type:"POST",
+                        url:"./verify.php",
+                        data:{"username":str},
+                        dataType:"json",
+                        success:function(x){
+                            username_ok=x.username.class=='green' ? true : false;
+                            $username_ok.attr('class',x.username.class).html(x.username.html);
+                        }
+                    })
+                }else{
+                    username_ok = false;
+                    $username_ok.attr('class','red').html('用户名不合法');
+                }
+            });
+
+
+            $password.change(function(){
+                let password=this.value;
+                let reg=/^.{8}/;
+                let ok=password.match(reg);
+                if(ok){
+                    let reg=/^.{8,24}$/;
+                    let ok=password.match(reg);
+                    if(ok){
+                        //console.log('密码可以使用');
+                        password_ok=true;
+                        $password_ok.attr('class','green').html('密码可以使用');
+                    }else{
+                    //console.log('密码过长');
+                        password_ok=false;
+                        $password_ok.attr('class','red').html('密码过长');
+                    }
+                }else{
+                    //console.log('密码过短');
+                    password_ok=false;
+                    $password_ok.attr('class','red').html('密码过短');
+                }
+                if (password== $password2.val()){
+                    //console.log('密码不一致');
+                    password2_ok=false;
+                    $password2_ok.attr('class','green').html('密码一致');
+                }else{
+                    password2_ok=false;
+                    $password2_ok.attr('class','red').html('密码不一致');
+                }
+            });
+
+
+            $password2.change(function(){
+                let password2=this.value;
+                console.log(this.value);
+                if (password2== $password.val()){
+                    console.log('密码一致');
+                    password2_ok=true;
+                    $password2_ok.attr('class','green').html('密码一致');
+                }else{
+                    console.log('密码不一致');
+                    password2_ok=false;
+                    $password2_ok.attr('class','red').html('密码不一致');
+                }
+            });
+
+            $form.find('[name="sub"]').click(function(){
+                let empty=false;
+                if(trim($email.val())==""){
+                    $email_ok.attr('class','red').html('不能为空');
+                    empty=true;
+                }
+                if(trim($username.val())==""){
+                    $username_ok.attr('class','red').html('不能为空');
+                    empty=true;
+                }
+                if(trim($password.val())==""){
+                    $password_ok.attr('class','red').html('不能为空');
+                    empty=true;
+                }
+                if(trim($password2.val())==""){
+                    $password2_ok.attr('class','red').html('不能为空');
+                    empty=true;
+                }
+                
+                if(!empty && email_ok && username_ok && password_ok && password2_ok){
+                    $.ajax({
+                        type:"POST",
+                        url:"./verify.php",
+                        data:{
+                            "email":$email.val(),
+                            "username":$username.val(),
+                            "password":$password.val(),
+                            "password2":$password2.val(),
+                            "nickname":$nickname.val(),
+                            "submit":true
+                        },
+                        dataType:"json",
+                        success:function(x){
+                            if(typeof x.success =="boolean"){
+                                alert('注册成功');
+                                return;
+                            }
+                            x.email     && $email_ok.attr('class',x.email.class).html(x.email.html);
+                            x.username  && $username_ok.attr('class',x.username.class).html(x.username.html);
+                            x.password  && $password_ok.attr('class',x.password.class).html(x.password.html);
+                            x.password2 && $password2_ok.attr('class',x.password2.class).html(x.password2.html);
+                        }
+                    })
+                }else{
+                    
+                }
+            });
+
+        })();
+// ==========================登陆事件====================== 
+        (function(){
+            let $form               = $('#form-signin');
+            let $emailOrUsername    = $form.find('[name="emailOrUsername"]');
+            let $password           = $form.find('[name="password"]');
+
+            $form.find('[name="sub"]').click(function(){
+                $.ajax({
+                    type:"POST",
+                    url:"./Signin.php",
+                    data:{
+                        "emailOrUsername":$emailOrUsername.val(),
+                        "password":$password.val(),
+                    },
+                    success:function(x){
+                        console.log(x);
+                        alert(x);
+                    }
+                });
+            });
+
+        })();
+// ==========================忘记密码事件====================== 
+        (function(){
+            let $form = $('#form-forgot');
+            let $emailOrUsername = $form.find('[name="emailOrUsername"]');
+
+            $form.find('[name="sub"]').click(function(){
+                $.ajax({
+                    type:"POST",
+                    url:"./forgotPassword.php",
+                    data:{
+                        "emailOrUsername":$emailOrUsername.val()
+                    },
+                    success:function(x){
+                        console.log(x);
+                        alert(x);
+                    }
+                });
+            });
+        })();
+
+    })
+    function trim(str){
+        return str.replace(/\s/g,"");
+    }
+</script>
