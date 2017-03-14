@@ -1,0 +1,722 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install' ]
+2 info using npm@3.10.10
+3 info using node@v6.9.5
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly install normalizeTree
+8 silly loadCurrentTree Finishing
+9 silly loadIdealTree Starting
+10 silly install loadIdealTree
+11 silly cloneCurrentTree Starting
+12 silly install cloneCurrentTreeToIdealTree
+13 silly cloneCurrentTree Finishing
+14 silly loadShrinkwrap Starting
+15 silly install loadShrinkwrap
+16 silly loadShrinkwrap Finishing
+17 silly loadAllDepsIntoIdealTree Starting
+18 silly install loadAllDepsIntoIdealTree
+19 silly fetchNamedPackageData babel-core
+20 silly mapToRegistry name babel-core
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npm.taobao.org/
+23 silly mapToRegistry data Result {
+23 silly mapToRegistry   raw: 'babel-core',
+23 silly mapToRegistry   scope: null,
+23 silly mapToRegistry   escapedName: 'babel-core',
+23 silly mapToRegistry   name: 'babel-core',
+23 silly mapToRegistry   rawSpec: '',
+23 silly mapToRegistry   spec: 'latest',
+23 silly mapToRegistry   type: 'tag' }
+24 silly mapToRegistry uri https://registry.npm.taobao.org/babel-core
+25 silly fetchNamedPackageData babel-loader
+26 silly mapToRegistry name babel-loader
+27 silly mapToRegistry using default registry
+28 silly mapToRegistry registry https://registry.npm.taobao.org/
+29 silly mapToRegistry data Result {
+29 silly mapToRegistry   raw: 'babel-loader',
+29 silly mapToRegistry   scope: null,
+29 silly mapToRegistry   escapedName: 'babel-loader',
+29 silly mapToRegistry   name: 'babel-loader',
+29 silly mapToRegistry   rawSpec: '',
+29 silly mapToRegistry   spec: 'latest',
+29 silly mapToRegistry   type: 'tag' }
+30 silly mapToRegistry uri https://registry.npm.taobao.org/babel-loader
+31 silly fetchNamedPackageData babel-preset-env
+32 silly mapToRegistry name babel-preset-env
+33 silly mapToRegistry using default registry
+34 silly mapToRegistry registry https://registry.npm.taobao.org/
+35 silly mapToRegistry data Result {
+35 silly mapToRegistry   raw: 'babel-preset-env',
+35 silly mapToRegistry   scope: null,
+35 silly mapToRegistry   escapedName: 'babel-preset-env',
+35 silly mapToRegistry   name: 'babel-preset-env',
+35 silly mapToRegistry   rawSpec: '',
+35 silly mapToRegistry   spec: 'latest',
+35 silly mapToRegistry   type: 'tag' }
+36 silly mapToRegistry uri https://registry.npm.taobao.org/babel-preset-env
+37 silly fetchNamedPackageData webpack
+38 silly mapToRegistry name webpack
+39 silly mapToRegistry using default registry
+40 silly mapToRegistry registry https://registry.npm.taobao.org/
+41 silly mapToRegistry data Result {
+41 silly mapToRegistry   raw: 'webpack',
+41 silly mapToRegistry   scope: null,
+41 silly mapToRegistry   escapedName: 'webpack',
+41 silly mapToRegistry   name: 'webpack',
+41 silly mapToRegistry   rawSpec: '',
+41 silly mapToRegistry   spec: 'latest',
+41 silly mapToRegistry   type: 'tag' }
+42 silly mapToRegistry uri https://registry.npm.taobao.org/webpack
+43 silly fetchNamedPackageData webpack-dev-server
+44 silly mapToRegistry name webpack-dev-server
+45 silly mapToRegistry using default registry
+46 silly mapToRegistry registry https://registry.npm.taobao.org/
+47 silly mapToRegistry data Result {
+47 silly mapToRegistry   raw: 'webpack-dev-server',
+47 silly mapToRegistry   scope: null,
+47 silly mapToRegistry   escapedName: 'webpack-dev-server',
+47 silly mapToRegistry   name: 'webpack-dev-server',
+47 silly mapToRegistry   rawSpec: '',
+47 silly mapToRegistry   spec: 'latest',
+47 silly mapToRegistry   type: 'tag' }
+48 silly mapToRegistry uri https://registry.npm.taobao.org/webpack-dev-server
+49 verbose request uri https://registry.npm.taobao.org/babel-core
+50 verbose request no auth needed
+51 info attempt registry request try #1 at 12:29:03
+52 verbose request id 5bb0dd72655f70a5
+53 http request GET https://registry.npm.taobao.org/babel-core
+54 verbose request uri https://registry.npm.taobao.org/babel-loader
+55 verbose request no auth needed
+56 info attempt registry request try #1 at 12:29:03
+57 http request GET https://registry.npm.taobao.org/babel-loader
+58 verbose request uri https://registry.npm.taobao.org/babel-preset-env
+59 verbose request no auth needed
+60 info attempt registry request try #1 at 12:29:03
+61 http request GET https://registry.npm.taobao.org/babel-preset-env
+62 verbose request uri https://registry.npm.taobao.org/webpack
+63 verbose request no auth needed
+64 info attempt registry request try #1 at 12:29:03
+65 http request GET https://registry.npm.taobao.org/webpack
+66 verbose request uri https://registry.npm.taobao.org/webpack-dev-server
+67 verbose request no auth needed
+68 info attempt registry request try #1 at 12:29:03
+69 http request GET https://registry.npm.taobao.org/webpack-dev-server
+70 http 200 https://registry.npm.taobao.org/webpack
+71 verbose headers { date: 'Tue, 14 Mar 2017 04:29:06 GMT',
+71 verbose headers   'content-type': 'application/json; charset=utf-8',
+71 verbose headers   'content-length': '1030595',
+71 verbose headers   connection: 'keep-alive',
+71 verbose headers   'x-current-requests': '1',
+71 verbose headers   etag: '"fb9c3-sZy4G1eG72yH44bxwZVKbA"',
+71 verbose headers   'x-readtime': '343' }
+72 silly get cb [ 200,
+72 silly get   { date: 'Tue, 14 Mar 2017 04:29:06 GMT',
+72 silly get     'content-type': 'application/json; charset=utf-8',
+72 silly get     'content-length': '1030595',
+72 silly get     connection: 'keep-alive',
+72 silly get     'x-current-requests': '1',
+72 silly get     etag: '"fb9c3-sZy4G1eG72yH44bxwZVKbA"',
+72 silly get     'x-readtime': '343' } ]
+73 verbose get saving webpack to C:\Users\break\AppData\Roaming\npm-cache\registry.npm.taobao.org\webpack\.cache.json
+74 verbose correctMkdir C:\Users\break\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+75 silly resolveWithNewModule webpack@2.2.1 checking installable status
+76 silly cache add args [ 'webpack@^2.2.1', null ]
+77 verbose cache add spec webpack@^2.2.1
+78 silly cache add parsed spec Result {
+78 silly cache add   raw: 'webpack@^2.2.1',
+78 silly cache add   scope: null,
+78 silly cache add   escapedName: 'webpack',
+78 silly cache add   name: 'webpack',
+78 silly cache add   rawSpec: '^2.2.1',
+78 silly cache add   spec: '>=2.2.1 <3.0.0',
+78 silly cache add   type: 'range' }
+79 silly addNamed webpack@>=2.2.1 <3.0.0
+80 verbose addNamed ">=2.2.1 <3.0.0" is a valid semver range for webpack
+81 silly addNameRange { name: 'webpack', range: '>=2.2.1 <3.0.0', hasData: false }
+82 silly mapToRegistry name webpack
+83 silly mapToRegistry using default registry
+84 silly mapToRegistry registry https://registry.npm.taobao.org/
+85 silly mapToRegistry data Result {
+85 silly mapToRegistry   raw: 'webpack',
+85 silly mapToRegistry   scope: null,
+85 silly mapToRegistry   escapedName: 'webpack',
+85 silly mapToRegistry   name: 'webpack',
+85 silly mapToRegistry   rawSpec: '',
+85 silly mapToRegistry   spec: 'latest',
+85 silly mapToRegistry   type: 'tag' }
+86 silly mapToRegistry uri https://registry.npm.taobao.org/webpack
+87 verbose addNameRange registry:https://registry.npm.taobao.org/webpack not in flight; fetching
+88 http 200 https://registry.npm.taobao.org/babel-core
+89 verbose headers { date: 'Tue, 14 Mar 2017 04:29:05 GMT',
+89 verbose headers   'content-type': 'application/json; charset=utf-8',
+89 verbose headers   'content-length': '547841',
+89 verbose headers   connection: 'keep-alive',
+89 verbose headers   'x-current-requests': '1',
+89 verbose headers   etag: '"85c01-fWus1cKpYQ1OqxTq7loswQ"',
+89 verbose headers   'x-readtime': '175' }
+90 silly get cb [ 200,
+90 silly get   { date: 'Tue, 14 Mar 2017 04:29:05 GMT',
+90 silly get     'content-type': 'application/json; charset=utf-8',
+90 silly get     'content-length': '547841',
+90 silly get     connection: 'keep-alive',
+90 silly get     'x-current-requests': '1',
+90 silly get     etag: '"85c01-fWus1cKpYQ1OqxTq7loswQ"',
+90 silly get     'x-readtime': '175' } ]
+91 verbose get saving babel-core to C:\Users\break\AppData\Roaming\npm-cache\registry.npm.taobao.org\babel-core\.cache.json
+92 verbose correctMkdir C:\Users\break\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+93 http 200 https://registry.npm.taobao.org/babel-loader
+94 verbose headers { date: 'Tue, 14 Mar 2017 04:29:05 GMT',
+94 verbose headers   'content-type': 'application/json; charset=utf-8',
+94 verbose headers   'content-length': '90267',
+94 verbose headers   connection: 'keep-alive',
+94 verbose headers   'x-current-requests': '1',
+94 verbose headers   etag: '"1609b-qk1nx7KOmCnyGkG4IVC06Q"',
+94 verbose headers   'x-readtime': '36' }
+95 silly get cb [ 200,
+95 silly get   { date: 'Tue, 14 Mar 2017 04:29:05 GMT',
+95 silly get     'content-type': 'application/json; charset=utf-8',
+95 silly get     'content-length': '90267',
+95 silly get     connection: 'keep-alive',
+95 silly get     'x-current-requests': '1',
+95 silly get     etag: '"1609b-qk1nx7KOmCnyGkG4IVC06Q"',
+95 silly get     'x-readtime': '36' } ]
+96 verbose get saving babel-loader to C:\Users\break\AppData\Roaming\npm-cache\registry.npm.taobao.org\babel-loader\.cache.json
+97 verbose correctMkdir C:\Users\break\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+98 verbose get https://registry.npm.taobao.org/webpack not expired, no request
+99 silly addNameRange number 2 { name: 'webpack', range: '>=2.2.1 <3.0.0', hasData: true }
+100 silly addNameRange versions [ 'webpack',
+100 silly addNameRange   [ '2.2.1',
+100 silly addNameRange     '2.2.0',
+100 silly addNameRange     '2.2.0-rc.8',
+100 silly addNameRange     '2.2.0-rc.7',
+100 silly addNameRange     '2.2.0-rc.6',
+100 silly addNameRange     '2.2.0-rc.5',
+100 silly addNameRange     '2.2.0-rc.4',
+100 silly addNameRange     '2.2.0-rc.3',
+100 silly addNameRange     '2.2.0-rc.2',
+100 silly addNameRange     '2.2.0-rc.1',
+100 silly addNameRange     '2.2.0-rc.0',
+100 silly addNameRange     '2.1.0-beta.28',
+100 silly addNameRange     '1.14.0',
+100 silly addNameRange     '2.1.0-beta.27',
+100 silly addNameRange     '2.1.0-beta.26',
+100 silly addNameRange     '1.13.3',
+100 silly addNameRange     '2.1.0-beta.25',
+100 silly addNameRange     '2.1.0-beta.24',
+100 silly addNameRange     '2.1.0-beta.23',
+100 silly addNameRange     '2.1.0-beta.22',
+100 silly addNameRange     '1.13.2',
+100 silly addNameRange     '2.1.0-beta.21',
+100 silly addNameRange     '2.1.0-beta.20',
+100 silly addNameRange     '2.1.0-beta.19',
+100 silly addNameRange     '2.1.0-beta.18',
+100 silly addNameRange     '2.1.0-beta.17',
+100 silly addNameRange     '2.1.0-beta.16',
+100 silly addNameRange     '2.1.0-beta.15',
+100 silly addNameRange     '2.1.0-beta.14',
+100 silly addNameRange     '2.1.0-beta.13',
+100 silly addNameRange     '2.1.0-beta.12',
+100 silly addNameRange     '2.1.0-beta.11',
+100 silly addNameRange     '2.1.0-beta.10',
+100 silly addNameRange     '2.1.0-beta.9',
+100 silly addNameRange     '2.1.0-beta.8',
+100 silly addNameRange     '1.13.1',
+100 silly addNameRange     '2.1.0-beta.7',
+100 silly addNameRange     '2.1.0-beta.6',
+100 silly addNameRange     '1.13.0',
+100 silly addNameRange     '1.12.15',
+100 silly addNameRange     '2.1.0-beta.5',
+100 silly addNameRange     '2.1.0-beta.4',
+100 silly addNameRange     '2.1.0-beta.3',
+100 silly addNameRange     '1.12.14',
+100 silly addNameRange     '2.1.0-beta.2',
+100 silly addNameRange     '2.1.0-beta.1',
+100 silly addNameRange     '2.1.0-beta.0',
+100 silly addNameRange     '1.12.13',
+100 silly addNameRange     '2.0.7-beta',
+100 silly addNameRange     '2.0.6-beta',
+100 silly addNameRange     '2.0.5-beta',
+100 silly addNameRange     '1.12.12',
+100 silly addNameRange     '2.0.4-beta',
+100 silly addNameRange     '1.12.11',
+100 silly addNameRange     '1.12.10',
+100 silly addNameRange     '2.0.2-beta',
+100 silly addNameRange     '2.0.1-beta',
+100 silly addNameRange     '1.12.9',
+100 silly addNameRange     '1.12.8',
+100 silly addNameRange     '1.12.7',
+100 silly addNameRange     '1.12.6',
+100 silly addNameRange     '1.12.5',
+100 silly addNameRange     '1.12.4',
+100 silly addNameRange     '1.12.3',
+100 silly addNameRange     '2.0.0-beta',
+100 silly addNameRange     '1.12.2',
+100 silly addNameRange     '1.12.1',
+100 silly addNameRange     '1.12.0',
+100 silly addNameRange     '1.11.0',
+100 silly addNameRange     '1.10.5',
+100 silly addNameRange     '1.10.4',
+100 silly addNameRange     '1.10.3',
+100 silly addNameRange     '1.10.2',
+100 silly addNameRange     '1.10.1',
+100 silly addNameRange     '1.10.0',
+100 silly addNameRange     '1.9.13',
+100 silly addNameRange     '1.9.12',
+100 silly addNameRange     '1.9.11',
+100 silly addNameRange     '1.9.10',
+100 silly addNameRange     '1.9.9',
+100 silly addNameRange     '1.9.8',
+100 silly addNameRange     '1.9.7',
+100 silly addNameRange     '1.9.6',
+100 silly addNameRange     '1.9.5',
+100 silly addNameRange     '1.9.4',
+100 silly addNameRange     '1.9.3',
+100 silly addNameRange     '1.9.2',
+100 silly addNameRange     '1.9.1',
+100 silly addNameRange     '1.9.0',
+100 silly addNameRange     '1.8.11',
+100 silly addNameRange     '1.8.10',
+100 silly addNameRange     '1.8.9',
+100 silly addNameRange     '1.8.8',
+100 silly addNameRange     '1.8.7',
+100 silly addNameRange     '1.8.6',
+100 silly addNameRange     '1.8.5',
+100 silly addNameRange     '1.8.4',
+100 silly addNameRange     '1.8.3',
+100 silly addNameRange     '1.8.2',
+100 silly addNameRange     '1.8.1',
+100 silly addNameRange     ... 338 more items ] ]
+101 silly addNamed webpack@2.2.1
+102 verbose addNamed "2.2.1" is a plain semver version for webpack
+103 silly cache afterAdd webpack@2.2.1
+104 verbose afterAdd C:\Users\break\AppData\Roaming\npm-cache\webpack\2.2.1\package\package.json not in flight; writing
+105 verbose correctMkdir C:\Users\break\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+106 silly resolveWithNewModule babel-core@6.24.0 checking installable status
+107 silly cache add args [ 'babel-core@^6.22.1', null ]
+108 verbose cache add spec babel-core@^6.22.1
+109 silly cache add parsed spec Result {
+109 silly cache add   raw: 'babel-core@^6.22.1',
+109 silly cache add   scope: null,
+109 silly cache add   escapedName: 'babel-core',
+109 silly cache add   name: 'babel-core',
+109 silly cache add   rawSpec: '^6.22.1',
+109 silly cache add   spec: '>=6.22.1 <7.0.0',
+109 silly cache add   type: 'range' }
+110 silly addNamed babel-core@>=6.22.1 <7.0.0
+111 verbose addNamed ">=6.22.1 <7.0.0" is a valid semver range for babel-core
+112 silly addNameRange { name: 'babel-core', range: '>=6.22.1 <7.0.0', hasData: false }
+113 silly mapToRegistry name babel-core
+114 silly mapToRegistry using default registry
+115 silly mapToRegistry registry https://registry.npm.taobao.org/
+116 silly mapToRegistry data Result {
+116 silly mapToRegistry   raw: 'babel-core',
+116 silly mapToRegistry   scope: null,
+116 silly mapToRegistry   escapedName: 'babel-core',
+116 silly mapToRegistry   name: 'babel-core',
+116 silly mapToRegistry   rawSpec: '',
+116 silly mapToRegistry   spec: 'latest',
+116 silly mapToRegistry   type: 'tag' }
+117 silly mapToRegistry uri https://registry.npm.taobao.org/babel-core
+118 verbose addNameRange registry:https://registry.npm.taobao.org/babel-core not in flight; fetching
+119 verbose get https://registry.npm.taobao.org/babel-core not expired, no request
+120 silly addNameRange number 2 { name: 'babel-core', range: '>=6.22.1 <7.0.0', hasData: true }
+121 silly addNameRange versions [ 'babel-core',
+121 silly addNameRange   [ '6.24.0',
+121 silly addNameRange     '7.0.0-alpha.2',
+121 silly addNameRange     '7.0.0-alpha.1',
+121 silly addNameRange     '6.23.1',
+121 silly addNameRange     '6.23.0',
+121 silly addNameRange     '6.22.1',
+121 silly addNameRange     '6.22.0',
+121 silly addNameRange     '6.21.0',
+121 silly addNameRange     '6.20.0',
+121 silly addNameRange     '6.18.2',
+121 silly addNameRange     '6.18.0',
+121 silly addNameRange     '6.17.0',
+121 silly addNameRange     '6.16.0',
+121 silly addNameRange     '6.14.0',
+121 silly addNameRange     '6.13.2',
+121 silly addNameRange     '6.13.1',
+121 silly addNameRange     '6.13.0',
+121 silly addNameRange     '6.11.4',
+121 silly addNameRange     '6.10.4',
+121 silly addNameRange     '6.9.1',
+121 silly addNameRange     '6.9.0',
+121 silly addNameRange     '6.8.0',
+121 silly addNameRange     '6.7.7',
+121 silly addNameRange     '6.7.6',
+121 silly addNameRange     '6.7.5',
+121 silly addNameRange     '6.7.4',
+121 silly addNameRange     '5.8.38',
+121 silly addNameRange     '6.7.2',
+121 silly addNameRange     '6.7.0',
+121 silly addNameRange     '6.6.5',
+121 silly addNameRange     '6.6.4',
+121 silly addNameRange     '6.6.0',
+121 silly addNameRange     '6.5.2-canary.ab7533ed',
+121 silly addNameRange     '6.5.2',
+121 silly addNameRange     '6.5.1',
+121 silly addNameRange     '6.5.0-1',
+121 silly addNameRange     '6.5.0',
+121 silly addNameRange     '5.8.35',
+121 silly addNameRange     '6.4.5',
+121 silly addNameRange     '6.4.0',
+121 silly addNameRange     '6.3.26',
+121 silly addNameRange     '6.3.21',
+121 silly addNameRange     '6.3.17',
+121 silly addNameRange     '6.3.15',
+121 silly addNameRange     '6.3.13',
+121 silly addNameRange     '6.3.2',
+121 silly addNameRange     '6.2.4',
+121 silly addNameRange     '6.2.1',
+121 silly addNameRange     '6.2.0',
+121 silly addNameRange     '6.1.21',
+121 silly addNameRange     '6.1.20',
+121 silly addNameRange     '6.1.19',
+121 silly addNameRange     '6.1.18',
+121 silly addNameRange     '6.1.17',
+121 silly addNameRange     '6.1.16',
+121 silly addNameRange     '6.1.15',
+121 silly addNameRange     '6.1.14',
+121 silly addNameRange     '6.1.13',
+121 silly addNameRange     '6.1.12',
+121 silly addNameRange     '6.1.11',
+121 silly addNameRange     '6.1.10',
+121 silly addNameRange     '6.1.9',
+121 silly addNameRange     '6.1.8',
+121 silly addNameRange     '6.1.7',
+121 silly addNameRange     '6.1.6',
+121 silly addNameRange     '6.1.5',
+121 silly addNameRange     '5.8.34',
+121 silly addNameRange     '6.1.4',
+121 silly addNameRange     '6.1.2',
+121 silly addNameRange     '6.0.20',
+121 silly addNameRange     '6.0.19',
+121 silly addNameRange     '6.0.18',
+121 silly addNameRange     '6.0.17',
+121 silly addNameRange     '6.0.16',
+121 silly addNameRange     '6.0.15',
+121 silly addNameRange     '6.0.14',
+121 silly addNameRange     '6.0.12',
+121 silly addNameRange     '6.0.2',
+121 silly addNameRange     '6.0.1',
+121 silly addNameRange     '6.0.0',
+121 silly addNameRange     '5.8.33',
+121 silly addNameRange     '5.8.32',
+121 silly addNameRange     '5.8.31',
+121 silly addNameRange     '5.8.30',
+121 silly addNameRange     '5.8.29',
+121 silly addNameRange     '5.8.25',
+121 silly addNameRange     '5.8.24',
+121 silly addNameRange     '5.8.23',
+121 silly addNameRange     '5.8.22',
+121 silly addNameRange     '5.8.21',
+121 silly addNameRange     '5.8.20',
+121 silly addNameRange     '5.8.19',
+121 silly addNameRange     '5.8.14',
+121 silly addNameRange     '5.8.12',
+121 silly addNameRange     '5.8.9',
+121 silly addNameRange     '5.8.8',
+121 silly addNameRange     '5.8.6',
+121 silly addNameRange     '5.8.5',
+121 silly addNameRange     '5.8.3',
+121 silly addNameRange     '5.8.2',
+121 silly addNameRange     ... 132 more items ] ]
+122 silly addNamed babel-core@6.24.0
+123 verbose addNamed "6.24.0" is a plain semver version for babel-core
+124 silly resolveWithNewModule babel-loader@6.4.0 checking installable status
+125 silly cache add args [ 'babel-loader@^6.2.10', null ]
+126 verbose cache add spec babel-loader@^6.2.10
+127 silly cache add parsed spec Result {
+127 silly cache add   raw: 'babel-loader@^6.2.10',
+127 silly cache add   scope: null,
+127 silly cache add   escapedName: 'babel-loader',
+127 silly cache add   name: 'babel-loader',
+127 silly cache add   rawSpec: '^6.2.10',
+127 silly cache add   spec: '>=6.2.10 <7.0.0',
+127 silly cache add   type: 'range' }
+128 silly addNamed babel-loader@>=6.2.10 <7.0.0
+129 verbose addNamed ">=6.2.10 <7.0.0" is a valid semver range for babel-loader
+130 silly addNameRange { name: 'babel-loader',
+130 silly addNameRange   range: '>=6.2.10 <7.0.0',
+130 silly addNameRange   hasData: false }
+131 silly mapToRegistry name babel-loader
+132 silly mapToRegistry using default registry
+133 silly mapToRegistry registry https://registry.npm.taobao.org/
+134 silly mapToRegistry data Result {
+134 silly mapToRegistry   raw: 'babel-loader',
+134 silly mapToRegistry   scope: null,
+134 silly mapToRegistry   escapedName: 'babel-loader',
+134 silly mapToRegistry   name: 'babel-loader',
+134 silly mapToRegistry   rawSpec: '',
+134 silly mapToRegistry   spec: 'latest',
+134 silly mapToRegistry   type: 'tag' }
+135 silly mapToRegistry uri https://registry.npm.taobao.org/babel-loader
+136 verbose addNameRange registry:https://registry.npm.taobao.org/babel-loader not in flight; fetching
+137 verbose get https://registry.npm.taobao.org/babel-loader not expired, no request
+138 silly addNameRange number 2 { name: 'babel-loader', range: '>=6.2.10 <7.0.0', hasData: true }
+139 silly addNameRange versions [ 'babel-loader',
+139 silly addNameRange   [ '7.0.0-alpha.3',
+139 silly addNameRange     '7.0.0-alpha.2',
+139 silly addNameRange     '6.4.0',
+139 silly addNameRange     '7.0.0-alpha.1',
+139 silly addNameRange     '6.3.2',
+139 silly addNameRange     '6.3.1',
+139 silly addNameRange     '6.3.0',
+139 silly addNameRange     '6.2.10',
+139 silly addNameRange     '6.2.9',
+139 silly addNameRange     '6.2.8',
+139 silly addNameRange     '6.2.7',
+139 silly addNameRange     '6.2.6',
+139 silly addNameRange     '6.2.5',
+139 silly addNameRange     '5.4.2',
+139 silly addNameRange     '5.4.1',
+139 silly addNameRange     '6.2.4',
+139 silly addNameRange     '6.2.3',
+139 silly addNameRange     '6.2.2',
+139 silly addNameRange     '6.2.1',
+139 silly addNameRange     '6.2.0',
+139 silly addNameRange     '5.4.0',
+139 silly addNameRange     '6.1.0',
+139 silly addNameRange     '6.0.1',
+139 silly addNameRange     '6.0.0',
+139 silly addNameRange     '5.3.3',
+139 silly addNameRange     '5.3.2',
+139 silly addNameRange     '5.3.1',
+139 silly addNameRange     '5.3.0',
+139 silly addNameRange     '5.2.2',
+139 silly addNameRange     '5.2.1',
+139 silly addNameRange     '5.2.0',
+139 silly addNameRange     '5.1.4',
+139 silly addNameRange     '5.1.3',
+139 silly addNameRange     '5.1.2',
+139 silly addNameRange     '5.1.0',
+139 silly addNameRange     '5.0.0',
+139 silly addNameRange     '4.3.0',
+139 silly addNameRange     '4.2.0',
+139 silly addNameRange     '4.1.0',
+139 silly addNameRange     '4.0.0' ] ]
+140 silly addNamed babel-loader@6.4.0
+141 verbose addNamed "6.4.0" is a plain semver version for babel-loader
+142 silly cache afterAdd babel-core@6.24.0
+143 verbose afterAdd C:\Users\break\AppData\Roaming\npm-cache\babel-core\6.24.0\package\package.json not in flight; writing
+144 verbose correctMkdir C:\Users\break\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+145 verbose afterAdd C:\Users\break\AppData\Roaming\npm-cache\webpack\2.2.1\package\package.json written
+146 silly cache afterAdd babel-loader@6.4.0
+147 verbose afterAdd C:\Users\break\AppData\Roaming\npm-cache\babel-loader\6.4.0\package\package.json not in flight; writing
+148 verbose correctMkdir C:\Users\break\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+149 verbose afterAdd C:\Users\break\AppData\Roaming\npm-cache\babel-core\6.24.0\package\package.json written
+150 http 200 https://registry.npm.taobao.org/webpack-dev-server
+151 verbose headers { date: 'Tue, 14 Mar 2017 04:29:05 GMT',
+151 verbose headers   'content-type': 'application/json; charset=utf-8',
+151 verbose headers   'content-length': '190644',
+151 verbose headers   connection: 'keep-alive',
+151 verbose headers   'x-current-requests': '1',
+151 verbose headers   etag: '"2e8b4-93beYYk/iWkfc7n9VTfrtg"',
+151 verbose headers   'x-readtime': '65' }
+152 silly get cb [ 200,
+152 silly get   { date: 'Tue, 14 Mar 2017 04:29:05 GMT',
+152 silly get     'content-type': 'application/json; charset=utf-8',
+152 silly get     'content-length': '190644',
+152 silly get     connection: 'keep-alive',
+152 silly get     'x-current-requests': '1',
+152 silly get     etag: '"2e8b4-93beYYk/iWkfc7n9VTfrtg"',
+152 silly get     'x-readtime': '65' } ]
+153 verbose get saving webpack-dev-server to C:\Users\break\AppData\Roaming\npm-cache\registry.npm.taobao.org\webpack-dev-server\.cache.json
+154 verbose correctMkdir C:\Users\break\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+155 verbose afterAdd C:\Users\break\AppData\Roaming\npm-cache\babel-loader\6.4.0\package\package.json written
+156 silly resolveWithNewModule webpack-dev-server@2.4.1 checking installable status
+157 silly cache add args [ 'webpack-dev-server@^2.3.0', null ]
+158 verbose cache add spec webpack-dev-server@^2.3.0
+159 silly cache add parsed spec Result {
+159 silly cache add   raw: 'webpack-dev-server@^2.3.0',
+159 silly cache add   scope: null,
+159 silly cache add   escapedName: 'webpack-dev-server',
+159 silly cache add   name: 'webpack-dev-server',
+159 silly cache add   rawSpec: '^2.3.0',
+159 silly cache add   spec: '>=2.3.0 <3.0.0',
+159 silly cache add   type: 'range' }
+160 silly addNamed webpack-dev-server@>=2.3.0 <3.0.0
+161 verbose addNamed ">=2.3.0 <3.0.0" is a valid semver range for webpack-dev-server
+162 silly addNameRange { name: 'webpack-dev-server',
+162 silly addNameRange   range: '>=2.3.0 <3.0.0',
+162 silly addNameRange   hasData: false }
+163 silly mapToRegistry name webpack-dev-server
+164 silly mapToRegistry using default registry
+165 silly mapToRegistry registry https://registry.npm.taobao.org/
+166 silly mapToRegistry data Result {
+166 silly mapToRegistry   raw: 'webpack-dev-server',
+166 silly mapToRegistry   scope: null,
+166 silly mapToRegistry   escapedName: 'webpack-dev-server',
+166 silly mapToRegistry   name: 'webpack-dev-server',
+166 silly mapToRegistry   rawSpec: '',
+166 silly mapToRegistry   spec: 'latest',
+166 silly mapToRegistry   type: 'tag' }
+167 silly mapToRegistry uri https://registry.npm.taobao.org/webpack-dev-server
+168 verbose addNameRange registry:https://registry.npm.taobao.org/webpack-dev-server not in flight; fetching
+169 verbose get https://registry.npm.taobao.org/webpack-dev-server not expired, no request
+170 silly addNameRange number 2 { name: 'webpack-dev-server',
+170 silly addNameRange   range: '>=2.3.0 <3.0.0',
+170 silly addNameRange   hasData: true }
+171 silly addNameRange versions [ 'webpack-dev-server',
+171 silly addNameRange   [ '2.4.1',
+171 silly addNameRange     '2.4.0',
+171 silly addNameRange     '2.3.0',
+171 silly addNameRange     '1.16.3',
+171 silly addNameRange     '2.2.1',
+171 silly addNameRange     '2.2.0',
+171 silly addNameRange     '2.2.0-rc.0',
+171 silly addNameRange     '2.1.0-beta.12',
+171 silly addNameRange     '2.1.0-beta.11',
+171 silly addNameRange     '2.1.0-beta.10',
+171 silly addNameRange     '2.1.0-beta.9',
+171 silly addNameRange     '1.16.2',
+171 silly addNameRange     '2.1.0-beta.8',
+171 silly addNameRange     '2.1.0-beta.7',
+171 silly addNameRange     '2.1.0-beta.6',
+171 silly addNameRange     '2.1.0-beta.5',
+171 silly addNameRange     '1.16.1',
+171 silly addNameRange     '1.16.0',
+171 silly addNameRange     '1.15.2',
+171 silly addNameRange     '2.1.0-beta.4',
+171 silly addNameRange     '2.1.0-beta.3',
+171 silly addNameRange     '1.15.1',
+171 silly addNameRange     '2.1.0-beta.2',
+171 silly addNameRange     '2.1.0-beta.1',
+171 silly addNameRange     '1.15.0',
+171 silly addNameRange     '2.1.0-beta.0',
+171 silly addNameRange     '2.0.0-beta',
+171 silly addNameRange     '1.14.1',
+171 silly addNameRange     '1.14.0',
+171 silly addNameRange     '1.13.0',
+171 silly addNameRange     '1.12.1',
+171 silly addNameRange     '1.12.0',
+171 silly addNameRange     '1.11.0',
+171 silly addNameRange     '1.10.1',
+171 silly addNameRange     '1.10.0',
+171 silly addNameRange     '1.9.0',
+171 silly addNameRange     '1.8.2',
+171 silly addNameRange     '1.8.1',
+171 silly addNameRange     '1.8.0',
+171 silly addNameRange     '1.7.0',
+171 silly addNameRange     '1.6.6',
+171 silly addNameRange     '1.6.5',
+171 silly addNameRange     '1.6.4',
+171 silly addNameRange     '1.6.3',
+171 silly addNameRange     '1.6.2',
+171 silly addNameRange     '1.6.1',
+171 silly addNameRange     '1.6.0',
+171 silly addNameRange     '1.5.0',
+171 silly addNameRange     '1.4.10',
+171 silly addNameRange     '1.4.9',
+171 silly addNameRange     '1.4.7',
+171 silly addNameRange     '1.4.6',
+171 silly addNameRange     '1.4.5',
+171 silly addNameRange     '1.4.4',
+171 silly addNameRange     '1.4.3',
+171 silly addNameRange     '1.4.2',
+171 silly addNameRange     '1.4.1',
+171 silly addNameRange     '1.4.0',
+171 silly addNameRange     '1.3.2',
+171 silly addNameRange     '1.3.1',
+171 silly addNameRange     '1.3.0',
+171 silly addNameRange     '1.2.9',
+171 silly addNameRange     '1.2.8',
+171 silly addNameRange     '1.2.7',
+171 silly addNameRange     '1.2.6',
+171 silly addNameRange     '1.2.5',
+171 silly addNameRange     '1.2.4',
+171 silly addNameRange     '1.2.3',
+171 silly addNameRange     '1.2.2',
+171 silly addNameRange     '1.2.1',
+171 silly addNameRange     '1.2.0',
+171 silly addNameRange     '1.1.0',
+171 silly addNameRange     '1.0.2',
+171 silly addNameRange     '1.0.1',
+171 silly addNameRange     '1.0.0',
+171 silly addNameRange     '0.11.1',
+171 silly addNameRange     '0.11.0',
+171 silly addNameRange     '0.10.1',
+171 silly addNameRange     '0.10.0',
+171 silly addNameRange     '0.9.4',
+171 silly addNameRange     '0.9.3',
+171 silly addNameRange     '0.9.2',
+171 silly addNameRange     '0.9.1',
+171 silly addNameRange     '0.9.0',
+171 silly addNameRange     '0.8.2',
+171 silly addNameRange     '0.8.1',
+171 silly addNameRange     '0.8.0',
+171 silly addNameRange     '0.7.2',
+171 silly addNameRange     '0.7.1',
+171 silly addNameRange     '0.7.0',
+171 silly addNameRange     '0.6.2',
+171 silly addNameRange     '0.6.1',
+171 silly addNameRange     '0.6.0' ] ]
+172 silly addNamed webpack-dev-server@2.4.1
+173 verbose addNamed "2.4.1" is a plain semver version for webpack-dev-server
+174 silly mapToRegistry name webpack-dev-server
+175 silly mapToRegistry using default registry
+176 silly mapToRegistry registry https://registry.npm.taobao.org/
+177 silly mapToRegistry data Result {
+177 silly mapToRegistry   raw: 'webpack-dev-server',
+177 silly mapToRegistry   scope: null,
+177 silly mapToRegistry   escapedName: 'webpack-dev-server',
+177 silly mapToRegistry   name: 'webpack-dev-server',
+177 silly mapToRegistry   rawSpec: '',
+177 silly mapToRegistry   spec: 'latest',
+177 silly mapToRegistry   type: 'tag' }
+178 silly mapToRegistry uri https://registry.npm.taobao.org/webpack-dev-server
+179 verbose addRemoteTarball https://registry.npm.taobao.org/webpack-dev-server/download/webpack-dev-server-2.4.1.tgz not in flight; adding
+180 verbose addRemoteTarball [ 'https://registry.npm.taobao.org/webpack-dev-server/download/webpack-dev-server-2.4.1.tgz',
+180 verbose addRemoteTarball   '48556f793186eac0758df94730c034ed9a4d0f12' ]
+181 info retry fetch attempt 1 at 12:29:06
+182 info attempt registry request try #1 at 12:29:06
+183 http fetch GET https://registry.npm.taobao.org/webpack-dev-server/download/webpack-dev-server-2.4.1.tgz
+184 http fetch 200 https://registry.npm.taobao.org/webpack-dev-server/download/webpack-dev-server-2.4.1.tgz
+185 silly fetchAndShaCheck shasum 48556f793186eac0758df94730c034ed9a4d0f12
+186 verbose addTmpTarball C:\Users\break\AppData\Local\Temp\npm-13980-7494c1d1\registry.npm.taobao.org\webpack-dev-server\download\webpack-dev-server-2.4.1.tgz not in flight; adding
+187 verbose addTmpTarball already have metadata; skipping unpack for webpack-dev-server@2.4.1
+188 verbose correctMkdir C:\Users\break\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+189 silly cache afterAdd webpack-dev-server@2.4.1
+190 verbose afterAdd C:\Users\break\AppData\Roaming\npm-cache\webpack-dev-server\2.4.1\package\package.json not in flight; writing
+191 verbose correctMkdir C:\Users\break\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+192 verbose afterAdd C:\Users\break\AppData\Roaming\npm-cache\webpack-dev-server\2.4.1\package\package.json written
+193 info retry will retry, error on last attempt: Error: read ECONNRESET
+194 info attempt registry request try #2 at 12:29:32
+195 http request GET https://registry.npm.taobao.org/babel-preset-env
+196 info retry will retry, error on last attempt: Error: read ECONNRESET
+197 info attempt registry request try #3 at 12:35:51
+198 http request GET https://registry.npm.taobao.org/babel-preset-env
+199 silly fetchPackageMetaData Error: read ECONNRESET
+199 silly fetchPackageMetaData     at exports._errnoException (util.js:1022:11)
+199 silly fetchPackageMetaData     at TLSWrap.onread (net.js:569:26)
+199 silly fetchPackageMetaData  error for babel-preset-env@^1.1.8 { Error: read ECONNRESET
+199 silly fetchPackageMetaData     at exports._errnoException (util.js:1022:11)
+199 silly fetchPackageMetaData     at TLSWrap.onread (net.js:569:26) code: 'ECONNRESET', errno: 'ECONNRESET', syscall: 'read' }
+200 silly rollbackFailedOptional Starting
+201 silly rollbackFailedOptional Finishing
+202 silly runTopLevelLifecycles Finishing
+203 silly install printInstalled
+204 verbose stack Error: read ECONNRESET
+204 verbose stack     at exports._errnoException (util.js:1022:11)
+204 verbose stack     at TLSWrap.onread (net.js:569:26)
+205 verbose cwd E:\CloudMusic\accounts\mycard-accounts
+206 error Windows_NT 10.0.14393
+207 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install"
+208 error node v6.9.5
+209 error npm  v3.10.10
+210 error code ECONNRESET
+211 error errno ECONNRESET
+212 error syscall read
+213 error network read ECONNRESET
+214 error network This is most likely not a problem with npm itself
+214 error network and is related to network connectivity.
+214 error network In most cases you are behind a proxy or have bad network settings.
+214 error network
+214 error network If you are behind a proxy, please make sure that the
+214 error network 'proxy' config is set properly.  See: 'npm help config'
+215 verbose exit [ 1, true ]
