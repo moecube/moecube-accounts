@@ -7,9 +7,10 @@
 	$query = $pdo->prepare("SELECT id, salt from users WHERE (email=:emailOrUsername or username=:emailOrUsername) ");
 	$query->execute(["emailOrUsername" => $emailOrUsername]);
 	$user=$query->fetch(PDO::FETCH_ASSOC);
-	
+
 	if(!$user) {
-		die('账号不存在');
+    http_response_code(400);
+    echo(json_encode(["message" => '用户不存在' ]));
 	}
 
 	$password = hash_pbkdf2("sha256", $password, $user["salt"], 64000);
