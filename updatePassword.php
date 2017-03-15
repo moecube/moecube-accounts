@@ -1,5 +1,5 @@
 <?php
-	require_once "database.php";
+	require_once "config.php";
 
 	$key		=$_GET	['key'];
 	$username	=$_GET	['username'];

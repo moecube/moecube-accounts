@@ -1,5 +1,5 @@
 <?php
-    require_once "database.php";
+    require_once "config.php";
 
     $emailOrUsername=$_POST['emailOrUsername'];
     $sql='SELECT * FROM users WHERE (email=:emailOrUsername or username=:emailOrUsername)';

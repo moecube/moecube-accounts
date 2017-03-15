@@ -1,5 +1,7 @@
 <?php
-	require_once 'database.php';
+	require_once 'config.php';
+
+	header('Content-Type: application/json');			
 
 	$emailOrUsername=$_POST['emailOrUsername'];
 	$password=$_POST['password'];
@@ -10,7 +12,7 @@
 
 	if(!$user) {
     http_response_code(400);
-    echo(json_encode(["message" => '用户不存在' ]));
+    die(json_encode(["message" => '用户不存在' ]));
 	}
 
 	$password = hash_pbkdf2("sha256", $password, $user["salt"], 64000);
@@ -22,11 +24,10 @@
 	$user=$sth->fetch(PDO::FETCH_ASSOC);
 
 	if($user){
-		header('Content-Type: application/json');
-		echo(json_encode([ "name" => $user["name"], "email" => $user["email"],  "username" => $user["username"], "avatar_url" => "", "avatar_force_update" => "true", "external_id" => $user["id"], "admin" => "false", "moderator" => "false"]));
+		die(json_encode([ "external_id" => $user["id"],  "name" => $user["name"], "email" => $user["email"],  "username" => $user["username"], "avatar_url" => "", "avatar_force_update" => "true", "external_id" => $user["id"], "admin" => "false", "moderator" => "false"]));
 	} else {
 		http_response_code(400);
-		echo(json_encode(["message" => '用户或密码失败' ]));
+		die(json_encode(["message" => '用户或密码失败' ]));
 	}
 
 ?>

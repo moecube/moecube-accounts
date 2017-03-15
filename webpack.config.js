@@ -1,7 +1,7 @@
 var path = require('path')
 
-var BUILD_DIR = path.resolve(__dirname, 'assets')
-var APP_DIR = path.resolve(__dirname, 'src')
+var BUILD_DIR = path.resolve(__dirname, 'public/assets')
+var APP_DIR = path.resolve(__dirname, 'public/src')
 
 module.exports = {
   entry: `${APP_DIR}/index`,

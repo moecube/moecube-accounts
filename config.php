@@ -1,18 +1,12 @@
 <?php
-//好像没什么要写的
-//$pdo = new PDO('pgsql:host=postgres;dbname=userinfo;', 'postgres','');
+ini_set("display_erros", 0);
+require_once "vendor/autoload.php";
 
-// 		$mail = new PHPMailer;
-//         $mail ->isSMTP();
-//         // $mail ->SMTPDebug = 2;
-//         $mail ->Host='smtpdm.aliyun.com';
-//         $mail ->SMTPAuth=true;
-//         $mail ->Username='info@mycard.moe';
-//         $mail ->Password='s32ksxd9ucCGuYXM';
-//         $mail ->SMTPSecure = 'ssl';
-//         $mail ->Port=465;
-//         $mail ->CharSet='utf-8';
+$dotenv = new Dotenv\Dotenv(__DIR__); 
+$dotenv->load();
 
-//         $mail ->setFrom('info@mycard.moe');
-//	随便扔点先
-?>
+$pdo = new PDO(getenv("DATABASE"));
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+
+$upload_target = "uploads";

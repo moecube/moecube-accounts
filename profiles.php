@@ -1,6 +1,6 @@
 <?php
 
-  require_once "database.php";
+  require_once "config.php";
 
   
   $id       = $_POST['id'] ? $_POST['id'] : null;
@@ -22,7 +22,26 @@
     die (json_encode(["message" => '用户不存在' ]));
 	}
 
-  if($email || $password && $user["password_hash"] != hash_pbkdf2("sha256", $current_password, $user["salt"], 64000)) {
+  $query = $pdo->prepare("SELECT username from users WHERE username=:username AND id != :id ");
+	$query->execute(["username" => $username, "id" => $id]);
+	$exists=$query->fetch(PDO::FETCH_ASSOC);
+
+  if($exists) {
+    http_response_code(400);
+    die (json_encode(["message" => '用户名已存在' ]));
+  }
+
+  $query = $pdo->prepare("SELECT email from users WHERE email=:email AND id != :id ");
+	$query->execute(["email" => $email, "id" => $id]);
+	$exists=$query->fetch(PDO::FETCH_ASSOC);
+
+  if($exists) {
+    http_response_code(400);
+    die (json_encode(["message" => '邮箱已存在已存在' ]));
+  }
+
+
+  if(($email || $password) && $user["password_hash"] != hash_pbkdf2("sha256", $current_password, $user["salt"], 64000)) {
     http_response_code(400);
     die (json_encode(["message" => '密码不正确' ]));
   }

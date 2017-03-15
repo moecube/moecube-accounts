@@ -1,17 +1,16 @@
 <?php
-    require_once './PHPMailer-master/PHPMailerAutoload.php';
 
     function sendMail($email,$title,$body){
         $mail = new PHPMailer;
 
         $mail ->isSMTP();
         // $mail ->SMTPDebug = 2;
-        $mail ->Host='smtpdm.aliyun.com';
+        $mail ->Host=getenv("SMTP_HOST");
         $mail ->SMTPAuth=true;
-        $mail ->Username='info@mycard.moe';
-        $mail ->Password='s32ksxd9ucCGuYXM';
-        $mail ->SMTPSecure = 'ssl';
-        $mail ->Port=465;
+        $mail ->Username=getenv("SMTP_USERNAME");
+        $mail ->Password=getenv("SMTP_PASSWORD");
+        $mail ->SMTPSecure = getenv("SMTP_SECURE");
+        $mail ->Port=getenv("SMTP_PORT");
         $mail ->CharSet='utf-8';
 
         $mail ->setFrom('info@mycard.moe');
