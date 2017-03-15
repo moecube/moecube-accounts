@@ -3,23 +3,23 @@
 
     $emailOrUsername=$_POST['emailOrUsername'];
     $sql='SELECT * FROM users WHERE (email=:emailOrUsername or username=:emailOrUsername)';
-    $sth=$pdo->prepare($sql,array(PDO::ATTR_CURSOR=>PDO::CURSOR_FWDONLY));
+    $sth=$pdo->prepare($sql);
     $sth->execute(array(':emailOrUsername'=>$emailOrUsername));
-    $s=$sth->fetchAll();
+    $user=$sth->fetch();
 
-    if(count($s)){
-        $username=$s[0]['username'];
-        $email=$s[0]['email'];
-        $key=$username.rand(0,9999);
-        // var_dump($username);
+    if($user){
+        $user_id=$user['id'];
+        $email=$user['email'];
+        $key=$user_id.rand(0,9999);
+        // var_dump($user_id);
         // var_dump($key);
-        $sql='INSERT INTO forgotpassword (username,email,key,time) VALUES(:username, :email, :key, now())';
-        $sth=$pdo->prepare($sql,array(PDO::ATTR_CURSOR=>PDO::CURSOR_FWDONLY));
-        $sth->execute(array(':username'=>$username,':email'=>$email,':key'=>$key));
+        $sql='INSERT INTO forgotpassword (user_id,key,time) VALUES(:user_id, :key, now())';
+        $sth=$pdo->prepare($sql);
+        $sth->execute(array(':user_id'=>$user_id, ':key'=>$key));
 
         //====================发邮件
         $title="修改密码";
-		$body="单击链接 或将链接复制到网页地址栏并回车 来修改密码 http://192.168.1.124/updatepassword.php?key=$key&username=$username";
+		$body="单击链接 或将链接复制到网页地址栏并回车 来修改密码 http://114.215.243.95:8081/updatepassword.html?key=$key&user_id=$user_id";
 		require_once './sendmail.php';
 		sendMail($email,$title,$body);
         echo '邮件已发送';

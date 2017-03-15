@@ -257,7 +257,7 @@ $(document).ready(function () {
                     "emailOrUsername": $emailOrUsername.val()
                 },
                 success: function (data) {
-                    console.log(data);
+                    alert("邮件已发送")
                 }
             });
         });
