@@ -150,8 +150,8 @@
                 <input name='password2' id="password2" type="password" id="inputPassword2" class="form-control" placeholder="Password Again" required="" >
                 <span data-ok='password2_ok'></span>
 
-                <button name="sub" class="btn btn-lg btn-primary btn-block" type="button">Sign Up</button>
-                <button class="btn btn-lg btn-default btn-half-left" type="button" onclick="showSignIn()" >Sign In</button><button class="btn btn-lg btn-default btn-half-right" type="button" onclick="showForgot()">Forgot Password</button>
+                <button name="sub" class="signUpBtn btn btn-lg btn-primary btn-block" type="button">Sign Up</button>
+                <button class="signInBtn btn btn-lg btn-default btn-half-left" type="button">Sign In</button><button class="forGotBtn btn btn-lg btn-default btn-half-right" type="button" >Forgot Password</button>
             </form>
 <!--=========================登陆========================-->
             <form id="form-signin" class="form-signin" action="Signin.php" method="post">
@@ -167,15 +167,15 @@
                     <input type="checkbox" value="remember-me"> Remember me
                     </label>
                 </div> -->
-                <button name='sub' class="btn btn-lg btn-primary btn-block" type="button" >Sign in</button>
-                <button class="btn btn-lg btn-default btn-half-left" type="button" onclick="showSignUp()">Sign Up</button><button class="btn btn-lg btn-default btn-half-right" type="button" onclick="showForgot()">Forgot Password</button>
+                <button name='sub' class="signInBtn btn btn-lg btn-primary btn-block" type="button" >Sign in</button>
+                <button class="signUpBtn btn btn-lg btn-default btn-half-left" type="button">Sign Up</button><button class="forGotBtn btn btn-lg btn-default btn-half-right" type="button">Forgot Password</button>
             </form>
 <!--=======================忘记密码======================-->
             <form id="form-forgot" class="form-signin hidden" action="forgotPassword.php" method="post">
-                <h2 class="form-signin-heading">Forgot Password</h2>
+                <h2 class="forGotBtn form-signin-heading">Forgot Password</h2>
                 <input name='emailOrUsername' class="form-control" placeholder="Email address Or Username" required="" autofocus="">
                 <button name='sub' class="btn btn-lg btn-primary btn-block" type="button" >Sell Emaill</button>
-                <button class="btn btn-lg btn-default btn-half-left" type="button" onclick="showSignUp()">Sign Up</button><button class="btn btn-lg btn-default btn-half-right" type="button" onclick="showSignIn()" >Sign In</button>
+                <button class="signUpBtn btn btn-lg btn-default btn-half-left" type="button" >Sign Up</button><button class="signInBtn btn btn-lg btn-default btn-half-right" type="button"  >Sign In</button>
             </form>
 
         <div>

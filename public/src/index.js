@@ -1,7 +1,5 @@
 import * as crypto from 'crypto'
 
-
-
 const url = new URL(window.location)
 
 let sso
@@ -11,6 +9,9 @@ if (ssoString) {
     sso = new URLSearchParams(Buffer.from(ssoString, 'base64').toString())
 }
 
+$(".signUpBtn").click(showSignUp)
+$(".signInBtn").click(showSignIn)
+$(".forGotBtn").click(showForgot)
 
 // =======================切换表单===================
 function showSignUp() {
@@ -31,6 +32,7 @@ function showForgot() {
     $("#form-forgot").removeClass('hidden');
     console.log('showForgot');
 }
+
 $(document).ready(function () {
     // ==========================注册事件====================== 
     (function () {
