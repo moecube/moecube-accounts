@@ -252,7 +252,7 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: "./forgotPassword.php",
+                url: "./forgot_password.php",
                 data: {
                     "emailOrUsername": $emailOrUsername.val()
                 },
