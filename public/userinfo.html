@@ -61,29 +61,45 @@
             width:200px;
             max-height: 200px;
         }
-    </style>
-
-<!--==================canvas背景CSS===============================-->
-    <style>
-        #particles-js {position: fixed;top: 0;left: 0;z-index: 1;width: 100%;height: 100%}
-        canvas{
-            display:block;
-            vertical-align:bottom;
+        td:nth-child(1){
+            width: 200px;
+            height: 40px;
+            text-align: right;
+            padding-right: 20px;
         }
-        html {background: none}
-
-        html body {
-          background-color:  #fff;
+        td:nth-child(2){
+            width: 280px;
+            height: 40px;
+            
         }
     </style>
 </head>
 
 <body>
+    
+    <div class="formsBox background">
 
-        <div class="formsBox background">
-<!--=========================注册========================-->
-            <form id="form-signup" class="form-signin" action="http://192.168.1.109:8888/profiles.php" method="post" enctype="multipart/form-data">
-                <input id='id' name='id' type="hidden">
+    <!-- =================用户信息==================== -->
+        <div class="show_user_info">
+        ===========================用户信息===========================
+            <table>
+                <tr>
+                    <td>username</td>
+                    <td data-html="username"></td>
+                </tr>
+                <tr>
+                    <td>email</td>
+                    <td data-html="email"></td>
+                </tr>
+            </table>
+        </div>
+
+    <!-- ===================修改信息==================== -->
+        <div class="update_user_info">
+            
+        ===========================修改信息===========================
+            <form id="form-update_user_info" action="http://192.168.1.109:8888/profiles.php" method="post" enctype="multipart/form-data">
+                <input name='id' type="hidden">
                 <table>
                     <tr>
                         <td><span>avatar</span></td>
@@ -94,43 +110,52 @@
                         <td><span data-ok='email_ok'></span></td>
                     </tr>
                     <tr>
-                        <td><span>Email</span></td>
-                        <td><input name='email' type="text" id="email" class="form-control" placeholder="Email address" required="" autofocus=""></td>
-                        <td><span data-ok='email_ok'></span></td>
-                    </tr>
-                    <tr>
-                        <td><span>username</span></td>
-                        <td><input name='username' maxlength="20" type="text" id='username' class="form-control" placeholder="Username" required=""></td>
-                        <td><span data-ok='username_ok'></span></td>
-                    </tr>
-                    <tr>
                         <td><span>Nickname</span></td>
                         <td><input name='nickname' type="text" class="form-control" placeholder="nickname(选填)"></td>
                         <td><span data-ok='nickname_ok'></span></td>
                     </tr>
+                </table>
+                <button id="but1" class="btn btn-lg btn-primary" type="button">SAVE</button>
+                <button id="sub1" class="hidden" type="submit" >SAVE</button>
+            </form>
+        </div>
+
+    <!-- =========================修改账户信息================== -->
+        <div class="update_user_baseinfo">
+        ===========================修改账户信息===========================
+            <form id="form-update_user_baseinfo" action="http://192.168.1.109:8888/profiles.php" method="post" enctype="multipart/form-data">
+                <input name='id' type="hidden">
+                <table>
                     <tr>
-                        <td><span for="inputPassword" >current_password</span></td>
-                        <td><input name='current_password' id="current_password" type="password" id="inputPassword" class="form-control" placeholder="current_password" ></td>
+                        <td><span>email</span></td>
+                        <td><input name='email' maxlength="20" type="text" class="form-control" placeholder="Username" required=""></td>
+                        <td><span data-ok='username_ok'></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>username</span></td>
+                        <td><input name='username' maxlength="20" type="text" class="form-control" placeholder="Username" required=""></td>
+                        <td><span data-ok='username_ok'></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>current_password</span></td>
+                        <td><input name='current_password' type="password" class="form-control" placeholder="current_password" ></td>
                         <td><span data-ok='password_ok'></span></td>
                     </tr>
                     <tr>
-                        <td><span for="inputPassword" >Password</span></td>
-                        <td><input name='password' id="password" type="password" id="inputPassword" class="form-control" placeholder="Password"></td>
+                        <td><span>Password</span></td>
+                        <td><input name='password' type="password" class="form-control" placeholder="Password"></td>
                         <td><span data-ok='password_ok'></span></td>
                     </tr>
                     <tr>
-                        <td><span for="inputPassword" >Password Again</span></td>
-                        <td><input name='password2' id="password2" type="password" id="inputPassword2" class="form-control" placeholder="Password Again"></td>
+                        <td><span>Password Again</span></td>
+                        <td><input name='password2' type="password" class="form-control" placeholder="Password Again"></td>
                         <td><span data-ok='password2_ok'></span></td>
                     </tr>
                 </table>
-                <button class="btn btn-lg btn-primary btn-block" type="button" onclick="subm()">SAVE</button>
-                <button id="sub" class="hidden" type="submit" >SAVE</button>
-
+                <button id="but2" class="btn btn-lg btn-primary" type="button">SAVE</button>
+                <button id="sub2" class="hidden" type="submit" >SAVE</button>
             </form>
-            
-
-        <div>
+        </div>
     </div>
 
 
@@ -145,19 +170,23 @@
             document.getElementById(imgSrc).src = window.URL.createObjectURL(f.files[0]);
         }
 
+        let $id             = $('[name="id"]');
 
-        let $form       = $('#form-signup');
-        let $avatar     = $form.find('[name="avatar"]');
-        let $email      = $form.find('[name="email"]');
-        let $username   = $form.find('[name="username"]');
-        let $nickname   = $form.find('[name="nickname"]');
-        let $password   = $form.find('[name="password"]');
-        let $password2  = $form.find('[name="password2"]');
-        let $sub        = $form.find('[name="sub"]');
-        let $id         = $form.find('[name="id"]');
-        let $current_password=$form.find('[name="current_password"]');
+        let $form1          = $('#form-update_user_info');
+        let $avatar         = $form1.find('[name="avatar"]');
+        let $nickname       = $form1.find('[name="nickname"]');
 
-        let url = new URL("user.php", location);
+        let $form2          = $('#form-update_user_baseinfo');
+        let $email          = $form2.find('[name="email"]');
+        let $username       = $form2.find('[name="username"]');
+        let $password       = $form2.find('[name="password"]');
+        let $password2      = $form2.find('[name="password2"]');
+        let $sub            = $form2.find('[name="sub"]');
+        let $current_password=$form2.find('[name="current_password"]');
+
+
+
+        let url = new URL("http://192.168.1.109:8888/user.php", location);
         url.searchParams.set('id', id);
         $.ajax({
             type:"GET",
@@ -171,15 +200,26 @@
                 $email.val(x.email);
                 $username.val(x.username);
                 $nickname.val(x.name);
+                $("[data-html='username']").html(x.username);
+                $("[data-html='email']").html(x.email);
 
             }
-        })
+        });
 
-        function subm(){
-            if($password.val()==$password2.val()){
-                $("#sub").click();
-            }
-        }
+
+        (function(){
+            $('#but1').click(function subm(){
+                if($password.val()==$password2.val()){
+                    $("#sub1").click();
+                }
+            })
+
+            $('#but2').click(function subm(){
+                if($password.val()==$password2.val()){
+                    $("#sub2").click();
+                }
+            })
+        })();
 
         function init() {
             function keydownFn(e) {
@@ -187,10 +227,11 @@
                     e.preventDefault();
                 }
             }
-            
             $("input").keydown(keydownFn);
         }
         init();
+
+        
     </script>
 </body>
 </html>

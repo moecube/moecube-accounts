@@ -1,13 +1,13 @@
 <?php
 require_once "config.php";
 
-if (!isset($_GET['key']) || !isset($_GET['user_id']) || !isset($_POST['password'])) {
+if (!isset($_POST['key']) || !isset($_POST['user_id']) || !isset($_POST['password'])) {
     http_response_code(400);
     die(json_encode(["message" => '参数不完整']));
 }
 
-$key = $_GET['key'];
-$user_id = $_GET['user_id'];
+$key = $_POST['key'];
+$user_id = $_POST['user_id'];
 $password = $_POST['password'];
 
 $sql = 'SELECT * FROM forgotpassword WHERE key=:key AND user_id=:user_id';
