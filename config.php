@@ -1,5 +1,5 @@
 <?php
-ini_set("display_erros", 0);
+ini_set("display_erros", false);
 require_once "vendor/autoload.php";
 
 $dotenv = new Dotenv\Dotenv(__DIR__); 

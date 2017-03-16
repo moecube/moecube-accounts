@@ -1,4 +1,5 @@
 <?php
+throw new Exception("tetlajlka");
 require_once "config.php";
 
 if (!isset($_POST['key']) || !isset($_POST['user_id']) || !isset($_POST['password'])) {
@@ -14,9 +15,16 @@ $password = $_POST['password'];
 $sql = 'SELECT * FROM forgotpassword WHERE key=:key AND user_id=:user_id';
 $sth = $pdo->prepare($sql);
 $sth->execute(array(':key' => $key, ':user_id' => $user_id));
-$user = $sth->fetch();
+$forgot = $sth->fetch();
 
-if ($user) {
+
+
+if ($forgot) {
+
+    $sql = 'SELECT salt FROM users WHERE id=:user_id';
+    $sth = $pdo->prepare($sql);
+    $sth->execute(array( ':user_id' => $user_id));
+    $user = $sth->fetch();
 
     $password = hash_pbkdf2("sha256", $password, $user["salt"], 64000);
 
@@ -28,6 +36,7 @@ if ($user) {
     $sql = 'DELETE FROM forgotpassword WHERE user_id=:user_id';
     $sth = $pdo->prepare($sql);
     $sth->execute(array(':user_id' => $user_id));
+
 
     http_response_code(204);
 } else {
