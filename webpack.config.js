@@ -9,6 +9,7 @@ module.exports = {
         index: `${APP_DIR}/index`,
         activate: `${APP_DIR}/activate`,
         reset_password: `${APP_DIR}/reset_password`,
+        userinfo:`${APP_DIR}/userinfo`,
     },
     output: {
         path: BUILD_DIR,
