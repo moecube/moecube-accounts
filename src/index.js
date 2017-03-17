@@ -1,8 +1,8 @@
 import $ from 'jquery';
+import './background';
 import 'bootstrap/dist/css/bootstrap.css'
 
 import * as crypto from "crypto";
-import './active'
 
 
 const url = new URL(window.location)
@@ -217,7 +217,7 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: "Signin.php",
+                url: "sign_in.php",
                 data: {
                     "emailOrUsername": $emailOrUsername.val(),
                     "password": $password.val(),
@@ -258,7 +258,7 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: "./forgot_password.php",
+                url: "forgot_password.php",
                 data: {
                     "emailOrUsername": $emailOrUsername.val()
                 },
