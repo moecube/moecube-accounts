@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import 'background';
+import './background';
 import 'bootstrap/dist/css/bootstrap.css'
 
 $("#form").submit(function (event) {
