@@ -22,7 +22,6 @@ $("#form").submit(function (event) {
         .fail(() => {
             alert("修改失败");
         })
-
 });
 
 $('#password').change(function () {

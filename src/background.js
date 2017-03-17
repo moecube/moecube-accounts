@@ -2,6 +2,7 @@
 //particlesJS();
 
 import 'particles.js'
+import './public/css/background.css'
 /* config dom id */
 //particlesJS('dom-id');
 
