@@ -1,7 +1,7 @@
 <?php
 ini_set("display_erros", false);
-require_once "./vendor/autoload.php";
-require_once './sendmail.php';
+require_once "vendor/autoload.php";
+require_once 'include/sendmail.php';
 
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
