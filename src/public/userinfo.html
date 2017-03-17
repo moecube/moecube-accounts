@@ -72,6 +72,10 @@
             width: 300px;
             height: 40px;
         }
+        td:nth-child(3){
+            height: 40px;
+            padding-left: 20px;
+        }
     </style>
 </head>
 
@@ -181,15 +185,20 @@
                         <td><input name='name' type="text" class="form-control" placeholder="nickname(选填)"></td>
                         <td><span data-ok='nickname_ok'></span></td>
                     </tr>
+                    <tr>
+                        <td></td>
+                        <td><button id="but1" class="btn  btn-primary" type="button">SAVE</button></td>
+                        <td></td>
+                    </tr>
                 </table>
-                <button id="but1" class="btn btn-lg btn-primary" type="button">SAVE</button>
+
             </form>
         </div>
 
     <!-- =========================修改账户信息================== -->
         <div class="update_user_baseinfo">
         ===========================修改账户信息===========================
-            <form id="form-update_user_baseinfo" action="http://192.168.1.109:8888/profiles.php" method="post" enctype="multipart/form-data">
+            <form id="form-update_user_baseinfo" action="http://114.215.243.95:8081/profiles.php" method="post" enctype="multipart/form-data">
                 <input name='id' type="hidden">
                 <table>
                     <tr>
