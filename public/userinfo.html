@@ -14,7 +14,7 @@
     <!-- <link href="./Signin Template for Bootstrap_files/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
     <link href="./Signin Template for Bootstrap_files/userinfo.css" rel="stylesheet">
     <!-- <script src="./Signin Template for Bootstrap_files/ie-emulation-modes-warning.js.下载"></script> -->
-<!--=====================表单css======================-->
+    <!--=====================表单css======================-->
     <style type="text/css">
         .red{
             color:red;
@@ -76,7 +76,77 @@
 </head>
 
 <body>
-    
+<!-- ==============================切图用======================= -->
+    <style>
+        .imageBox
+        {
+            position: relative;
+            height: 400px;
+            width: 400px;
+            border:1px solid #aaa;
+            background: #fff;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            cursor:move;
+        }
+
+        .imageBox .thumbBox
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            margin-top: -100px;
+            margin-left: -100px;
+            box-sizing: border-box;
+            border: 1px solid rgb(102, 102, 102);
+            box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+            background: none repeat scroll 0% 0% transparent;
+        }
+
+        .imageBox .spinner
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            text-align: center;
+            line-height: 400px;
+            background: rgba(0,0,0,0.7);
+        }
+        .container
+        {
+            position: relative;
+            top: 10%; left: 10%; right: 0; bottom: 0;
+        }
+        .action
+        {
+            width: 400px;
+            height: 30px;
+            margin: 10px 0;
+        }
+        .cropped>img
+        {
+            margin-right: 10px;
+        }
+    </style>
+    <div class="container">
+        <div class="imageBox">
+            <div class="thumbBox"></div>
+            <div class="spinner" style="display: none">Loading...</div>
+        </div>
+        <div class="action">
+            <input type="file" id="file" style="float:left; width: 250px">
+            <input type="button" id="btnCrop" value="Crop" style="float: right">
+            <input type="button" id="btnZoomIn" value="+" style="float: right">
+            <input type="button" id="btnZoomOut" value="-" style="float: right">
+        </div>
+        <div class="cropped">
+
+        </div>
+    </div>
     <div class="formsBox background">
 
     <!-- =================用户信息==================== -->
@@ -105,18 +175,21 @@
                         <td><span>avatar</span></td>
                         <td>
                             <img id="pic" src=""/>
-                            <input name='avatar' id='upload' type=file onchange="Preview(this,'pic');">
+                            <!-- <input name='avatar12' id='upload' type=file onchange="Preview(this,'pic');"> -->
                         </td>
-                        <td><span data-ok='email_ok'></span></td>
+                        <td>
+                            <!-- <input name='avatar' id='upimg' type="hidden" value="'+img+'"> -->
+                            <span data-ok='email_ok'></span>
+                        </td>
                     </tr>
                     <tr>
                         <td><span>Nickname</span></td>
-                        <td><input name='nickname' type="text" class="form-control" placeholder="nickname(选填)"></td>
+                        <td><input name='name' type="text" class="form-control" placeholder="nickname(选填)"></td>
                         <td><span data-ok='nickname_ok'></span></td>
                     </tr>
                 </table>
                 <button id="but1" class="btn btn-lg btn-primary" type="button">SAVE</button>
-                <button id="sub1" class="hidden" type="submit" >SAVE</button>
+                <button id="sub1"  type="submit" >SAVE</button>
             </form>
         </div>
 
@@ -161,9 +234,12 @@
 
 
     <script src="./Signin Template for Bootstrap_files/ie10-viewport-bug-workaround.js.下载"></script>
-    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+    <script type="text/javascript" src="./src/jquery-3.1.1.min.js"></script>
+    <!-- <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script> -->
+    <script src="./src/cropbox.js"></script>
 
     <script>
+    var imgfile;
         const id = new URL(location).searchParams.get('id');
 
         function Preview(f,imgSrc) {
@@ -174,7 +250,7 @@
 
         let $form1          = $('#form-update_user_info');
         let $avatar         = $form1.find('[name="avatar"]');
-        let $nickname       = $form1.find('[name="nickname"]');
+        let $nickname       = $form1.find('[name="name"]');
 
         let $form2          = $('#form-update_user_baseinfo');
         let $email          = $form2.find('[name="email"]');
@@ -188,30 +264,65 @@
 
         let url = new URL("http://192.168.1.109:8888/user.php", location);
         url.searchParams.set('id', id);
-        $.ajax({
-            type:"GET",
-            url: url,
-            data:{},
-            dataType:"json",
-            success:function(x){
-                console.log(x);
-                $id.val(x.id);
-                $('#pic').attr('src',x.avatar);
-                $email.val(x.email);
-                $username.val(x.username);
-                $nickname.val(x.name);
-                $("[data-html='username']").html(x.username);
-                $("[data-html='email']").html(x.email);
+        // $.ajax({
+        //     type:"GET",
+        //     url: url,
+        //     data:{},
+        //     dataType:"json",
+        //     success:function(x){
+        //         console.log(x);
+        //         $id.val(x.id);
+        //         $('#pic').attr('src',x.avatar);
+        //         $email.val(x.email);
+        //         $username.val(x.username);
+        //         $nickname.val(x.name);
+        //         $("[data-html='username']").html(x.username);
+        //         $("[data-html='email']").html(x.email);
+        //     }
+        // });
 
-            }
+        var jqxhr = $.ajax( {
+            url:url,
+            data:{},
+            dataType:'json'
+        })
+        .done(function(x) {
+            console.log(x);
+            $id.val(x.id);
+            $('#pic').attr('src',x.avatar);
+            $email.val(x.email);
+            $username.val(x.username);
+            $nickname.val(x.name);
+            $("[data-html='username']").html(x.username);
+            $("[data-html='email']").html(x.email);
         });
 
 
         (function(){
             $('#but1').click(function subm(){
-                if($password.val()==$password2.val()){
-                    $("#sub1").click();
-                }
+                //$("#sub1").click();
+                var formData = new FormData();
+
+                formData.append('avatar', imgfile);
+                formData.append('name','abcd');
+                formData.append('id','320656');
+
+                $.ajax( {
+                    type:'post',
+                    url:'http://192.168.1.109:8888/profiles.php?id=320656',
+                    data:formData/*{
+                        id:$id.val(),
+                        avatar:imgfile,
+                        name:$nickname.val()
+                    }*/,
+                    //dataType:'json',
+                    processData: false,
+                    contentType: false
+                })
+                .done(function(x){
+                    console(x);
+                })
+                console.log(imgfile);
             })
 
             $('#but2').click(function subm(){
@@ -233,5 +344,40 @@
 
         
     </script>
+
+    <script type="text/javascript">
+    
+    window.onload = function() {
+        var options =
+        {
+            imageBox: '.imageBox',
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: 'file:///C:/Users/break/Desktop/pic/2.jpg'
+        }
+        var cropper = new cropbox(options);
+        document.querySelector('#file').addEventListener('change', function(){
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = new cropbox(options);
+            }
+            reader.readAsDataURL(this.files[0]);
+            this.files = [];
+        })
+        document.querySelector('#btnCrop').addEventListener('click', function(){
+            var img = cropper.getDataURL();
+            imgfile=cropper.getBlob();
+            $('#upimg').val(imgfile);
+            document.querySelector('.cropped').innerHTML += '<img src="'+img+'">';
+        })
+        document.querySelector('#btnZoomIn').addEventListener('click', function(){
+            cropper.zoomIn();
+        })
+        document.querySelector('#btnZoomOut').addEventListener('click', function(){
+            cropper.zoomOut();
+        })
+    };
+</script>
 </body>
 </html>
