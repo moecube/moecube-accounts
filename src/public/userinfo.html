@@ -61,6 +61,7 @@
             width:200px;
             max-height: 200px;
         }
+
         td:nth-child(1){
             width: 200px;
             height: 40px;
@@ -68,9 +69,8 @@
             padding-right: 20px;
         }
         td:nth-child(2){
-            width: 280px;
+            width: 300px;
             height: 40px;
-            
         }
     </style>
 </head>
@@ -81,8 +81,8 @@
         .imageBox
         {
             position: relative;
-            height: 400px;
-            width: 400px;
+            height: 300px;
+            width: 300px;
             border:1px solid #aaa;
             background: #fff;
             overflow: hidden;
@@ -95,10 +95,10 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 200px;
-            height: 200px;
-            margin-top: -100px;
-            margin-left: -100px;
+            width: 150px;
+            height: 150px;
+            margin-top: -75px;
+            margin-left: -75px;
             box-sizing: border-box;
             border: 1px solid rgb(102, 102, 102);
             box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
@@ -107,23 +107,22 @@
 
         .imageBox .spinner
         {
-            position: absolute;
+            position:absolute;
             top: 0;
             left: 0;
             bottom: 0;
             right: 0;
             text-align: center;
-            line-height: 400px;
+            line-height: 300px;
             background: rgba(0,0,0,0.7);
         }
-        .container
+        .takephoto
         {
             position: relative;
-            top: 10%; left: 10%; right: 0; bottom: 0;
         }
         .action
         {
-            width: 400px;
+            width: 300px;
             height: 30px;
             margin: 10px 0;
         }
@@ -132,21 +131,7 @@
             margin-right: 10px;
         }
     </style>
-    <div class="container">
-        <div class="imageBox">
-            <div class="thumbBox"></div>
-            <div class="spinner" style="display: none">Loading...</div>
-        </div>
-        <div class="action">
-            <input type="file" id="file" style="float:left; width: 250px">
-            <input type="button" id="btnCrop" value="Crop" style="float: right">
-            <input type="button" id="btnZoomIn" value="+" style="float: right">
-            <input type="button" id="btnZoomOut" value="-" style="float: right">
-        </div>
-        <div class="cropped">
-
-        </div>
-    </div>
+    
     <div class="formsBox background">
 
     <!-- =================用户信息==================== -->
@@ -168,18 +153,32 @@
         <div class="update_user_info">
             
         ===========================修改信息===========================
-            <form id="form-update_user_info" action="http://192.168.1.109:8888/profiles.php" method="post" enctype="multipart/form-data">
+            <form id="form-update_user_info">
                 <input name='id' type="hidden">
                 <table>
                     <tr>
                         <td><span>avatar</span></td>
                         <td>
-                            <img id="pic" src=""/>
-                            <!-- <input name='avatar12' id='upload' type=file onchange="Preview(this,'pic');"> -->
+                            <div class="takephoto">
+                                <div class="imageBox">
+                                    <div class="thumbBox"></div>
+                                    <div class="spinner" style="display: none">Loading...</div>
+                                </div>
+                                <div class="action">
+                                    <input type="file" id="file" style="float:left; width: 200px">
+                                    <input type="button" id="btnCrop" value="Crop" style="float: right">
+                                    <input type="button" id="btnZoomIn" value="+" style="float: right">
+                                    <input type="button" id="btnZoomOut" value="-" style="float: right">
+                                    
+                                    
+                                </div>
+                                
+                            </div>
+<!--                             <img id="pic" src=""/>
+                            <input name='avatar12' id='upload' type=file onchange="Preview(this,'pic');"> -->
                         </td>
                         <td>
-                            <!-- <input name='avatar' id='upimg' type="hidden" value="'+img+'"> -->
-                            <span data-ok='email_ok'></span>
+                            <div class="cropped"></div>
                         </td>
                     </tr>
                     <tr>
@@ -189,7 +188,6 @@
                     </tr>
                 </table>
                 <button id="but1" class="btn btn-lg btn-primary" type="button">SAVE</button>
-                <button id="sub1"  type="submit" >SAVE</button>
             </form>
         </div>
 
@@ -264,22 +262,6 @@
 
         let url = new URL("http://192.168.1.109:8888/user.php", location);
         url.searchParams.set('id', id);
-        // $.ajax({
-        //     type:"GET",
-        //     url: url,
-        //     data:{},
-        //     dataType:"json",
-        //     success:function(x){
-        //         console.log(x);
-        //         $id.val(x.id);
-        //         $('#pic').attr('src',x.avatar);
-        //         $email.val(x.email);
-        //         $username.val(x.username);
-        //         $nickname.val(x.name);
-        //         $("[data-html='username']").html(x.username);
-        //         $("[data-html='email']").html(x.email);
-        //     }
-        // });
 
         var jqxhr = $.ajax( {
             url:url,
@@ -304,17 +286,13 @@
                 var formData = new FormData();
 
                 formData.append('avatar', imgfile);
-                formData.append('name','abcd');
-                formData.append('id','320656');
+                formData.append('name',$nickname.val());
+                formData.append('id',$id.val());
 
                 $.ajax( {
                     type:'post',
                     url:'http://192.168.1.109:8888/profiles.php?id=320656',
-                    data:formData/*{
-                        id:$id.val(),
-                        avatar:imgfile,
-                        name:$nickname.val()
-                    }*/,
+                    data:formData,
                     //dataType:'json',
                     processData: false,
                     contentType: false
@@ -345,7 +323,7 @@
         
     </script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
     
     window.onload = function() {
         var options =
@@ -377,6 +355,9 @@
         document.querySelector('#btnZoomOut').addEventListener('click', function(){
             cropper.zoomOut();
         })
+
+        $(".takephoto").on("WheelEvent",function(){return false;})
+    
     };
 </script>
 </body>
