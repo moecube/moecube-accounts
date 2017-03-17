@@ -194,7 +194,7 @@
     <!-- =========================修改账户信息================== -->
         <div class="update_user_baseinfo">
         ===========================修改账户信息===========================
-            <form id="form-update_user_baseinfo" action="http://192.168.1.109:8888/profiles.php" method="post" enctype="multipart/form-data">
+            <form id="form-update_user_baseinfo" action="http://114.215.243.95:8081/profiles.php" method="post" enctype="multipart/form-data">
                 <input name='id' type="hidden">
                 <table>
                     <tr>
@@ -260,7 +260,7 @@
 
 
 
-        let url = new URL("http://192.168.1.109:8888/user.php", location);
+        let url = new URL("http://114.215.243.95:8081/user.php", location);
         url.searchParams.set('id', id);
 
         var jqxhr = $.ajax( {
@@ -291,7 +291,7 @@
 
                 $.ajax( {
                     type:'post',
-                    url:'http://192.168.1.109:8888/profiles.php?id=320656',
+                    url:'http://114.215.243.95:8081/profiles.php?id=320656',
                     data:formData,
                     //dataType:'json',
                     processData: false,

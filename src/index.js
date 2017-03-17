@@ -218,7 +218,7 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: "Signin.php",
+                url: "sign_in.php",
                 data: {
                     "emailOrUsername": $emailOrUsername.val(),
                     "password": $password.val(),
@@ -259,7 +259,7 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: "./forgot_password.php",
+                url: "forgot_password.php",
                 data: {
                     "emailOrUsername": $emailOrUsername.val()
                 },

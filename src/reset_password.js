@@ -9,7 +9,7 @@ $("#form").submit(function (event) {
     const key = urlParams.get('key');
     $.ajax({
         type: "POST",
-        url: "update_password.php",
+        url: "reset_password.php",
         data: {
             "password": $("#inputPassword").val(),
             "user_id": user_id,
