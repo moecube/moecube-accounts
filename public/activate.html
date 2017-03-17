@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.red{color:red;}
+		.green{color:green;}
+	</style>
+</head>
+<body>
+	<div style="text-align: center;">
+		<button id="activate"></button>
+		<h1 id="text"></h1>
+	</div>
+</body>
+	<script src="./src/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript">
+		$("#activate").click(){
+	        var jqxhr = $.ajax( {
+	            url:url,
+	            data:{},
+	            dataType:'json'
+	        })
+	        .done(function(x) {
+	        	$("#text").addclass(x.css).html(x.text);
+	        });
+		}
+	</script>
+</html>

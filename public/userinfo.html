@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,237 +16,368 @@
     <!-- <script src="./Signin Template for Bootstrap_files/ie-emulation-modes-warning.js.下载"></script> -->
     <!--=====================表单css======================-->
     <style type="text/css">
-        .red {
-            color: red;
+        .red{
+            color:red;
         }
-
-        .green {
-            color: green;
+        .green{
+            color:green;
         }
-
-        .form-red {
+        .form-red{
             border-color: red;
             outline: 0;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(255, 0, 0, .6);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(255, 0, 0, .6);
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,0,0,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255,0,0,.6);
             z-index: 2
         }
-
-        .form-green {
+        .form-green{
             border-color: green;
             outline: 0;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 255, 0, .6);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 255, 0, .6);
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0,255,0,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(0,255,0,.6);
             z-index: 2
         }
-
-        .btn-half-left {
-            width: calc(50% - 5px);
+        .btn-half-left{
+            width:calc(50% - 5px);
             margin: 5px 5px 0 0;
         }
-
-        .btn-half-right {
-            width: calc(50% - 5px);
+        .btn-half-right{
+            width:calc(50% - 5px);
             margin: 5px 0 0 5px;
             padding: 10px 5px;
         }
-
-        .formsBox {
+        .formsBox{
             margin: 0 2px;
             /*width:330px;*/
             position: relative;
             z-index: 10;
         }
-
-        .background {
-            background: rgba(0, 0, 0, 0.08);
+        .background{
+            background: rgba(0,0,0,0.08);
         }
-
-        .btn-primary {
+        .btn-primary{
             margin-top: 10px;
         }
-
-        #pic {
-            width: 200px;
+        #pic{
+            width:200px;
             max-height: 200px;
         }
-
-        td:nth-child(1) {
+        td:nth-child(1){
             width: 200px;
             height: 40px;
             text-align: right;
             padding-right: 20px;
         }
-
-        td:nth-child(2) {
+        td:nth-child(2){
             width: 280px;
             height: 40px;
-
+            
         }
     </style>
 </head>
 
 <body>
+<!-- ==============================切图用======================= -->
+    <style>
+        .imageBox
+        {
+            position: relative;
+            height: 400px;
+            width: 400px;
+            border:1px solid #aaa;
+            background: #fff;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            cursor:move;
+        }
 
-<div class="formsBox background">
+        .imageBox .thumbBox
+        {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            margin-top: -100px;
+            margin-left: -100px;
+            box-sizing: border-box;
+            border: 1px solid rgb(102, 102, 102);
+            box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+            background: none repeat scroll 0% 0% transparent;
+        }
+
+        .imageBox .spinner
+        {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            text-align: center;
+            line-height: 400px;
+            background: rgba(0,0,0,0.7);
+        }
+        .container
+        {
+            position: relative;
+            top: 10%; left: 10%; right: 0; bottom: 0;
+        }
+        .action
+        {
+            width: 400px;
+            height: 30px;
+            margin: 10px 0;
+        }
+        .cropped>img
+        {
+            margin-right: 10px;
+        }
+    </style>
+    <div class="container">
+        <div class="imageBox">
+            <div class="thumbBox"></div>
+            <div class="spinner" style="display: none">Loading...</div>
+        </div>
+        <div class="action">
+            <input type="file" id="file" style="float:left; width: 250px">
+            <input type="button" id="btnCrop" value="Crop" style="float: right">
+            <input type="button" id="btnZoomIn" value="+" style="float: right">
+            <input type="button" id="btnZoomOut" value="-" style="float: right">
+        </div>
+        <div class="cropped">
+
+        </div>
+    </div>
+    <div class="formsBox background">
 
     <!-- =================用户信息==================== -->
-    <div class="show_user_info">
+        <div class="show_user_info">
         ===========================用户信息===========================
-        <table>
-            <tr>
-                <td>username</td>
-                <td data-html="username"></td>
-            </tr>
-            <tr>
-                <td>email</td>
-                <td data-html="email"></td>
-            </tr>
-        </table>
-    </div>
+            <table>
+                <tr>
+                    <td>username</td>
+                    <td data-html="username"></td>
+                </tr>
+                <tr>
+                    <td>email</td>
+                    <td data-html="email"></td>
+                </tr>
+            </table>
+        </div>
 
     <!-- ===================修改信息==================== -->
-    <div class="update_user_info">
-
+        <div class="update_user_info">
+            
         ===========================修改信息===========================
-        <form id="form-update_user_info" action="http://192.168.1.109:8888/profiles.php" method="post"
-              enctype="multipart/form-data">
-            <input name='id' type="hidden">
-            <table>
-                <tr>
-                    <td><span>avatar</span></td>
-                    <td>
-                        <img id="pic" src=""/>
-                        <input name='avatar' id='upload' type=file onchange="Preview(this,'pic');">
-                    </td>
-                    <td><span data-ok='email_ok'></span></td>
-                </tr>
-                <tr>
-                    <td><span>Nickname</span></td>
-                    <td><input name='nickname' type="text" class="form-control" placeholder="nickname(选填)"></td>
-                    <td><span data-ok='nickname_ok'></span></td>
-                </tr>
-            </table>
-            <button id="but1" class="btn btn-lg btn-primary" type="button">SAVE</button>
-            <button id="sub1" class="hidden" type="submit">SAVE</button>
-        </form>
-    </div>
+            <form id="form-update_user_info" action="http://192.168.1.109:8888/profiles.php" method="post" enctype="multipart/form-data">
+                <input name='id' type="hidden">
+                <table>
+                    <tr>
+                        <td><span>avatar</span></td>
+                        <td>
+                            <img id="pic" src=""/>
+                            <!-- <input name='avatar12' id='upload' type=file onchange="Preview(this,'pic');"> -->
+                        </td>
+                        <td>
+                            <!-- <input name='avatar' id='upimg' type="hidden" value="'+img+'"> -->
+                            <span data-ok='email_ok'></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Nickname</span></td>
+                        <td><input name='name' type="text" class="form-control" placeholder="nickname(选填)"></td>
+                        <td><span data-ok='nickname_ok'></span></td>
+                    </tr>
+                </table>
+                <button id="but1" class="btn btn-lg btn-primary" type="button">SAVE</button>
+                <button id="sub1"  type="submit" >SAVE</button>
+            </form>
+        </div>
 
     <!-- =========================修改账户信息================== -->
-    <div class="update_user_baseinfo">
+        <div class="update_user_baseinfo">
         ===========================修改账户信息===========================
-        <form id="form-update_user_baseinfo" action="http://192.168.1.109:8888/profiles.php" method="post"
-              enctype="multipart/form-data">
-            <input name='id' type="hidden">
-            <table>
-                <tr>
-                    <td><span>email</span></td>
-                    <td><input name='email' maxlength="20" type="text" class="form-control" placeholder="Username"
-                               required=""></td>
-                    <td><span data-ok='username_ok'></span></td>
-                </tr>
-                <tr>
-                    <td><span>username</span></td>
-                    <td><input name='username' maxlength="20" type="text" class="form-control" placeholder="Username"
-                               required=""></td>
-                    <td><span data-ok='username_ok'></span></td>
-                </tr>
-                <tr>
-                    <td><span>current_password</span></td>
-                    <td><input name='current_password' type="password" class="form-control"
-                               placeholder="current_password"></td>
-                    <td><span data-ok='password_ok'></span></td>
-                </tr>
-                <tr>
-                    <td><span>Password</span></td>
-                    <td><input name='password' type="password" class="form-control" placeholder="Password"></td>
-                    <td><span data-ok='password_ok'></span></td>
-                </tr>
-                <tr>
-                    <td><span>Password Again</span></td>
-                    <td><input name='password2' type="password" class="form-control" placeholder="Password Again"></td>
-                    <td><span data-ok='password2_ok'></span></td>
-                </tr>
-            </table>
-            <button id="but2" class="btn btn-lg btn-primary" type="button">SAVE</button>
-            <button id="sub2" class="hidden" type="submit">SAVE</button>
-        </form>
+            <form id="form-update_user_baseinfo" action="http://192.168.1.109:8888/profiles.php" method="post" enctype="multipart/form-data">
+                <input name='id' type="hidden">
+                <table>
+                    <tr>
+                        <td><span>email</span></td>
+                        <td><input name='email' maxlength="20" type="text" class="form-control" placeholder="Username" required=""></td>
+                        <td><span data-ok='username_ok'></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>username</span></td>
+                        <td><input name='username' maxlength="20" type="text" class="form-control" placeholder="Username" required=""></td>
+                        <td><span data-ok='username_ok'></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>current_password</span></td>
+                        <td><input name='current_password' type="password" class="form-control" placeholder="current_password" ></td>
+                        <td><span data-ok='password_ok'></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Password</span></td>
+                        <td><input name='password' type="password" class="form-control" placeholder="Password"></td>
+                        <td><span data-ok='password_ok'></span></td>
+                    </tr>
+                    <tr>
+                        <td><span>Password Again</span></td>
+                        <td><input name='password2' type="password" class="form-control" placeholder="Password Again"></td>
+                        <td><span data-ok='password2_ok'></span></td>
+                    </tr>
+                </table>
+                <button id="but2" class="btn btn-lg btn-primary" type="button">SAVE</button>
+                <button id="sub2" class="hidden" type="submit" >SAVE</button>
+            </form>
+        </div>
     </div>
-</div>
 
 
-<script src="./Signin Template for Bootstrap_files/ie10-viewport-bug-workaround.js.下载"></script>
-<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
 
-<script>
-    const id = new URL(location).searchParams.get('id');
+    <script src="./Signin Template for Bootstrap_files/ie10-viewport-bug-workaround.js.下载"></script>
+    <script type="text/javascript" src="./src/jquery-3.1.1.min.js"></script>
+    <!-- <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script> -->
+    <script src="./src/cropbox.js"></script>
 
-    function Preview(f, imgSrc) {
-        document.getElementById(imgSrc).src = window.URL.createObjectURL(f.files[0]);
-    }
+    <script>
+    var imgfile;
+        const id = new URL(location).searchParams.get('id');
 
-    let $id = $('[name="id"]');
+        function Preview(f,imgSrc) {
+            document.getElementById(imgSrc).src = window.URL.createObjectURL(f.files[0]);
+        }
 
-    let $form1 = $('#form-update_user_info');
-    let $avatar = $form1.find('[name="avatar"]');
-    let $nickname = $form1.find('[name="nickname"]');
+        let $id             = $('[name="id"]');
 
-    let $form2 = $('#form-update_user_baseinfo');
-    let $email = $form2.find('[name="email"]');
-    let $username = $form2.find('[name="username"]');
-    let $password = $form2.find('[name="password"]');
-    let $password2 = $form2.find('[name="password2"]');
-    let $sub = $form2.find('[name="sub"]');
-    let $current_password = $form2.find('[name="current_password"]');
+        let $form1          = $('#form-update_user_info');
+        let $avatar         = $form1.find('[name="avatar"]');
+        let $nickname       = $form1.find('[name="name"]');
+
+        let $form2          = $('#form-update_user_baseinfo');
+        let $email          = $form2.find('[name="email"]');
+        let $username       = $form2.find('[name="username"]');
+        let $password       = $form2.find('[name="password"]');
+        let $password2      = $form2.find('[name="password2"]');
+        let $sub            = $form2.find('[name="sub"]');
+        let $current_password=$form2.find('[name="current_password"]');
 
 
-    let url = new URL("http://192.168.1.109:8888/user.php", location);
-    url.searchParams.set('id', id);
-    $.ajax({
-        type: "GET",
-        url: url,
-        data: {},
-        dataType: "json",
-        success: function (x) {
+
+        let url = new URL("http://192.168.1.109:8888/user.php", location);
+        url.searchParams.set('id', id);
+        // $.ajax({
+        //     type:"GET",
+        //     url: url,
+        //     data:{},
+        //     dataType:"json",
+        //     success:function(x){
+        //         console.log(x);
+        //         $id.val(x.id);
+        //         $('#pic').attr('src',x.avatar);
+        //         $email.val(x.email);
+        //         $username.val(x.username);
+        //         $nickname.val(x.name);
+        //         $("[data-html='username']").html(x.username);
+        //         $("[data-html='email']").html(x.email);
+        //     }
+        // });
+
+        var jqxhr = $.ajax( {
+            url:url,
+            data:{},
+            dataType:'json'
+        })
+        .done(function(x) {
             console.log(x);
             $id.val(x.id);
-            $('#pic').attr('src', x.avatar);
+            $('#pic').attr('src',x.avatar);
             $email.val(x.email);
             $username.val(x.username);
             $nickname.val(x.name);
             $("[data-html='username']").html(x.username);
             $("[data-html='email']").html(x.email);
+        });
 
+
+        (function(){
+            $('#but1').click(function subm(){
+                //$("#sub1").click();
+                var formData = new FormData();
+
+                formData.append('avatar', imgfile);
+                formData.append('name','abcd');
+                formData.append('id','320656');
+
+                $.ajax( {
+                    type:'post',
+                    url:'http://192.168.1.109:8888/profiles.php?id=320656',
+                    data:formData/*{
+                        id:$id.val(),
+                        avatar:imgfile,
+                        name:$nickname.val()
+                    }*/,
+                    //dataType:'json',
+                    processData: false,
+                    contentType: false
+                })
+                .done(function(x){
+                    console(x);
+                })
+                console.log(imgfile);
+            })
+
+            $('#but2').click(function subm(){
+                if($password.val()==$password2.val()){
+                    $("#sub2").click();
+                }
+            })
+        })();
+
+        function init() {
+            function keydownFn(e) {
+                if(e.which===13){
+                    e.preventDefault();
+                }
+            }
+            $("input").keydown(keydownFn);
         }
-    });
+        init();
 
+        
+    </script>
 
-    (function () {
-        $('#but1').click(function subm() {
-            if ($password.val() == $password2.val()) {
-                $("#sub1").click();
-            }
-        })
-
-        $('#but2').click(function subm() {
-            if ($password.val() == $password2.val()) {
-                $("#sub2").click();
-            }
-        })
-    })();
-
-    function init() {
-        function keydownFn(e) {
-            if (e.which === 13) {
-                e.preventDefault();
-            }
+    <script type="text/javascript">
+    
+    window.onload = function() {
+        var options =
+        {
+            imageBox: '.imageBox',
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: 'file:///C:/Users/break/Desktop/pic/2.jpg'
         }
-
-        $("input").keydown(keydownFn);
-    }
-    init();
-
-
+        var cropper = new cropbox(options);
+        document.querySelector('#file').addEventListener('change', function(){
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                options.imgSrc = e.target.result;
+                cropper = new cropbox(options);
+            }
+            reader.readAsDataURL(this.files[0]);
+            this.files = [];
+        })
+        document.querySelector('#btnCrop').addEventListener('click', function(){
+            var img = cropper.getDataURL();
+            imgfile=cropper.getBlob();
+            $('#upimg').val(imgfile);
+            document.querySelector('.cropped').innerHTML += '<img src="'+img+'">';
+        })
+        document.querySelector('#btnZoomIn').addEventListener('click', function(){
+            cropper.zoomIn();
+        })
+        document.querySelector('#btnZoomOut').addEventListener('click', function(){
+            cropper.zoomOut();
+        })
+    };
 </script>
 </body>
 </html>
