@@ -1,4 +1,4 @@
-import * as crypto from 'crypto'
+import * as crypto from "crypto";
 
 const url = new URL(window.location)
 
@@ -66,7 +66,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: "POST",
                     url: "./verify.php",
-                    data: { "email": email },
+                    data: {"email": email},
                     dataType: "json",
                     success: function (x) {
                         email_ok = x.email.class == 'green' ? true : false;
@@ -78,7 +78,8 @@ $(document).ready(function () {
                 console.log('请填写正确的邮箱地址');
                 email_ok = false;
                 $email_ok.attr('class', 'red').html('请填写正确的邮箱地址');
-            };
+            }
+            ;
         });
 
 
@@ -93,7 +94,7 @@ $(document).ready(function () {
                 $.ajax({
                     type: "POST",
                     url: "./verify.php",
-                    data: { "username": str },
+                    data: {"username": str},
                     dataType: "json",
                     success: function (x) {
                         username_ok = x.username.class == 'green' ? true : false;
@@ -217,7 +218,7 @@ $(document).ready(function () {
                     "password": $password.val(),
                 },
                 success: function (x) {
-                    let url 
+                    let url
 
                     if (sso) {
                         let params = new URLSearchParams()

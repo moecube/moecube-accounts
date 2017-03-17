@@ -1,24 +1,11 @@
 <?php
-	header("Content-type: text/html; charset=utf-8"); 
-	require_once "config.php";
-	$username=$_GET['username'];
+require_once "include/config.php";
+$user_id = $_POST['user_id'];
 
-
-	// $sql=' SELECT * FROM users WHERE username=:username AND status=0';
-	// $sth=$pdo->prepare($sql,array(PDO::ATTR_CURSOR=>PDO::CURSOR_FWDONLY));
-	// $sth->execute(array(':username'=>$username));
-	// $s=$sth->fetchAll();
-	// if(count($s)){
-		$sql='UPDATE users SET status=1 WHERE username=:username AND status=0';
-		$sth=$pdo->prepare($sql,array(PDO::ATTR_CURSOR=>PDO::CURSOR_FWDONLY));
-		$sth->execute(array(':username'=>$username));
-		$s=$sth->fetchAll();
-		if(count($s)){
-			die('激活成功');
-		}
-	// }
-	
-	echo '激活失败'
-
-
-?>
+$query = $db->prepare('UPDATE users SET approved = TRUE WHERE id = :user_id AND NOT approved');
+$query->execute(['user_id' => $user_id]);
+if ($query->rowCount()) {
+    http_response_code(204);
+} else {
+    http_response_code(400);
+}

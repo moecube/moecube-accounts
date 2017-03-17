@@ -1,6 +1,5 @@
 <?php
-throw new Exception("tetlajlka");
-require_once "config.php";
+require_once "include/config.php";
 
 if (!isset($_POST['key']) || !isset($_POST['user_id']) || !isset($_POST['password'])) {
     http_response_code(400);
@@ -13,28 +12,27 @@ $password = $_POST['password'];
 
 
 $sql = 'SELECT * FROM forgotpassword WHERE key=:key AND user_id=:user_id';
-$sth = $pdo->prepare($sql);
+$sth = $db->prepare($sql);
 $sth->execute(array(':key' => $key, ':user_id' => $user_id));
 $forgot = $sth->fetch();
-
 
 
 if ($forgot) {
 
     $sql = 'SELECT salt FROM users WHERE id=:user_id';
-    $sth = $pdo->prepare($sql);
-    $sth->execute(array( ':user_id' => $user_id));
+    $sth = $db->prepare($sql);
+    $sth->execute(array(':user_id' => $user_id));
     $user = $sth->fetch();
 
     $password = hash_pbkdf2("sha256", $password, $user["salt"], 64000);
 
     $sql = 'UPDATE users SET password_hash=:password WHERE id=:user_id';
-    $sth = $pdo->prepare($sql);
+    $sth = $db->prepare($sql);
     $sth->execute(array(':password' => $password, ':user_id' => $user_id));
 
     echo '密码修改成功';
     $sql = 'DELETE FROM forgotpassword WHERE user_id=:user_id';
-    $sth = $pdo->prepare($sql);
+    $sth = $db->prepare($sql);
     $sth->execute(array(':user_id' => $user_id));
 
 
