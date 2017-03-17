@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import 'background';
 import 'bootstrap/dist/css/bootstrap.css'
 
 import * as crypto from "crypto";
