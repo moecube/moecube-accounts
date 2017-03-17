@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.css'
 
 import * as crypto from "crypto";
+import './active'
 
 
 const url = new URL(window.location)

@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const BUILD_DIR = path.resolve(__dirname, 'public');
 const APP_DIR = path.resolve(__dirname, 'src');
@@ -16,16 +17,23 @@ module.exports = {
                 include: APP_DIR,
                 loader: "babel-loader"
             },
-            {test: /bootstrap\/js\//, loader: 'imports?jQuery=jquery'},
-            {test: /\.css$/, include: APP_DIR, loaders: 'style-loader!css-loader'},
-
-
-            // Needed for the css-loader when [bootstrap-webpack](https://github.com/bline/bootstrap-webpack)
-            // loads bootstrap's css.
-            {test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff"},
-            {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
-            {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
-            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"}
+            {
+                test: /\.html$/,
+                use: [{
+                    loader: "html-loader"
+                }]
+                
+            },
+            { test: /\.css$/, loader: 'style-loader!css-loader' },
+            { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader" },
+			{ test: /\.(woff|woff2)$/, loader:"url-loader?prefix=font/&limit=5000" },
+			{ test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=application/octet-stream" },
+			{ test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?limit=10000&mimetype=image/svg+xml" }
         ]
-    }
+    },
+    plugins: [
+        new CopyWebpackPlugin([
+            { from: 'src/public' },
+        ])
+    ]
 };
