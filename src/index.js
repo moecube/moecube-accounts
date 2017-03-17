@@ -1,4 +1,8 @@
+import $ from 'jquery';
+import 'bootstrap/dist/css/bootstrap.css'
+
 import * as crypto from "crypto";
+
 
 const url = new URL(window.location)
 
