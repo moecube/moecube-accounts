@@ -1,2 +1,2 @@
-//export let php_url='http://114.215.243.95:8081';
-export let php_url='.';
+// export let php_url='http://114.215.243.95:8081/';
+export const php_url="."

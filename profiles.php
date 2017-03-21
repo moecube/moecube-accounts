@@ -2,6 +2,11 @@
 
 require_once "include/config.php";
 
+use OSS\OssClient;
+use OSS\Core\OssException;
+use Ramsey\Uuid\Uuid;
+
+$ossClient = new OssClient(OSS_ACCESS_ID, OSS_ACCESS_KEY, OSS_ENDPOINT, false);
 
 $id = $_POST['id'] ? $_POST['id'] : null;
 $email = $_POST['email'] ? $_POST['email'] : null;
@@ -50,15 +55,22 @@ if (!file_exists($upload_target)) {
     mkdir($upload_target);
 }
 
+
 if ($avatar) {
-    move_uploaded_file($avatar["tmp_name"], $avatar_target);
+    $avatar_key = join(DIRECTORY_SEPARATOR, ["avatars", Uuid::uuid1()->toString()]);    
+    $ossClient->uploadFile(
+        OSS_BUCKET,
+        $avatar_key,        
+        $avatar["tmp_name"],
+        [OssClient::OSS_CONTENT_TYPE => $avatar["type"]]
+        );
 }
 
 
 $query = $db->prepare("UPDATE users SET username=:username, name=:name, password_hash=:password_hash, email=:email, avatar= :avatar WHERE id=:id ");
 $query->execute(["username" => $username ? $username : $user["username"],
     "name" => $name ? $name : $user["name"],
-    "avatar" => $avatar ? $id : $user["avatar"],
+    "avatar" => $avatar ? $avatar_key : $user["avatar"],
     "password_hash" => $password ? hash_pbkdf2("sha256", $password, $user["salt"], 64000) : $user["password_hash"],
     "email" => $email ? $email : $user["email"],
     "id" => $id ? $id : $user["id"],

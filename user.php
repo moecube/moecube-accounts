@@ -14,7 +14,7 @@ if ($user) {
     if ($user->avatar) {
         $user->avatar = join(DIRECTORY_SEPARATOR, [($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'], $upload_target, $user->avatar]);
     } else {
-
+        $user->avatar = $default_avatar;
     }
     echo json_encode($user);
 } else {
