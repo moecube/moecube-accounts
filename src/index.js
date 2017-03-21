@@ -2,11 +2,10 @@ import $ from 'jquery';
 import './background';
 import 'bootstrap/dist/css/bootstrap.css'
 
-import {php_url} from './php_url';
+import {php_url} from './config';
 
 import * as crypto from "crypto";
 
-console.log(php_url);
 const url = new URL(window.location)
 
 let sso
@@ -72,7 +71,7 @@ $(document).ready(function () {
 
                 $.ajax({
                     type: "POST",
-                    url: php_url+ "verify.php",
+                    url: php_url+ "/verify.php",
                     data: {"email": email},
                     dataType: "json",
                     success: function (x) {
@@ -100,7 +99,7 @@ $(document).ready(function () {
             if (ok) {
                 $.ajax({
                     type: "POST",
-                    url: php_url+ "verify.php",
+                    url: php_url+ "/verify.php",
                     data: {"username": str},
                     dataType: "json",
                     success: function (x) {
@@ -183,7 +182,7 @@ $(document).ready(function () {
             if (!empty && email_ok && username_ok && password_ok && password2_ok) {
                 $.ajax({
                     type: "POST",
-                    url: php_url+ "verify.php",
+                    url: php_url+ "/verify.php",
                     data: {
                         "email": $email.val(),
                         "username": $username.val(),
@@ -219,7 +218,7 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: php_url+"sign_in.php",
+                url: php_url+"/sign_in.php",
                 data: {
                     "emailOrUsername": $emailOrUsername.val(),
                     "password": $password.val(),
@@ -260,7 +259,7 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: php_url+"forgot_password.php",
+                url: php_url+"/forgot_password.php",
                 data: {
                     "emailOrUsername": $emailOrUsername.val()
                 },

@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require("webpack")
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const BUILD_DIR = path.resolve(__dirname, 'public');
@@ -39,6 +40,11 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([
             {from: 'src/public'},
-        ])
+        ]),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            }
+        }),
     ]
 };

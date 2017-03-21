@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.css'
 import {i18n} from './i18n.js';
+import {php_url} from './config'
 
 var imgfile;
 const id = new URL(location).searchParams.get('id');
@@ -45,7 +46,7 @@ $('[placeholder]').each(
 );
 
 
-let url = new URL("http://114.215.243.95:8081/user.php", location);
+let url = new URL(`${php_url}/user.php`, location);
 url.searchParams.set('id', id);
 
 var jqxhr = $.ajax( {
@@ -77,7 +78,7 @@ var jqxhr = $.ajax( {
 
         $.ajax( {
             type:'post',
-            url:'http://114.215.243.95:8081/profiles.php',
+            url:`${php_url}/profiles.php`,
             data:formData,
             //dataType:'json',
             processData: false,
@@ -95,7 +96,7 @@ var jqxhr = $.ajax( {
                 $("#sub2").click();
                 $.ajax({
                     type:'post',
-                    url:'http://114.215.243.95:8081/profiles.php',
+                    url:`${php_url}/profiles.php`,
                     data:{
                         id:$id.val(),
                         email:$email.val(),
