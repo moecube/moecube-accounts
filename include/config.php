@@ -1,5 +1,6 @@
 <?php
 ini_set("display_errors", false);
+ini_set("log_errors", true);
 require_once "vendor/autoload.php";
 require_once 'include/sendmail.php';
 
