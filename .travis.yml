@@ -11,7 +11,7 @@ env:
 script: npm run build
 
 before_deploy:
-  - curl --location --retry 5 --output ossutil 'http://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/50452/intl_zh/1488523315888/ossutil'
+  - curl --location --retry 5 --output ossutil 'https://docs-aliyun.cn-hangzhou.oss.aliyun-inc.com/assets/attach/50452/intl_zh/1488523315888/ossutil'
   - chmod +x ossutil
   - ./ossutil config --endpoint oss-cn-hangzhou.aliyuncs.com --access-key-id $ALIYUN_ID --access-key-secret $ALIYUN_SECRET
 deploy:
