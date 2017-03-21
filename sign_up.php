@@ -36,7 +36,7 @@ if ($submit == 'true') {
     }
 
     if ($ok) {
-        $salt = mcrypt_create_iv(32, MCRYPT_DEV_URANDOM);
+        $salt = random_bytes(32);
         $password = hash_pbkdf2("sha256", $password, $salt, 64000);
 
         $sql = 'INSERT INTO users(username, password_hash, email, name, salt) VALUES(:username, :password_hash, :email, :nickname, :salt)';
