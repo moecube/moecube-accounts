@@ -28,7 +28,7 @@ if ($user->password_hash == $password) {
     } else {
         $user->avatar = $default_avatar;
     }
-    die(json_encode(["external_id" => $user->id, "name" => $user->name, "email" => $user->email, "username" => $user->username, "avatar_url" => $user->avatar, "avatar_force_update" => "true", "external_id" => $user->id, "admin" => "false", "moderator" => "false"]));
+    die(json_encode(["external_id" => $user->id, "name" => $user->name, "email" => $user->email, "username" => $user->username, "avatar_url" => $user->avatar, "avatar_force_update" => "true", "admin" => "false", "moderator" => "false"]));
 } else {
     http_response_code(400);
     die(json_encode(["message" => '用户或密码失败']));

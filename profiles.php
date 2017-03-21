@@ -55,6 +55,7 @@ if (!file_exists($upload_target)) {
     mkdir($upload_target);
 }
 
+$avatar_key = null;
 
 if ($avatar) {
     $avatar_key = join(DIRECTORY_SEPARATOR, ["avatars", Uuid::uuid1()->toString()]);    

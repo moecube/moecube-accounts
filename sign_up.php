@@ -36,13 +36,17 @@ if ($submit == 'true') {
     }
 
     if ($ok) {
-        $sql = 'INSERT INTO users(username, password, email, nickname) VALUES(:username, :password, :email, :nickname)';
+        $salt = mcrypt_create_iv(32, MCRYPT_DEV_URANDOM);
+        $password = hash_pbkdf2("sha256", $password, $salt, 64000);
+
+        $sql = 'INSERT INTO users(username, password_hash, email, name, salt) VALUES(:username, :password_hash, :email, :nickname, :salt)';
         $sth = $db->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
         $sth->execute([
             ':username' => $username,
-            ':password' => $password,
+            ':password_hash' => $password,
             ':email'    => $email,
-            ':nickname' => $nickname
+            ':nickname' => $nickname,
+            ':salt'     => $salt
         ]);
         $data1 = $sth->fetchAll();
         if (count($data1)) {
