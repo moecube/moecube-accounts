@@ -39,19 +39,20 @@ if ($submit == 'true') {
         $salt = bin2hex(random_bytes(16));
         $password = hash_pbkdf2("sha256", $password, $salt, 64000);
 
-        $sql = 'INSERT INTO users(username, password_hash, email, name, salt) VALUES(:username, :password_hash, :email, :nickname, :salt)';
-        $sth = $db->prepare($sql, [PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY]);
+        $sql = 'INSERT INTO users(username, password_hash, email, name, salt, created_at, updated_at, active, last_seen_at, admin, ip_address, blocked,  locale, registration_ip_address, first_seen_at) 
+                           VALUES(:username, :password_hash, :email, :nickname, :salt, now(), now(), false, now(), false, :ip_address, false, \'zh-CN\',:ip_address, now())';
+        $sth = $db->prepare($sql);
         $sth->execute([
             ':username' => $username,
             ':password_hash' => $password,
             ':email'    => $email,
             ':nickname' => $nickname,
-            ':salt'     => $salt
+            ':salt'     => $salt,
+            ':ip_address' => $_SERVER['REMOTE_ADDR']
         ]);
-        $data1 = $sth->fetchAll();
-        if (count($data1)) {
+        if ($sth->rowCount()) {
             $title = "感谢乃注册MoeCube账号";
-            $body = "单击链接 或将链接复制到网页地址栏并回车 来激活账号 http://192.168.1.124/activate.php?username=$username";
+            $body = "单击链接 或将链接复制到网页地址栏并回车 来激活账号 https://accounts.moecube.com/activate.php?username=$username";
             sendMail($email, $title, $body);
             $json_arr['success'] = true;
         }
