@@ -2,14 +2,18 @@ import $ from 'jquery';
 import './background';
 import 'bootstrap/dist/css/bootstrap.css'
 
+import {i18n} from './i18n.js';
+import {php_url} from './config.js';
+
 $("#form").submit(function (event) {
     event.preventDefault();
     const urlParams = new URL(location).searchParams;
     const user_id = urlParams.get('user_id');
     const key = urlParams.get('key');
+    const url=new URL('reset_password.php',php_url);
     $.ajax({
         type: "POST",
-        url: "reset_password.php",
+        url: url,
         data: {
             "password": $("#inputPassword").val(),
             "user_id": user_id,
@@ -52,10 +56,10 @@ $('#password').change(function () {
 
 $('#password2').change(function () {
     let str = this.value;
-    if (str == $('#password2').val()) {
-        //console.log('密码不一致');
+    if (str == $('#password').val()) {
         $('#password2_ok').attr('class', 'green').html('密码一致');
     } else {
         $('#password2_ok').attr('class', 'red').html('密码不一致');
     }
 });
+console.log('reset_password');
