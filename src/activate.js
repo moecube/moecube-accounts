@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 $("#activate").click(() => {
     $.ajax({
-        url: url,
+        url: './activate.php',
         data: {},
         dataType: 'json'
     }).done(function (x) {
