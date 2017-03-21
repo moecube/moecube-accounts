@@ -1,11 +1,13 @@
 import $ from 'jquery';
 import './background';
-import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css';
 
-import {php_url} from './config';
+import {i18n} from './i18n.js';
+import {php_url} from './config.js';
 
 import * as crypto from "crypto";
 
+console.log(php_url);
 const url = new URL(window.location)
 
 let sso
@@ -83,7 +85,7 @@ $(document).ready(function () {
             else {
                 console.log('请填写正确的邮箱地址');
                 email_ok = false;
-                $email_ok.attr('class', 'red').html('请填写正确的邮箱地址');
+                $email_ok.attr('class', 'red').html();
             }
             ;
         });
