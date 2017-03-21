@@ -64,7 +64,7 @@ if ($submit == 'true') {
                 ':key' => $key
             ]);
             $title = "感谢乃注册MoeCube账号";
-            $body = "单击链接 或将链接复制到网页地址栏并回车 来激活账号 https://accounts.moecube.com/activate.php?" . http_build_query(['key' => $key]);
+            $body = "单击链接 或将链接复制到网页地址栏并回车 来激活账号 https://accounts.moecube.com/activate.html?" . http_build_query(['key' => $key]);
             sendMail($email, $title, $body);
             $json_arr['success'] = true;
         }
