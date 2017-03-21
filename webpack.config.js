@@ -46,5 +46,9 @@ module.exports = {
                 warnings: false
             }
         }),
+        new webpack.NoErrorsPlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        })
     ]
 };
