@@ -48,11 +48,17 @@ var jqxhr = $.ajax( {
 
 
 (function(){
+    $nickname.change(function(){
+        $('#but1').removeAttr('disabled');
+    })
+    $form2.find('input').change(function(){
+        $('#but2').removeAttr('disabled');
+    });
     $('#but1').click(function subm(){
         //$("#sub1").click();
         var formData = new FormData();
 
-        formData.append('avatar', imgfile);
+        formData.append('avatar_url', imgfile);
         formData.append('name',$nickname.val());
         formData.append('id',$id.val());
 
@@ -72,6 +78,7 @@ var jqxhr = $.ajax( {
 
     $('#form-update_user_baseinfo').submit(
         function(){
+            event.preventDefault();
             if($password.val()==$password2.val()){
                 $("#sub2").click();
                 $.ajax({
@@ -115,6 +122,9 @@ window.onload = function() {
     }
     var cropper = new cropbox(options);
     document.querySelector('#file').addEventListener('change', function(){
+        $('#btnCrop').removeAttr('disabled');
+        $('#btnZoomIn').removeAttr('disabled');
+        $('#btnZoomOut').removeAttr('disabled');
         var reader = new FileReader();
         reader.onload = function(e) {
             options.imgSrc = e.target.result;
@@ -124,6 +134,7 @@ window.onload = function() {
         this.files = [];
     })
     document.querySelector('#btnCrop').addEventListener('click', function(){
+        $('#but1').removeAttr('disabled');
         var img = cropper.getDataURL();
         imgfile=cropper.getBlob();
         $('#upimg').val(imgfile);

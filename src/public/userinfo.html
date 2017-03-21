@@ -100,16 +100,13 @@
             background:rgba(116,162,201,0.3);
         }
     </style>
-</head>
-
-<body>
-<!-- ==============================切图用======================= -->
+    <!-- ==============================切图用======================= -->
     <style>
         .imageBox
         {
             position: relative;
-            height: 300px;
-            width: 300px;
+            height: 320px;
+            width: 320px;
             border:1px solid #aaa;
             background: #fff;
             overflow: hidden;
@@ -122,10 +119,10 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 150px;
-            height: 150px;
-            margin-top: -75px;
-            margin-left: -75px;
+            width: 160px;
+            height: 160px;
+            margin-top: -80px;
+            margin-left: -80px;
             box-sizing: border-box;
             border: 1px solid rgb(102, 102, 102);
             box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
@@ -149,18 +146,20 @@
         }
         .action
         {
-            width: 300px;
+            width: 320px;
             height: 30px;
-            margin: 10px 0;
         }
         .cropped>img
         {
             margin-right: 10px;
         }
     </style>
+</head>
+
+<body>
+
     
     <div class="formsBox background">
-    <a id="changeLanguage" data-i18n="language"></a>
     <!-- =================用户信息==================== -->
         <div class="show_user_info">
             <div class="subtitle" data-i18n="user-info">用户信息</div>
@@ -194,9 +193,9 @@
                                 </div>
                                 <div class="action">
                                     <input type="file"  id="file" style="float:left; width: 200px">
-                                    <button type="button" class="btn btn-primary" id="btnCrop" data-i18n="crop" style="float: right"></button>
-                                    <input type="button" class="btn btn-primary" id="btnZoomIn" value="+" style="float: right">
-                                    <input type="button" class="btn btn-primary" disabled="" id="btnZoomOut" value="-" style="float: right">
+                                    <button type="button" class="btn btn-primary" disabled id="btnCrop" data-i18n="crop" style="float: right"></button>
+                                    <input type="button" class="btn btn-primary" disabled id="btnZoomIn" value="+" style="float: right">
+                                    <input type="button" class="btn btn-primary" disabled id="btnZoomOut" value="-" style="float: right">
                                 </div>
                             </div>
                         </td>
@@ -211,7 +210,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button data-i18n="save" id="but1" class="btn  btn-primary" type="button">SAVE</button></td>
+                        <td><button data-i18n="save" id="but1" class="btn  btn-primary" type="button" disabled>SAVE</button></td>
                         <td></td>
                     </tr>
                 </table>
@@ -222,7 +221,7 @@
     <!-- =========================修改账户信息================== -->
         <div class="update_user_baseinfo">
             <div data-i18n="reset-account-info" class="subtitle" >修改账户信息</div>
-            <form id="form-update_user_baseinfo" action="http://114.215.243.95:8081/profiles.php" method="post" enctype="multipart/form-data">
+            <form id="form-update_user_baseinfo" method="post" enctype="multipart/form-data">
                 <input name='id' type="hidden">
                 <table>
                     <tr>
@@ -252,7 +251,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button data-i18n="save" id="but2" class="btn btn-primary" type="submit">SAVE</button></td>
+                        <td><button data-i18n="save" id="but2" class="btn btn-primary" type="submit" disabled>SAVE</button></td>
                         <td></td>
                     </tr>
                 </table>

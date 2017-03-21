@@ -245,7 +245,8 @@ $(document).ready(function () {
                     } else {
                         url = new URL('userinfo.html', location)
                         console.log(x)
-                        url.searchParams.set('id', x["external_id"])
+                        url.searchParams.set('id', x["external_id"]);
+                        alert(x.message);
                     }
                     location.href = url
                 }
@@ -266,7 +267,7 @@ $(document).ready(function () {
                     "emailOrUsername": $emailOrUsername.val()
                 },
                 success: function (data) {
-                    alert("邮件已发送")
+                    alert("邮件已发送");
                 }
             });
         });

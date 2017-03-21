@@ -21,7 +21,6 @@ export var i18n = {
         'yonghuan': 'yonghuan',
         'please-sign-up': 'Please sign up',
         'please-sign-in': 'Please sign in',
-        'please-sign-up': 'Please sign up',
 
         'email-address-or-username': 'Email address Or Username',
         'sign-up': 'Sign Up',
@@ -38,6 +37,11 @@ export var i18n = {
         '6': '密码一致',
         '7': '密码不一致',
         '8': '邮件已发送',
+
+        '9':'用户或密码失败',
+        '10':'',
+
+        'reset-password':'Reset Password',
     },
     zh: {
         'language': 'english',
@@ -48,7 +52,7 @@ export var i18n = {
         'user-info': '用户信息',
         'reset-info': '修改信息',
         avatar: '头像',
-        nickname: '昵称',
+        nickname: '昵称[选填]',
         'reset-account-info': '修改账户信息',
         'current_password': '原密码',
         'password-again': '再次输入密码',
@@ -60,7 +64,6 @@ export var i18n = {
         'yonghuan': '永幻',
         'please-sign-up': '注册',
         'please-sign-in': '登陆',
-        'forgot-password': '忘记密码',
 
         'email-address-or-username': '邮箱或用户名',
         'sign-up': '注册',
@@ -77,8 +80,15 @@ export var i18n = {
         '6': '密码一致',
         '7': '密码不一致',
         '8': '邮件已发送',
+
+        '9':'用户或密码失败',
+        '10':'',
+
+        'reset-password':'重设密码',
     }
 }
+
+$('body').append('<a href="#" id="changeLanguage" data-i18n="language" style="position:absolute; top:0px; right:10px; z-index:10"></a>')
 
 const languagel = localStorage.getItem('language') || navigator.language || (navigator.languages && navigator.languages[0]) || navigator.userLanguage || navigator.browserLanguage || 'zh-CN';
 console.log(languagel);
@@ -91,6 +101,7 @@ $('[data-i18n]').each(function (x) {
 $('[placeholder]').each(function (x) {
     $(this).attr('placeholder', i18n[language][$(this).attr('placeholder')]);
 });
+
 $('#changeLanguage').click(function () {
     localStorage.setItem('language', i18n[language]['l']);
     window.history.go(0);
