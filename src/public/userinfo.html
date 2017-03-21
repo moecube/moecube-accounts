@@ -46,13 +46,16 @@
             padding: 10px 5px;
         }
         .formsBox{
-            margin: 0 2px;
-            /*width:330px;*/
+            padding:20px;
+            margin: auto;
+            width:760px;
             position: relative;
             z-index: 10;
+            box-shadow: 10px 10px 5px rgba(116,162,201,0.3);
+            border-radius:20px;
         }
         .background{
-            background: rgba(0,0,0,0.08);
+            background: rgba(116,162,201,0.3);
         }
         .btn-primary{
             margin-top: 10px;
@@ -75,6 +78,26 @@
         td:nth-child(3){
             height: 40px;
             padding-left: 20px;
+        }
+        .subtitle{
+            border-bottom: #337ab7 2px solid; 
+            padding:2px; 
+            font-size: 20px; 
+            color:#337ab7;
+            margin:10px;
+        }
+
+        /*.show_user_info{
+            margin:10px;
+            box-shadow: 0px 0px 6px #aaa;
+        }*/
+
+        form{
+            padding:10px;
+            margin:10px;
+            box-shadow: 0px 0px 6px rgba(116,162,201,0.3);
+            /*background:#74a2c9;*/
+            background:rgba(116,162,201,0.3);
         }
     </style>
 </head>
@@ -137,31 +160,32 @@
     </style>
     
     <div class="formsBox background">
-
+<br/><br/>
     <!-- =================用户信息==================== -->
         <div class="show_user_info">
-        ===========================用户信息===========================
+            <div class="subtitle" data-i18n="user-info">用户信息</div>
+            <form>
             <table>
                 <tr>
-                    <td>username</td>
+                    <td data-i18n="username">username</td>
                     <td data-html="username"></td>
                 </tr>
                 <tr>
-                    <td>email</td>
+                    <td data-i18n="email">email</td>
                     <td data-html="email"></td>
                 </tr>
             </table>
+            </form>
         </div>
 
     <!-- ===================修改信息==================== -->
         <div class="update_user_info">
-            
-        ===========================修改信息===========================
+            <div class="subtitle" data-i18n="reset-info">修改信息</div>
             <form id="form-update_user_info">
                 <input name='id' type="hidden">
                 <table>
                     <tr>
-                        <td><span>avatar</span></td>
+                        <td><span data-i18n="avatar">avatar</span></td>
                         <td>
                             <div class="takephoto">
                                 <div class="imageBox">
@@ -169,10 +193,10 @@
                                     <div class="spinner" style="display: none">Loading...</div>
                                 </div>
                                 <div class="action">
-                                    <input type="file" id="file" style="float:left; width: 200px">
-                                    <input type="button" id="btnCrop" value="Crop" style="float: right">
-                                    <input type="button" id="btnZoomIn" value="+" style="float: right">
-                                    <input type="button" id="btnZoomOut" value="-" style="float: right">
+                                    <input type="file"  id="file" style="float:left; width: 200px">
+                                    <input type="button" class="btn btn-primary" id="btnCrop" value="Crop" style="float: right">
+                                    <input type="button" class="btn btn-primary" id="btnZoomIn" value="+" style="float: right">
+                                    <input type="button" class="btn btn-primary" disabled="" id="btnZoomOut" value="-" style="float: right">
                                 </div>
                             </div>
                         </td>
@@ -181,13 +205,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><span>Nickname</span></td>
-                        <td><input name='name' type="text" class="form-control" placeholder="nickname(选填)"></td>
+                        <td><span data-i18n="nickname">Nickname</span></td>
+                        <td><input name='name' type="text" class="form-control" placeholder="nickname"></td>
                         <td><span data-ok='nickname_ok'></span></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button id="but1" class="btn  btn-primary" type="button">SAVE</button></td>
+                        <td><button data-i18n="save" id="but1" class="btn  btn-primary" type="button">SAVE</button></td>
                         <td></td>
                     </tr>
                 </table>
@@ -197,43 +221,44 @@
 
     <!-- =========================修改账户信息================== -->
         <div class="update_user_baseinfo">
-        ===========================修改账户信息===========================
+            <div data-i18n="reset-account-info" class="subtitle" >修改账户信息</div>
             <form id="form-update_user_baseinfo" action="http://114.215.243.95:8081/profiles.php" method="post" enctype="multipart/form-data">
                 <input name='id' type="hidden">
                 <table>
                     <tr>
-                        <td><span>email</span></td>
-                        <td><input name='email' maxlength="20" type="text" class="form-control" placeholder="Username" required=""></td>
+                        <td><span data-i18n="email">email</span></td>
+                        <td><input name='email' maxlength="20" type="text" class="form-control" placeholder="email" required=""></td>
                         <td><span data-ok='username_ok'></span></td>
                     </tr>
                     <tr>
-                        <td><span>username</span></td>
-                        <td><input name='username' maxlength="20" type="text" class="form-control" placeholder="Username" required=""></td>
+                        <td><span data-i18n="username">username</span></td>
+                        <td><input name='username' maxlength="20" type="text" class="form-control" placeholder="username" required=""></td>
                         <td><span data-ok='username_ok'></span></td>
                     </tr>
                     <tr>
-                        <td><span>current_password</span></td>
+                        <td><span data-i18n="current_password">current_password</span></td>
                         <td><input name='current_password' type="password" class="form-control" placeholder="current_password" ></td>
                         <td><span data-ok='password_ok'></span></td>
                     </tr>
                     <tr>
-                        <td><span>Password</span></td>
-                        <td><input name='password' type="password" class="form-control" placeholder="Password"></td>
+                        <td><span data-i18n="password">Password</span></td>
+                        <td><input name='password' type="password" class="form-control" placeholder="password"></td>
                         <td><span data-ok='password_ok'></span></td>
                     </tr>
                     <tr>
-                        <td><span>Password Again</span></td>
-                        <td><input name='password2' type="password" class="form-control" placeholder="Password Again"></td>
+                        <td><span data-i18n="password-again">Password Again</span></td>
+                        <td><input name='password2' type="password" class="form-control" placeholder="password-again"></td>
                         <td><span data-ok='password2_ok'></span></td>
                     </tr>
+                    <tr>
+                        <td></td>
+                        <td><button data-i18n="save" id="but2" class="btn btn-primary" type="submit">SAVE</button></td>
+                        <td></td>
+                    </tr>
                 </table>
-                <button id="but2" class="btn btn-lg btn-primary" type="button">SAVE</button>
-                <button id="sub2" class="hidden" type="submit" >SAVE</button>
             </form>
         </div>
     </div>
-
-
 
     <!-- <script src="./Signin Template for Bootstrap_files/ie10-viewport-bug-workaround.js.下载"></script> -->
     <!-- <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script> -->
