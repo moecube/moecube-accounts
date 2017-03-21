@@ -1,6 +1,8 @@
 import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.css'
+
 import {i18n} from './i18n.js';
+import {php_url} from './config.js';
 
 var imgfile;
 const id = new URL(location).searchParams.get('id');
@@ -23,30 +25,9 @@ let $password2      = $form2.find('[name="password2"]');
 let $sub            = $form2.find('[name="sub"]');
 let $current_password=$form2.find('[name="current_password"]');
 
-
-// const languagel =  localStorage.getItem('language') || navigator.language || (navigator.languages && navigator.languages[0]) || navigator.userLanguage || navigator.browserLanguage || 'zh-CN' ;
-
-// const language = languagel.toLowerCase().split(/[_-]+/)[0];
-let language='en';
-console.log(language);
-//const messages = localeData[languageWithoutRegionCode] || localeData[language] || localeData.zh;
-//let language='en';
-
-console.log($('[data-i18n]').attr('data-i18n'));
-$('[data-i18n]').each(
-    function(x){
-        $(this).html(i18n[language][$(this).attr('data-i18n')]);
-    }
-);
-$('[placeholder]').each(
-    function(x){
-        $(this).attr('placeholder',i18n[language][$(this).attr('placeholder')]);
-    }
-);
-
-
-let url = new URL("http://114.215.243.95:8081/user.php", location);
+let url = new URL("/user.php", php_url);
 url.searchParams.set('id', id);
+let profiles_url=new URL("/profiles.php",php_url);
 
 var jqxhr = $.ajax( {
     url:url,
@@ -77,7 +58,7 @@ var jqxhr = $.ajax( {
 
         $.ajax( {
             type:'post',
-            url:'http://114.215.243.95:8081/profiles.php',
+            url:profiles_url,
             data:formData,
             //dataType:'json',
             processData: false,
@@ -95,7 +76,7 @@ var jqxhr = $.ajax( {
                 $("#sub2").click();
                 $.ajax({
                     type:'post',
-                    url:'http://114.215.243.95:8081/profiles.php',
+                    url:profiles_url,
                     data:{
                         id:$id.val(),
                         email:$email.val(),
@@ -156,4 +137,9 @@ window.onload = function() {
     })
 
     $(".takephoto").on("WheelEvent",function(){return false;})
+
+    $('.imageBox').on('mousewheel',function(){
+        console.log(1);
+        return false;
+    })
 };
