@@ -18,8 +18,13 @@ if (!$user) {
 $password = hash_pbkdf2("sha256", $password, $user->salt, 64000);
 
 if ($user->password_hash == $password) {
-    if ($user->avatar) {
-        $user->avatar = join(DIRECTORY_SEPARATOR, [($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'], $upload_target, $user->avatar]);
+    if ( $user->avatar) {
+        if( substr($user->avatar, 0, 16) == '/uploads/default') {
+            $user->avatar = "https://ygobbs.com" . $user->avatar;
+        }
+        else {
+            $user->avatar = join(DIRECTORY_SEPARATOR, ['https://r.my-card.in', $user->avatar]);            
+        }
     } else {
         $user->avatar = $default_avatar;
     }
