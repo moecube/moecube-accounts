@@ -73,7 +73,7 @@ $(document).ready(function () {
 
                 $.ajax({
                     type: "POST",
-                    url: php_url+ "/verify.php",
+                    url: php_url+ "/sign_up.php",
                     data: {"email": email},
                     dataType: "json",
                     success: function (x) {
@@ -101,7 +101,7 @@ $(document).ready(function () {
             if (ok) {
                 $.ajax({
                     type: "POST",
-                    url: php_url+ "/verify.php",
+                    url: php_url+ "/sign_up.php",
                     data: {"username": str},
                     dataType: "json",
                     success: function (x) {
@@ -184,7 +184,7 @@ $(document).ready(function () {
             if (!empty && email_ok && username_ok && password_ok && password2_ok) {
                 $.ajax({
                     type: "POST",
-                    url: php_url+ "/verify.php",
+                    url: php_url+ "/sign_up.php",
                     data: {
                         "email": $email.val(),
                         "username": $username.val(),
