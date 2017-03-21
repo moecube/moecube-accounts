@@ -36,7 +36,7 @@ if ($submit == 'true') {
     }
 
     if ($ok) {
-        $salt = random_bytes(32);
+        $salt = bin2hex(random_bytes(16));
         $password = hash_pbkdf2("sha256", $password, $salt, 64000);
 
         $sql = 'INSERT INTO users(username, password_hash, email, name, salt) VALUES(:username, :password_hash, :email, :nickname, :salt)';
