@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import './background';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.js'
+// import 'bootstrap/dist/js/bootstrap.js'
 import {i18n} from './i18n.js';
 import {php_url} from './config.js';
 
@@ -16,6 +16,14 @@ let ssoString = url.searchParams.get('sso')
 if (ssoString) {
     sso = new URLSearchParams(Buffer.from(ssoString, 'base64').toString())
 }
+let sign_up_url=new URL('sign_up.php',php_url);
+let sign_in_url=new URL('sign_in.php',php_url);
+let forgot_password_url=new URL('forgot_password.php',php_url);
+
+console.log(sign_in_url);
+console.log(sign_up_url);
+console.log(forgot_password_url);
+
 
 $(".signUpBtn").click(showSignUp)
 $(".signInBtn").click(showSignIn)
@@ -73,7 +81,7 @@ $(document).ready(function () {
 
                 $.ajax({
                     type: "POST",
-                    url: "/sign_up.php",
+                    url: sign_up_url,
                     data: {"email": email},
                     dataType: "json",
                     success: function (x) {
@@ -85,7 +93,7 @@ $(document).ready(function () {
             else {
                 console.log('请填写正确的邮箱地址');
                 email_ok = false;
-                $email_ok.attr('class', 'red').html();
+                $email_ok.attr('class', 'red').html('请填写正确的邮箱地址');
             }
             ;
         });
@@ -94,14 +102,14 @@ $(document).ready(function () {
         $username.change(function () {
             let str = this.value;
             let username = str;
-            let reg = /^[A-Za-z0-9_\u4E00-\u9FD5\u3400-\u4DBF\u{20000}-\u{2A6DF}\u{2A700}-\u{2CEAF}\uF900–\uFAFF\u{2F800}-\u{2FA1D}\uAC00–\uD7AF\u3040-\u30FF\u31F0–\u31FF\u{1B000}–\u{1B0FF}\u3005]+$/u;
+            //let reg = /^[A-Za-z0-9_\u4E00-\u9FD5\u3400-\u4DBF\u{20000}-\u{2A6DF}\u{2A700}-\u{2CEAF}\uF900–\uFAFF\u{2F800}-\u{2FA1D}\uAC00–\uD7AF\u3040-\u30FF\u31F0–\u31FF\u{1B000}–\u{1B0FF}\u3005]+$/u;
 
             let ok = str.match(reg);
 
             if (ok) {
                 $.ajax({
                     type: "POST",
-                    url: "/sign_up.php",
+                    url: sign_up_url,
                     data: {"username": str},
                     dataType: "json",
                     success: function (x) {
@@ -165,26 +173,26 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             let empty = false;
             if (trim($email.val()) == "") {
-                $email_ok.attr('class', 'red').html('不能为空');
+                $email_ok.attr('class', 'red').html('邮箱不能为空');
                 empty = true;
             }
             if (trim($username.val()) == "") {
-                $username_ok.attr('class', 'red').html('不能为空');
+                $username_ok.attr('class', 'red').html('用户名不能为空');
                 empty = true;
             }
             if (trim($password.val()) == "") {
-                $password_ok.attr('class', 'red').html('不能为空');
+                $password_ok.attr('class', 'red').html('密码不能为空');
                 empty = true;
             }
             if (trim($password2.val()) == "") {
-                $password2_ok.attr('class', 'red').html('不能为空');
+                $password2_ok.attr('class', 'red').html('确认密码不能为空');
                 empty = true;
             }
 
             if (!empty && email_ok && username_ok && password_ok && password2_ok) {
                 $.ajax({
                     type: "POST",
-                    url: "/sign_up.php",
+                    url: sign_up_url,
                     data: {
                         "email": $email.val(),
                         "username": $username.val(),
@@ -220,7 +228,7 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: "/sign_in.php",
+                url: sign_in_url,
                 data: {
                     "emailOrUsername": $emailOrUsername.val(),
                     "password": $password.val(),
@@ -244,11 +252,13 @@ $(document).ready(function () {
 
                     } else {
                         url = new URL('userinfo.html', location)
-                        console.log(x)
                         url.searchParams.set('id', x["external_id"]);
-                        alert(x.message);
                     }
                     location.href = url
+                },
+                error:function(x){
+                    console.log(x);
+                    alert(JSON.parse(x.responseText).message);
                 }
             });
         });
@@ -262,12 +272,15 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: "/forgot_password.php",
+                url: forgot_password_url,
                 data: {
                     "emailOrUsername": $emailOrUsername.val()
                 },
                 success: function (data) {
-                    alert("邮件已发送");
+                    alert(x.message);
+                },
+                error:function(x){
+                    alert(JSON.parse(x.responseText).message);
                 }
             });
         });
