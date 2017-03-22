@@ -196,7 +196,7 @@ $(document).ready(function () {
                     dataType: "json",
                     success: function (x) {
                         if (typeof x.success == "boolean") {
-                            alert('注册成功');
+                            alert('邮件发送成功');
                             return;
                         }
                         x.email && $email_ok.attr('class', x.email.class).html(x.email.html);
@@ -272,7 +272,6 @@ $(document).ready(function () {
             });
         });
     })();
-
 })
 function trim(str) {
     return str.replace(/\s/g, "");

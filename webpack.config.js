@@ -1,6 +1,6 @@
 const path = require('path');
-const webpack = require("webpack")
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require("webpack");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const BUILD_DIR = path.resolve(__dirname, 'public');
 const APP_DIR = path.resolve(__dirname, 'src');
@@ -16,6 +16,7 @@ module.exports = {
         path: BUILD_DIR,
         filename: "[name].js"
     },
+    devtool: 'eval-source-map',
     module: {
         loaders: [
             {

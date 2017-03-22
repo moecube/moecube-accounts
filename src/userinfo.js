@@ -5,7 +5,7 @@ import {i18n} from './i18n.js';
 import {php_url} from './config.js';
 
 var imgfile;
-const id = new URL(location).searchParams.get('id');
+const id = new URL(window.location).searchParams.get('id');
 
 function Preview(f,imgSrc) {
     document.getElementById(imgSrc).src = window.URL.createObjectURL(f.files[0]);
@@ -28,6 +28,8 @@ let $current_password=$form2.find('[name="current_password"]');
 let url = new URL("/user.php", php_url);
 url.searchParams.set('id', id);
 let profiles_url=new URL("/profiles.php",php_url);
+
+console.log(profiles_url)
 
 var jqxhr = $.ajax( {
     url:url,
