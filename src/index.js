@@ -73,7 +73,7 @@ $(document).ready(function () {
 
                 $.ajax({
                     type: "POST",
-                    url: php_url+ "/sign_up.php",
+                    url: "/sign_up.php",
                     data: {"email": email},
                     dataType: "json",
                     success: function (x) {
@@ -101,7 +101,7 @@ $(document).ready(function () {
             if (ok) {
                 $.ajax({
                     type: "POST",
-                    url: php_url+ "/sign_up.php",
+                    url: "/sign_up.php",
                     data: {"username": str},
                     dataType: "json",
                     success: function (x) {
@@ -184,7 +184,7 @@ $(document).ready(function () {
             if (!empty && email_ok && username_ok && password_ok && password2_ok) {
                 $.ajax({
                     type: "POST",
-                    url: php_url+ "/sign_up.php",
+                    url: "/sign_up.php",
                     data: {
                         "email": $email.val(),
                         "username": $username.val(),
@@ -220,7 +220,7 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: php_url+"/sign_in.php",
+                url: "/sign_in.php",
                 data: {
                     "emailOrUsername": $emailOrUsername.val(),
                     "password": $password.val(),
@@ -262,7 +262,7 @@ $(document).ready(function () {
         $form.find('[name="sub"]').click(function () {
             $.ajax({
                 type: "POST",
-                url: php_url+"/forgot_password.php",
+                url: "/forgot_password.php",
                 data: {
                     "emailOrUsername": $emailOrUsername.val()
                 },

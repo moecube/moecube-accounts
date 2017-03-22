@@ -16,7 +16,6 @@ module.exports = {
         path: BUILD_DIR,
         filename: "[name].js"
     },
-    devtool: 'eval-source-map',
     module: {
         loaders: [
             {
