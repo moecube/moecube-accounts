@@ -147,15 +147,14 @@
         .action
         {
             width: 320px;
-            height: 30px;
         }
-        .cropped>img
+        #cropped{
+            padding:5px;
+            background:#fff;
+        }
+        #cropped>img
         {
-            margin-right: 10px;
-        }
-        .crop{
-            float: right;
-            margin: 0,3px;
+            width:160px;
         }
     </style>
 </head>
@@ -196,10 +195,12 @@
                                     <div class="spinner" style="display: none">Loading...</div>
                                 </div>
                                 <div class="action">
-                                    <input type="file"  id="file" style="float:left; width: 180px">
-                                    <button type="button" class="crop btn btn-primary" disabled id="btnCrop" data-i18n="crop"></button>
-                                    <input type="button" class="crop btn btn-primary" disabled id="btnZoomIn" value="+">
-                                    <input type="button" class="crop btn btn-primary" disabled id="btnZoomOut" value="-">
+                                    <input type="file"  id="file">
+                                    <div style="text-align: right">
+                                        <input type="button" class="btn btn-primary" disabled id="btnZoomOut" value="-">&nbsp;
+                                        <input type="button" class="btn btn-primary" disabled id="btnZoomIn" value="+">&nbsp;
+                                        <button type="button" class="btn btn-primary" disabled id="btnCrop" data-i18n="crop"></button>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -214,7 +215,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td><button data-i18n="save" id="but1" class="btn  btn-primary" type="button" disabled>SAVE</button></td>
+                        <td><button data-i18n="save" id="but1" class="btn  btn-primary" type="submit" disabled>SAVE</button></td>
                         <td></td>
                     </tr>
                 </table>

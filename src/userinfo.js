@@ -56,10 +56,11 @@ var jqxhr = $.ajax( {
     $form2.find('input').change(function(){
         $('#but2').removeAttr('disabled');
     });
-    $('#but1').click(function subm(){
-        //$("#sub1").click();
-        var formData = new FormData();
 
+
+    $('#form-update_user_info').submit(function(){
+        event.preventDefault();
+        var formData = new FormData();
         formData.append('avatar_url', imgfile);
         formData.append('name',$nickname.val());
         formData.append('id',$id.val());
@@ -73,33 +74,35 @@ var jqxhr = $.ajax( {
             contentType: false
         })
         .done(function(x){
-            console.log(x);
-        })
-        console.log(imgfile);
-    })
+            alert('修改成功');
+        }).fail(function(x){
+            alert('修改失败');
+            console.log('after here');
+        });
+        console.log('here');
+    });
 
-    $('#form-update_user_baseinfo').submit(
-        function(){
-            event.preventDefault();
-            if($password.val()==$password2.val()){
-                $("#sub2").click();
-                $.ajax({
-                    type:'post',
-                    url:profiles_url,
-                    data:{
-                        id:$id.val(),
-                        email:$email.val(),
-                        username:$username.val(),
-                        password:$password.val(),
-                        current_password:$current_password.val()
-                    }
-                })
-                    .done(function(x){
-                        console.log(x);
-                    })
-            }
+    $('#form-update_user_baseinfo').submit(function(){
+        event.preventDefault();
+        if($password.val()==$password2.val()){
+            $("#sub2").click();
+            $.ajax({
+                type:'post',
+                url:profiles_url,
+                data:{
+                    id:$id.val(),
+                    email:$email.val(),
+                    username:$username.val(),
+                    password:$password.val(),
+                    current_password:$current_password.val()
+                }
+            }).done(function(x){
+                alert('修改成功');
+            }).fail(function(x){
+                alert(JSON.parse(x.responseText).message);
+            })
         }
-    )
+    })
 })();
 
 
@@ -152,7 +155,6 @@ window.onload = function() {
     $(".takephoto").on("WheelEvent",function(){return false;})
 
     $('.imageBox').on('mousewheel',function(){
-        console.log(1);
         return false;
     })
 };

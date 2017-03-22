@@ -20,11 +20,6 @@ let sign_up_url=new URL('sign_up.php',php_url);
 let sign_in_url=new URL('sign_in.php',php_url);
 let forgot_password_url=new URL('forgot_password.php',php_url);
 
-console.log(sign_in_url);
-console.log(sign_up_url);
-console.log(forgot_password_url);
-
-
 $(".signUpBtn").click(showSignUp)
 $(".signInBtn").click(showSignIn)
 $(".forGotBtn").click(showForgot)
@@ -84,10 +79,9 @@ $(document).ready(function () {
                     url: sign_up_url,
                     data: {"email": email},
                     dataType: "json",
-                    success: function (x) {
-                        email_ok = x.email.class == 'green' ? true : false;
-                        $email_ok.attr('class', x.email.class).html(x.email.html);
-                    }
+                }).done(function (x) {
+                    email_ok = x.email.class == 'green' ? true : false;
+                    $email_ok.attr('class', x.email.class).html(x.email.html);
                 })
             }
             else {
@@ -102,7 +96,7 @@ $(document).ready(function () {
         $username.change(function () {
             let str = this.value;
             let username = str;
-            //let reg = /^[A-Za-z0-9_\u4E00-\u9FD5\u3400-\u4DBF\u{20000}-\u{2A6DF}\u{2A700}-\u{2CEAF}\uF900–\uFAFF\u{2F800}-\u{2FA1D}\uAC00–\uD7AF\u3040-\u30FF\u31F0–\u31FF\u{1B000}–\u{1B0FF}\u3005]+$/u;
+            let reg = /^[A-Za-z0-9_\u4E00-\u9FD5\u3400-\u4DBF\u{20000}-\u{2A6DF}\u{2A700}-\u{2CEAF}\uF900–\uFAFF\u{2F800}-\u{2FA1D}\uAC00–\uD7AF\u3040-\u30FF\u31F0–\u31FF\u{1B000}–\u{1B0FF}\u3005]+$/u;
 
             let ok = str.match(reg);
 
@@ -112,10 +106,9 @@ $(document).ready(function () {
                     url: sign_up_url,
                     data: {"username": str},
                     dataType: "json",
-                    success: function (x) {
-                        username_ok = x.username.class == 'green' ? true : false;
-                        $username_ok.attr('class', x.username.class).html(x.username.html);
-                    }
+                }).done(function(x){
+                    username_ok = x.username.class == 'green' ? true : false;
+                    $username_ok.attr('class', x.username.class).html(x.username.html);
                 })
             } else {
                 username_ok = false;
@@ -202,19 +195,19 @@ $(document).ready(function () {
                         "submit": true
                     },
                     dataType: "json",
-                    success: function (x) {
-                        if (typeof x.success == "boolean") {
-                            alert('邮件发送成功');
-                            return;
-                        }
-                        x.email && $email_ok.attr('class', x.email.class).html(x.email.html);
-                        x.username && $username_ok.attr('class', x.username.class).html(x.username.html);
-                        x.password && $password_ok.attr('class', x.password.class).html(x.password.html);
-                        x.password2 && $password2_ok.attr('class', x.password2.class).html(x.password2.html);
+
+                }).done(function (x) {
+                    if (typeof x.success == "boolean") {
+                        alert('邮件发送成功');
+                        return;
                     }
+                    x.email && $email_ok.attr('class', x.email.class).html(x.email.html);
+                    x.username && $username_ok.attr('class', x.username.class).html(x.username.html);
+                    x.password && $password_ok.attr('class', x.password.class).html(x.password.html);
+                    x.password2 && $password2_ok.attr('class', x.password2.class).html(x.password2.html);
                 })
             } else {
-
+                alert('请补全信息');
             }
         });
 
@@ -232,34 +225,31 @@ $(document).ready(function () {
                 data: {
                     "emailOrUsername": $emailOrUsername.val(),
                     "password": $password.val(),
-                },
-                success: function (x) {
-                    let url
-
-                    if (sso) {
-                        let params = new URLSearchParams()
-                        url = new URL(sso.get("return_sso_url"));
-
-                        for (let [key, value] of Object.entries(x)) {
-                            params.set(key, value)
-                        }
-                        params.set("return_sso_url", sso.get("return_sso_url"))
-                        params.set("nonce", sso.get("nonce"))
-                        let payload = Buffer.from(params.toString()).toString('base64')
-
-                        url.searchParams.set("sso", payload)
-                        url.searchParams.set('sig', crypto.createHmac('sha256', 'zsZv6LXHDwwtUAGa').update(payload).digest('hex'))
-
-                    } else {
-                        url = new URL('userinfo.html', location)
-                        url.searchParams.set('id', x["external_id"]);
-                    }
-                    location.href = url
-                },
-                error:function(x){
-                    console.log(x);
-                    alert(JSON.parse(x.responseText).message);
                 }
+            }).done(function (x) {
+                let url
+                if (sso) {
+                    let params = new URLSearchParams()
+                    url = new URL(sso.get("return_sso_url"));
+
+                    for (let [key, value] of Object.entries(x)) {
+                        params.set(key, value)
+                    }
+                    params.set("return_sso_url", sso.get("return_sso_url"))
+                    params.set("nonce", sso.get("nonce"))
+                    let payload = Buffer.from(params.toString()).toString('base64')
+
+                    url.searchParams.set("sso", payload)
+                    url.searchParams.set('sig', crypto.createHmac('sha256', 'zsZv6LXHDwwtUAGa').update(payload).digest('hex'))
+
+                } else {
+                    url = new URL('userinfo.html', location)
+                    url.searchParams.set('id', x["external_id"]);
+                }
+                location.href = url
+            }).fail(function(x){
+                console.log(x);
+                alert(JSON.parse(x.responseText).message);
             });
         });
 

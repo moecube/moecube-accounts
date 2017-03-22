@@ -15,7 +15,7 @@ $("#form").submit(function (event) {
         type: "POST",
         url: url,
         data: {
-            "password": $("#inputPassword").val(),
+            "password": $("#password").val(),
             "user_id": user_id,
             "key": key
         }
