@@ -42,7 +42,7 @@ $exists = $query->fetch(PDO::FETCH_ASSOC);
 
 if ($exists) {
     http_response_code(400);
-    die (json_encode(["message" => '邮箱已存在已存在']));
+    die (json_encode(["message" => '邮箱已存在']));
 }
 
 
