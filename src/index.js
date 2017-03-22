@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import './background';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import 'bootstrap/dist/js/bootstrap.js'
 import {i18n} from './i18n.js';
 import {php_url} from './config.js';
 

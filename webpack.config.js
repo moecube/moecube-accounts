@@ -46,7 +46,7 @@ module.exports = {
                 warnings: false
             }
         }),
-        new webpack.NoEmitOnErrorsPlugin({
+        new webpack.ProvidePlugin({
             $: "jquery",
             jQuery: "jquery"
         })
