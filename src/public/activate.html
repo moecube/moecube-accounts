@@ -10,11 +10,23 @@
         .green {
             color: green;
         }
+
+        .box{
+            text-align: center;
+            margin: 50px auto;
+            width:300px;
+            height:200px;
+            /*background:yellow;*/
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
-<div style="text-align: center;">
-    <button id="activate"></button>
+<div class="box">
+    <button id="activate" class=" btn btn-primary">验证邮箱</button>
+    <br/>
     <h1 id="text"></h1>
 </div>
 <script type="text/javascript" src="activate.js"></script>

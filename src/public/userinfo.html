@@ -66,7 +66,7 @@
         }
 
         td:nth-child(1){
-            width: 200px;
+            width: 150px;
             height: 40px;
             text-align: right;
             padding-right: 20px;
@@ -153,6 +153,10 @@
         {
             margin-right: 10px;
         }
+        .crop{
+            float: right;
+            margin: 0,3px;
+        }
     </style>
 </head>
 
@@ -192,10 +196,10 @@
                                     <div class="spinner" style="display: none">Loading...</div>
                                 </div>
                                 <div class="action">
-                                    <input type="file"  id="file" style="float:left; width: 200px">
-                                    <button type="button" class="btn btn-primary" disabled id="btnCrop" data-i18n="crop" style="float: right"></button>
-                                    <input type="button" class="btn btn-primary" disabled id="btnZoomIn" value="+" style="float: right">
-                                    <input type="button" class="btn btn-primary" disabled id="btnZoomOut" value="-" style="float: right">
+                                    <input type="file"  id="file" style="float:left; width: 180px">
+                                    <button type="button" class="crop btn btn-primary" disabled id="btnCrop" data-i18n="crop"></button>
+                                    <input type="button" class="crop btn btn-primary" disabled id="btnZoomIn" value="+">
+                                    <input type="button" class="crop btn btn-primary" disabled id="btnZoomOut" value="-">
                                 </div>
                             </div>
                         </td>

@@ -49,7 +49,7 @@
         .btn-half-right {
             width: calc(50% - 7px);
             margin: 5px 0 0 5px;
-            padding: 10px 5px;
+            padding:  5px;
         }
 
         .formsBox {
@@ -113,7 +113,36 @@
 </head>
 
 <body>
-
+<!--<h2>创建模态框（Modal）</h2>-->
+<!-- 按钮触发模态框 -->
+<!--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"  style="position:absolute; z-index: 10; ">
+	开始演示模态框
+</button>
+<!-- 模态框（Modal） -->
+<!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					模态框（Modal）标题
+				</h4>
+			</div>
+			<div class="modal-body">
+				在这里添加一些文本
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" class="btn btn-primary">
+					提交更改
+				</button>
+			</div>
+		</div>
+	</div>
+</div>-->
 <!--=========================canvas背景==========================-->
 <div id="particles-js"></div>
 
@@ -156,8 +185,8 @@
             <span data-ok='password2_ok'></span>
 
             <button data-i18n="sign-up" name="sub" class="signUpBtn btn btn-lg btn-primary btn-block" type="button">Sign Up</button>
-            <button data-i18n="sign-in" class="signInBtn btn btn-lg btn-default btn-half-left" type="button">Sign In</button>
-            <button data-i18n="forgot-password" class="forGotBtn btn btn-lg btn-default btn-half-right" type="button">Forgot Password</button>
+            <button data-i18n="sign-in" class="signInBtn btn btn-default btn-half-left" type="button">Sign In</button>
+            <button data-i18n="forgot-password" class="forGotBtn btn btn-default btn-half-right" type="button">Forgot Password</button>
         </form>
         <!--=========================登陆========================-->
         <form id="form-signin" class="form-signin" action="sign_in.php" method="post">
@@ -174,17 +203,17 @@
                 </label>
             </div> -->
             <button data-i18n="sign-in" name='sub' class="signInBtn btn btn-lg btn-primary btn-block" type="button">Sign in</button>
-            <button data-i18n="sign-up" class="signUpBtn btn btn-lg btn-default btn-half-left" type="button">Sign Up</button>
-            <button data-i18n="forgot-password" class="forGotBtn btn btn-lg btn-default btn-half-right" type="button">Forgot Password</button>
+            <button data-i18n="sign-up" class="signUpBtn btn  btn-default btn-half-left" type="button">Sign Up</button>
+            <button data-i18n="forgot-password" class="forGotBtn btn  btn-default btn-half-right" type="button">Forgot Password</button>
         </form>
         <!--=======================忘记密码======================-->
         <form id="form-forgot" class="form-signin hidden" action="forgot_password.php" method="post">
             <h2 class="forGotBtn form-signin-heading" data-i18n="forgot-password">Forgot Password</h2>
             <input name='emailOrUsername' class="form-control" placeholder="email-address-or-username" required=""
                    autofocus="">
-            <button data-i18n="sell-email" name='sub' class="btn btn-lg btn-primary btn-block" type="button">Sell Email</button>
-            <button data-i18n="sign-up" class="signUpBtn btn btn-lg btn-default btn-half-left" type="button">Sign Up</button>
-            <button data-i18n="sign-in" class="signInBtn btn btn-lg btn-default btn-half-right" type="button">Sign In</button>
+            <button data-i18n="send-email" name='sub' class="btn btn-lg btn-primary btn-block" type="button">Send Email</button>
+            <button data-i18n="sign-up" class="signUpBtn btn btn-default btn-half-left" type="button">Sign Up</button>
+            <button data-i18n="sign-in" class="signInBtn btn btn-default btn-half-right" type="button">Sign In</button>
         </form>
 
         <div>
