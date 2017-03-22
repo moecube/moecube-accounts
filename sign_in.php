@@ -12,7 +12,7 @@ $user = $query->fetchObject();
 
 if (!$user) {
     http_response_code(400);
-    die(json_encode(["message" => '用户不存在']));
+    die(json_encode(["message" => '用户名不对']));
 }
 
 $password = hash_pbkdf2("sha256", $password, $user->salt, 64000);
@@ -31,5 +31,5 @@ if ($user->password_hash == $password) {
     die(json_encode(["external_id" => $user->id, "name" => $user->name, "email" => $user->email, "username" => $user->username, "avatar_url" => $user->avatar, "avatar_force_update" => "true", "admin" => "false", "moderator" => "false"]));
 } else {
     http_response_code(400);
-    die(json_encode(["message" => '用户或密码失败']));
+    die(json_encode(["message" => '密码错误']));
 }
