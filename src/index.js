@@ -276,7 +276,7 @@ $(document).ready(function () {
                 data: {
                     "emailOrUsername": $emailOrUsername.val()
                 },
-                success: function (data) {
+                success: function (x) {
                     alert(x.message);
                 },
                 error:function(x){
