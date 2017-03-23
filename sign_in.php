@@ -18,6 +18,7 @@ if (!$user) {
 $password = hash_pbkdf2("sha256", $password, $user->salt, 64000);
 
 if ($user->password_hash == $password) {
+    $_SESSION["user_id"] = $user->id;
     if ( $user->avatar) {
         if( substr($user->avatar, 0, 16) == '/uploads/default') {
             $user->avatar = "https://ygobbs.com" . $user->avatar;

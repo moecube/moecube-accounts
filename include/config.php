@@ -7,6 +7,7 @@ require_once 'include/sendmail.php';
 //$dotenv = new Dotenv\Dotenv(__DIR__);
 //$dotenv->load();
 
+session_start();
 
 define("OSS_ACCESS_ID", getenv("OSS_ACCESS_ID"));
 

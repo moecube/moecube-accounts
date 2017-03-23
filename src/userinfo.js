@@ -71,7 +71,7 @@ var jqxhr = $.ajax({
     $('#form-update_user_info').submit(function () {
         event.preventDefault();
         var formData = new FormData();
-        formData.append('avatar_url', imgfile);
+        formData.append('avatar', imgfile);
         formData.append('name', $nickname.val().trim());
         formData.append('id', $id.val());
 
