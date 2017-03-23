@@ -18,7 +18,8 @@ if (!$user) {
 $password = hash_pbkdf2("sha256", $password, $user->salt, 64000);
 
 if ($user->password_hash == $password) {
-    $_SESSION["user_id"] = $user->id;
+    $_SESSION["user_id"] = $user->id;   
+    
     if ( $user->avatar) {
         if( substr($user->avatar, 0, 16) == '/uploads/default') {
             $user->avatar = "https://ygobbs.com" . $user->avatar;
@@ -29,7 +30,11 @@ if ($user->password_hash == $password) {
     } else {
         $user->avatar = $default_avatar;
     }
-    die(json_encode(["external_id" => $user->id, "name" => $user->name, "email" => $user->email, "username" => $user->username, "avatar_url" => $user->avatar, "avatar_force_update" => "true", "admin" => "false", "moderator" => "false"]));
+    if($user->active) {
+        die(json_encode(["active" => $user->id, "external_id" => $user->id, "name" => $user->name, "email" => $user->email, "username" => $user->username, "avatar_url" => $user->avatar, "avatar_force_update" => "true", "admin" => "false", "moderator" => "false"]));             
+    }else {
+        die(json_encode(["active" => false, "email" => $user->email, "external_id" => $user->id ]));
+    }
 } else {
     http_response_code(400);
     die(json_encode(["message" => '密码错误']));
