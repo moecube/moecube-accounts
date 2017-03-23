@@ -12,7 +12,8 @@ if(!$token->user_id) {
 }
 
 $query = $db->prepare('UPDATE users SET active = TRUE, email = :email WHERE id = :user_id');
-$query->execute(['user_id' => $token->id, "email" => $token->data]);
+$query->execute(['user_id' => $token->user_id, "email" => $token->data]);
+
 if ($query->rowCount()) {
     $query = $db->prepare('DELETE FROM tokens WHERE key = :key');
     $query->execute(['key' => $key]);

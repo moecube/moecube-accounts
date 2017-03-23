@@ -31,9 +31,9 @@ if ($user->password_hash == $password) {
         $user->avatar = $default_avatar;
     }
     if($user->active) {
-        die(json_encode(["active" => $user->id, "external_id" => $user->id, "name" => $user->name, "email" => $user->email, "username" => $user->username, "avatar_url" => $user->avatar, "avatar_force_update" => "true", "admin" => "false", "moderator" => "false"]));             
+        die(json_encode(["active" => $user->active, "external_id" => $user->id, "id" => $user->id, "name" => $user->name, "email" => $user->email, "username" => $user->username, "avatar_url" => $user->avatar, "avatar_force_update" => "true", "admin" => "false", "moderator" => "false"]));
     }else {
-        die(json_encode(["active" => false, "email" => $user->email, "external_id" => $user->id ]));
+        die(json_encode(["active" => false, "email" => $user->email, "external_id" => $user->id, "id" => $user->id ]));
     }
 } else {
     http_response_code(400);

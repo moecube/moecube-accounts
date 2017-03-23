@@ -58,7 +58,7 @@ if (($email || $password) && $user->password_hash != hash_pbkdf2("sha256", $curr
 }
 
 $avatar_key = null;
-var_dump($avatar);
+
 if ($avatar) {
     $avatar_key = join(DIRECTORY_SEPARATOR, ["avatars", Uuid::uuid1()->toString()]);    
     $ossClient->uploadFile(
@@ -74,13 +74,13 @@ if($email) {
     //未激活
     if($user->active == false){
         $key = Uuid::uuid1()->toString();
-        $sql = 'INSERT INTO tokens (user_id,key, data,time) VALUES(:user_id, :key, :data, now())';
+        $sql = "INSERT INTO tokens (user_id,key, data, created_at, type) VALUES(:user_id, :key, :data, now(), 'activate')";
         $sth = $db->prepare($sql);
         $sth->execute([':user_id' => $user->id, ':key' => $key, ':data' => $email]);
 
         //====================发邮件
         $title = "修改邮箱";
-        $body = "单击链接 或将链接复制到网页地址栏并回车 来修改邮箱 http://114.215.243.95:8081/reset_password.html?key=$key";
+        $body = "单击链接 或将链接复制到网页地址栏并回车 来修改邮箱 http://114.215.243.95:8081/activate.html?key=$key";
         sendMail($email, $title, $body);
         echo json_encode(["message" => '邮件已发送']);
 
@@ -90,28 +90,27 @@ if($email) {
             "id" => $id ? $id : $user->id,
 
         ]);
-        die(json_encode(["message" => '邮件已发送']));        
+        die(json_encode(["message" => 'MAIL_SENT']));
     } else {
         //已激活
         $key = Uuid::uuid1()->toString();
-        $sql = 'INSERT INTO tokens (user_id,key, data, time) VALUES(:user_id, :key, :data, now())';
+        $sql = "INSERT INTO tokens (user_id,key, data, created_at, type) VALUES(:user_id, :key, :data, now(), 'activate')";
         $sth = $db->prepare($sql);
         $sth->execute([':user_id' => $user -> id, ':key' => $key, ':data' => $email]);
 
         //====================发邮件
         $title = "修改邮箱";
-        $body = "单击链接 或将链接复制到网页地址栏并回车 来修改邮箱 http://114.215.243.95:8081/reset_password.html?key=$key";
+        $body = "单击链接 或将链接复制到网页地址栏并回车 来修改邮箱 http://114.215.243.95:8081/activate.html?key=$key";
         sendMail($email, $title, $body);
 
-        $query = $db->prepare("UPDATE users SET username=:username, name=:name, password_hash=:password_hash, email=:email, avatar= :avatar WHERE id=:id ");
+        $query = $db->prepare("UPDATE users SET username=:username, name=:name, password_hash=:password_hash, avatar= :avatar WHERE id=:id ");
         $query->execute(["username" => $username ? $username : $user->username,
             "name" => $name ? $name : $user->name,
             "avatar" => $avatar ? $avatar_key : $user->avatar,
             "password_hash" => $password ? hash_pbkdf2("sha256", $password, $user->salt, 64000) : $user->password_hash,
             "id" => $id ? $id : $user->id,
         ]);
-        die(json_encode(["message" => '邮件已发送']));
-        
+        die(json_encode(["message" => 'MAIL_SENT']));
     }
 }
 
