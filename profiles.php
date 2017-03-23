@@ -51,10 +51,6 @@ if (($email || $password) && $user["password_hash"] != hash_pbkdf2("sha256", $cu
     die (json_encode(["message" => '密码不正确']));
 }
 
-if (!file_exists($upload_target)) {
-    mkdir($upload_target);
-}
-
 $avatar_key = null;
 
 if ($avatar) {
