@@ -17,7 +17,7 @@ activate.click(() => {
         dataType: 'json'
     }).done(function (x) {
         activate.attr('class','hidden');
-        $("#text").attr('class','red').html('邮箱验证成功');
+        $("#text").attr('class','green').html('邮箱验证成功');
     }).fail(function (x){
         console.log(activate);
         activate.attr('class','hidden');

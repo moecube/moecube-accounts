@@ -65,10 +65,8 @@ $(document).ready(function () {
         let password_ok = true;
         let password2_ok = true;
 
-
-        $email.change(function () {
+        let email_change=function() {
             let email = this.value;
-            console.log(email);
             let reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
             let ok = email.match(reg);
             if (ok) {
@@ -88,12 +86,9 @@ $(document).ready(function () {
                 console.log('请填写正确的邮箱地址');
                 email_ok = false;
                 $email_ok.attr('class', 'red').html('请填写正确的邮箱地址');
-            }
-            ;
-        });
-
-
-        $username.change(function () {
+            };
+        }
+        let username_change=function () {
             let str = this.value;
             let username = str;
             let reg = /^[A-Za-z0-9_\u4E00-\u9FD5\u3400-\u4DBF\u{20000}-\u{2A6DF}\u{2A700}-\u{2CEAF}\uF900–\uFAFF\u{2F800}-\u{2FA1D}\uAC00–\uD7AF\u3040-\u30FF\u31F0–\u31FF\u{1B000}–\u{1B0FF}\u3005]+$/u;
@@ -114,16 +109,14 @@ $(document).ready(function () {
                 username_ok = false;
                 $username_ok.attr('class', 'red').html('用户名不合法');
             }
-        });
-
-
-        $password.change(function () {
-            let password = this.value.trim();
-            let password2 = $password2.val().trim();
-            let reg = /^.{8}/;
+        }
+        let password_change=function () {
+            let password = this.value;
+            let password2 = $password2.val();
+            let reg = /^.{6}/;
             let ok = password.match(reg);
             if (ok) {
-                let reg = /^.{8,24}$/;
+                let reg = /^.{6,24}$/;
                 let ok = password.match(reg);
                 if (ok) {
                     //console.log('密码可以使用');
@@ -147,13 +140,11 @@ $(document).ready(function () {
                 password2_ok = false;
                 $password2_ok.attr('class', 'red').html('密码不一致');
             }
-        });
-
-
-        $password2.change(function () {
-            let password2 = this.value.trim();
-            let password = $password.val().trim();
-            if (password2 == password.val()) {
+        }
+        let password2_change=function () {
+            let password2 = this.value;
+            let password = $password.val();
+            if (password2 == password) {
                 console.log('密码一致');
                 password2_ok = true;
                 $password2_ok.attr('class', 'green').html('密码一致');
@@ -162,14 +153,19 @@ $(document).ready(function () {
                 password2_ok = false;
                 $password2_ok.attr('class', 'red').html('密码不一致');
             }
-        });
+        }
+        
+        $email.change(email_change).keyup(email_change);
+        $username.change(username_change).keyup(username_change);
+        $password.change(password_change).keyup(password_change);
+        $password2.change(password2_change).keyup(password2_change);
 
         $form.find('[name="sub"]').click(function () {
             let empty = false;
             let email=$email.val().trim();
             let username=$username.val().trim();
-            let password=$password.val().trim();
-            let password2=$password2.val().trim();
+            let password=$password.val();
+            let password2=$password2.val();
             let nickname=$nickname.val().trim();
 
             if (email == "") {
@@ -229,7 +225,7 @@ $(document).ready(function () {
 
         $form.find('[name="sub"]').click(function () {
             let emailOrUsername=$emailOrUsername.val().trim();
-            let password=$password.val().trim();
+            let password=$password.val();
             $.ajax({
                 type: "POST",
                 url: sign_in_url,
