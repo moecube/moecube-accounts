@@ -16,6 +16,12 @@ $password = $_POST['password'] ? $_POST['password'] : null;
 $current_password = $_POST['current_password'] ? $_POST['current_password'] : null;
 $avatar = $_FILES["avatar"];
 
+
+if($id != $_SESSION["user_id"]) {
+    http_response_code(403);
+    die (json_encode(["message" => '没有权限']));
+}
+
 $avatar_target = join(DIRECTORY_SEPARATOR, [$upload_target, $id]);
 
 $query = $db->prepare("SELECT * FROM users WHERE id=:id ");
