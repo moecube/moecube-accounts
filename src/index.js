@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import './background';
 import 'bootstrap/dist/css/bootstrap.css';
-// import 'bootstrap/dist/js/bootstrap.js'
+import 'bootstrap/dist/js/bootstrap.js'
 import {i18n} from './i18n.js';
 import {php_url} from './config.js';
 
@@ -19,6 +19,7 @@ if (ssoString) {
 let sign_up_url=new URL('sign_up.php',php_url);
 let sign_in_url=new URL('sign_in.php',php_url);
 let forgot_password_url=new URL('forgot_password.php',php_url);
+let profiles_url=new URL('profiles.php',php_url);
 
 $(".signUpBtn").click(showSignUp)
 $(".signInBtn").click(showSignIn)
@@ -223,6 +224,12 @@ $(document).ready(function () {
         let $emailOrUsername = $form.find('[name="emailOrUsername"]');
         let $password = $form.find('[name="password"]');
 
+        let $old_email=$("#old_email");
+        let $new_email=$("#new_email");
+        let $reset_email=$("#reset_email");
+        let $send_activate_email=$("#send_activate_email");
+        let $id=$("id");
+
         $form.find('[name="sub"]').click(function () {
             let emailOrUsername=$emailOrUsername.val().trim();
             let password=$password.val();
@@ -234,7 +241,12 @@ $(document).ready(function () {
                     "password": password,
                 }
             }).done(function (x) {
-                let url
+                if(!x.activate){
+                    $old_email.val(x.email);
+                    $id.val(x.id);
+                    $('#myModal').modal('show');
+                    return ;
+                }
                 if (sso) {
                     let params = new URLSearchParams()
                     url = new URL(sso.get("return_sso_url"));
@@ -260,6 +272,56 @@ $(document).ready(function () {
             });
         });
 
+        $reset_email.click(function(){
+            let id=$id.val();
+            let password=$password.val();
+            let new_email=$new_email.val();
+
+            $.ajax({
+                type: "POST",
+                url: profiles_url,
+                data: {
+                    "id": id,
+                    "password": password,
+                    "email":new_email,
+                }
+            }).done(function (x) {
+                alert('发送成功');
+            }).fail(function (x) {
+                try {
+                    let message = JSON.parse(x.responseText).message;
+                    message ? alert(message) : alert("修改失败");
+                } catch (error) {
+                    alert("发送失败");
+                }
+            });
+        })
+
+        $send_activate_email.click(function(){
+            let id=$id.val();
+            let password=$password.val();
+            let old_email=$old_email.val();
+
+            $.ajax({
+                type: "POST",
+                url: profiles_url,
+                data: {
+                    "id": id,
+                    "password": password,
+                    "email":old_email,
+                }
+            }).done(function (x) {
+                alert('修改成功');
+            }).fail(function (x) {
+                try {
+                    let message = JSON.parse(x.responseText).message;
+                    message ? alert(message) : alert("修改失败");
+                } catch (error) {
+                    alert("修改失败");
+                }
+            });
+        })
+
     })();
     // ==========================忘记密码事件====================== 
     (function () {
@@ -283,4 +345,5 @@ $(document).ready(function () {
             });
         });
     })();
+    
 })
