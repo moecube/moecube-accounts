@@ -5,7 +5,7 @@ RUN docker-php-ext-install pdo_pgsql
 
 RUN curl https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN docker-php-ext-install zip pgsql intl
+RUN docker-php-ext-install zip pgsql intl redis
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
