@@ -52,7 +52,7 @@ if (($email || $password) && $user["password_hash"] != hash_pbkdf2("sha256", $cu
 }
 
 $avatar_key = null;
-
+var_dump($avatar);
 if ($avatar) {
     $avatar_key = join(DIRECTORY_SEPARATOR, ["avatars", Uuid::uuid1()->toString()]);    
     $ossClient->uploadFile(
