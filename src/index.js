@@ -118,7 +118,8 @@ $(document).ready(function () {
 
 
         $password.change(function () {
-            let password = this.value;
+            let password = this.value.trim();
+            let password2 = $password2.val().trim();
             let reg = /^.{8}/;
             let ok = password.match(reg);
             if (ok) {
@@ -138,7 +139,7 @@ $(document).ready(function () {
                 password_ok = false;
                 $password_ok.attr('class', 'red').html('密码过短');
             }
-            if (password == $password2.val()) {
+            if (password == password2) {
                 //console.log('密码不一致');
                 password2_ok = false;
                 $password2_ok.attr('class', 'green').html('密码一致');
@@ -150,9 +151,9 @@ $(document).ready(function () {
 
 
         $password2.change(function () {
-            let password2 = this.value;
-            console.log(this.value);
-            if (password2 == $password.val()) {
+            let password2 = this.value.trim();
+            let password = $password.val().trim();
+            if (password2 == password.val()) {
                 console.log('密码一致');
                 password2_ok = true;
                 $password2_ok.attr('class', 'green').html('密码一致');
@@ -165,19 +166,25 @@ $(document).ready(function () {
 
         $form.find('[name="sub"]').click(function () {
             let empty = false;
-            if (trim($email.val()) == "") {
+            let email=$email.val().trim();
+            let username=$username.val().trim();
+            let password=$password.val().trim();
+            let password2=$password2.val().trim();
+            let nickname=$nickname.val().trim();
+
+            if (email == "") {
                 $email_ok.attr('class', 'red').html('邮箱不能为空');
                 empty = true;
             }
-            if (trim($username.val()) == "") {
+            if (username == "") {
                 $username_ok.attr('class', 'red').html('用户名不能为空');
                 empty = true;
             }
-            if (trim($password.val()) == "") {
+            if (password == "") {
                 $password_ok.attr('class', 'red').html('密码不能为空');
                 empty = true;
             }
-            if (trim($password2.val()) == "") {
+            if (password2 == "") {
                 $password2_ok.attr('class', 'red').html('确认密码不能为空');
                 empty = true;
             }
@@ -187,11 +194,11 @@ $(document).ready(function () {
                     type: "POST",
                     url: sign_up_url,
                     data: {
-                        "email": $email.val(),
-                        "username": $username.val(),
-                        "password": $password.val(),
-                        "password2": $password2.val(),
-                        "nickname": $nickname.val(),
+                        "email": email,
+                        "username": username,
+                        "password": password,
+                        "password2": password2,
+                        "nickname": nickname,
                         "submit": true
                     },
                     dataType: "json",
@@ -219,12 +226,14 @@ $(document).ready(function () {
         let $password = $form.find('[name="password"]');
 
         $form.find('[name="sub"]').click(function () {
+            let emailOrUsername=$emailOrUsername.val().trim();
+            let password=$password.val().trim();
             $.ajax({
                 type: "POST",
                 url: sign_in_url,
                 data: {
-                    "emailOrUsername": $emailOrUsername.val(),
-                    "password": $password.val(),
+                    "emailOrUsername": emailOrUsername,
+                    "password": password,
                 }
             }).done(function (x) {
                 let url
@@ -260,11 +269,12 @@ $(document).ready(function () {
         let $emailOrUsername = $form.find('[name="emailOrUsername"]');
 
         $form.find('[name="sub"]').click(function () {
+            let emailOrUsername=$emailOrUsername.val().trim();
             $.ajax({
                 type: "POST",
                 url: forgot_password_url,
                 data: {
-                    "emailOrUsername": $emailOrUsername.val()
+                    "emailOrUsername": emailOrUsername
                 },
                 success: function (x) {
                     alert(x.message);
@@ -276,6 +286,3 @@ $(document).ready(function () {
         });
     })();
 })
-function trim(str) {
-    return str.replace(/\s/g, "");
-}

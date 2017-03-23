@@ -1,106 +1,134 @@
 import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.css'
 
-import {i18n} from './i18n.js';
-import {php_url} from './config.js';
+import { i18n } from './i18n.js';
+import { php_url } from './config.js';
 
 var imgfile;
 const id = new URL(window.location).searchParams.get('id');
 
-function Preview(f,imgSrc) {
+function Preview(f, imgSrc) {
     document.getElementById(imgSrc).src = window.URL.createObjectURL(f.files[0]);
 }
 
-let $id             = $('[name="id"]');
+let $id = $('[name="id"]');
 
-let $form1          = $('#form-update_user_info');
-let $avatar         = $form1.find('[name="avatar"]');
-let $nickname       = $form1.find('[name="name"]');
+let $form1 = $('#form-update_user_info');
+let $avatar = $form1.find('[name="avatar"]');
+let $nickname = $form1.find('[name="name"]');
 
-let $form2          = $('#form-update_user_baseinfo');
-let $email          = $form2.find('[name="email"]');
-let $username       = $form2.find('[name="username"]');
-let $password       = $form2.find('[name="password"]');
-let $password2      = $form2.find('[name="password2"]');
-let $sub            = $form2.find('[name="sub"]');
-let $current_password=$form2.find('[name="current_password"]');
+let $form2 = $('#form-update_user_baseinfo');
+let $email = $form2.find('[name="email"]');
+let $username = $form2.find('[name="username"]');
+let $password = $form2.find('[name="password"]');
+let $password2 = $form2.find('[name="password2"]');
+let $sub = $form2.find('[name="sub"]');
+let $current_password = $form2.find('[name="current_password"]');
 
 let url = new URL("/user.php", php_url);
 url.searchParams.set('id', id);
-let profiles_url=new URL("/profiles.php",php_url);
+let profiles_url = new URL("/profiles.php", php_url);
 
-console.log(profiles_url)
 
-var jqxhr = $.ajax( {
-    url:url,
-    data:{},
-    dataType:'json'
+var jqxhr = $.ajax({
+    url: url,
+    data: {},
+    dataType: 'json'
 })
-.done(function(x) {
-    console.log(x);
-    $id.val(x.id);
-    $('#cropped').html( '<img src="'+x.avatar+'">');
-    //$('#cropped').attr('src',x.avatar);
-    $email.val(x.email);
-    $username.val(x.username);
-    $nickname.val(x.name);
-    $("[data-html='username']").html(x.username);
-    $("[data-html='email']").html(x.email);
-});
+    .done(function (x) {
+        $id.val(x.id);
+        $('#cropped').html('<img src="' + x.avatar + '">');
+        //$('#cropped').attr('src',x.avatar);
+        $email.val(x.email);
+        $username.val(x.username);
+        $nickname.val(x.name);
+        $("[data-html='username']").html(x.username);
+        $("[data-html='email']").html(x.email);
+    });
 
 
-(function(){
-    $nickname.change(function(){
+(function () {
+    $nickname.change(function () {
         $('#but1').removeAttr('disabled');
     })
-    $form2.find('input').change(function(){
+    $form2.find('input').change(function () {
         $('#but2').removeAttr('disabled');
     });
 
 
-    $('#form-update_user_info').submit(function(){
+    $('#form-update_user_info').submit(function () {
         event.preventDefault();
         var formData = new FormData();
         formData.append('avatar_url', imgfile);
-        formData.append('name',$nickname.val());
-        formData.append('id',$id.val());
+        formData.append('name', $nickname.val().trim());
+        formData.append('id', $id.val(), trim());
 
-        $.ajax( {
-            type:'post',
-            url:profiles_url,
-            data:formData,
+        $.ajax({
+            type: 'post',
+            url: profiles_url,
+            data: formData,
             //dataType:'json',
             processData: false,
             contentType: false
-        })
-        .done(function(x){
+        }).done(function (x) {
             alert('修改成功');
-        }).fail(function(x){
-            alert('修改失败');
-            console.log('after here');
+        }).fail(function (x) {
+            try {
+                let message = JSON.parse(x.responseText).message;
+                message ? alert(message) : alert("修改失败");
+            } catch (error) {
+                alert("修改失败");
+            }
         });
-        console.log('here');
     });
 
-    $('#form-update_user_baseinfo').submit(function(){
+    $('#form-update_user_baseinfo').submit(function () {
         event.preventDefault();
-        if($password.val()==$password2.val()){
-            $("#sub2").click();
-            $.ajax({
-                type:'post',
-                url:profiles_url,
-                data:{
-                    id:$id.val(),
-                    email:$email.val(),
-                    username:$username.val(),
-                    password:$password.val(),
-                    current_password:$current_password.val()
+        let id = $id.val().trim();
+        let email = $email.val().trim();
+        let username = $username.val().trim();
+        let password = $password.val().trim();
+        let password2 = $password2.val().trim();
+        let current_password = $current_password.val().trim();
+
+        if (password != password2) {
+            alert('密码不一致');
+        } else {
+            let reg = /^.{8}/;
+            let ok = password.match(reg);
+            if (ok) {
+                let reg = /^.{8,24}$/;
+                let ok = password.match(reg);
+                if (ok) {
+                    //console.log('密码可以使用');
+                    $.ajax({
+                        type: 'post',
+                        url: profiles_url,
+                        data: {
+                            id: id,
+                            email: email,
+                            username: username,
+                            password: password,
+                            current_password: current_password
+                        }
+                    }).done(function (x) {
+                        alert('修改成功');
+                    }).fail(function (x) {
+                        try {
+                            let message = JSON.parse(x.responseText).message;
+                            message ? alert(message) : alert("修改失败");
+                        } catch (error) {
+                            alert("修改失败");
+                        }
+                    });
+                } else {
+                    //console.log('密码过长');
+                    alert('密码过长');
                 }
-            }).done(function(x){
-                alert('修改成功');
-            }).fail(function(x){
-                alert(JSON.parse(x.responseText).message);
-            })
+            } else {
+                //console.log('密码过短');
+                alert('密码过短');
+            }
         }
     })
 })();
@@ -109,7 +137,7 @@ var jqxhr = $.ajax( {
 
 function init() {
     function keydownFn(e) {
-        if(e.which===13){
+        if (e.which === 13) {
             e.preventDefault();
         }
     }
@@ -117,44 +145,44 @@ function init() {
 }
 init();
 // ==============================================截图
-window.onload = function() {
+window.onload = function () {
     var options =
-    {
-        imageBox: '.imageBox',
-        thumbBox: '.thumbBox',
-        spinner: '.spinner',
-        imgSrc: '',
-    }
+        {
+            imageBox: '.imageBox',
+            thumbBox: '.thumbBox',
+            spinner: '.spinner',
+            imgSrc: '',
+        }
     var cropper = new cropbox(options);
-    document.querySelector('#file').addEventListener('change', function(){
+    document.querySelector('#file').addEventListener('change', function () {
         $('#btnCrop').removeAttr('disabled');
         $('#btnZoomIn').removeAttr('disabled');
         $('#btnZoomOut').removeAttr('disabled');
         var reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
             options.imgSrc = e.target.result;
             cropper = new cropbox(options);
         }
         reader.readAsDataURL(this.files[0]);
         this.files = [];
     })
-    document.querySelector('#btnCrop').addEventListener('click', function(){
+    document.querySelector('#btnCrop').addEventListener('click', function () {
         $('#but1').removeAttr('disabled');
         var img = cropper.getDataURL();
-        imgfile=cropper.getBlob();
+        imgfile = cropper.getBlob();
         $('#upimg').val(imgfile);
-        document.querySelector('#cropped').innerHTML = '<img src="'+img+'">';
+        document.querySelector('#cropped').innerHTML = '<img src="' + img + '">';
     })
-    document.querySelector('#btnZoomIn').addEventListener('click', function(){
+    document.querySelector('#btnZoomIn').addEventListener('click', function () {
         cropper.zoomIn();
     })
-    document.querySelector('#btnZoomOut').addEventListener('click', function(){
+    document.querySelector('#btnZoomOut').addEventListener('click', function () {
         cropper.zoomOut();
     })
 
-    $(".takephoto").on("WheelEvent",function(){return false;})
+    $(".takephoto").on("WheelEvent", function () { return false; })
 
-    $('.imageBox').on('mousewheel',function(){
-        return false;
-    })
+    // $('.imageBox').on('mousewheel',function(){
+    //     return false;
+    // })
 };

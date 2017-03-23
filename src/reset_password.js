@@ -11,11 +11,12 @@ $("#form").submit(function (event) {
     const user_id = urlParams.get('user_id');
     const key = urlParams.get('key');
     const url=new URL('reset_password.php',php_url);
+    let passowrd = $("#password").val().trim();
     $.ajax({
         type: "POST",
         url: url,
         data: {
-            "password": $("#password").val(),
+            "password": passowrd,
             "user_id": user_id,
             "key": key
         }
@@ -29,7 +30,8 @@ $("#form").submit(function (event) {
 });
 
 $('#password').change(function () {
-    let str = this.value;
+    let str = this.value.trim();
+    let passowrd2=$('#password2').val().trim();
     let reg = /^.{8}/;
     let ok = str.match(reg);
     if (ok) {
@@ -46,7 +48,7 @@ $('#password').change(function () {
         //console.log('密码过短');
         $('#password_ok').attr('class', 'red').html('密码过短');
     }
-    if (str == $('#password2').val()) {
+    if (str == passowrd2) {
         //console.log('密码不一致');
         $('#password2_ok').attr('class', 'green').html('密码一致');
     } else {
@@ -56,7 +58,8 @@ $('#password').change(function () {
 
 $('#password2').change(function () {
     let str = this.value;
-    if (str == $('#password').val()) {
+    let passowrd2=$('#password2').val().trim();
+    if (str == passowrd2) {
         $('#password2_ok').attr('class', 'green').html('密码一致');
     } else {
         $('#password2_ok').attr('class', 'red').html('密码不一致');
