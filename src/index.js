@@ -212,9 +212,11 @@ $(document).ready(function () {
                     x.username && $username_ok.attr('class', x.username.class).html(x.username.html);
                     x.password && $password_ok.attr('class', x.password.class).html(x.password.html);
                     x.password2 && $password2_ok.attr('class', x.password2.class).html(x.password2.html);
+                }).fail(function(){
+                    alert('请填写正确信息');
                 })
             } else {
-                alert('请补全信息');
+                alert('请填写正确信息');
             }
         });
 

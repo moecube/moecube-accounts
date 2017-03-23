@@ -61,7 +61,7 @@ var jqxhr = $.ajax({
         var formData = new FormData();
         formData.append('avatar_url', imgfile);
         formData.append('name', $nickname.val().trim());
-        formData.append('id', $id.val(), trim());
+        formData.append('id', $id.val());
 
         $.ajax({
             type: 'post',
