@@ -105,7 +105,7 @@ var jqxhr = $.ajax({
             if (ok) {
                 let reg = /^.{8,24}$/;
                 let ok = password.match(reg);
-                if (ok) {
+                if (ok || password=='') {
                     //console.log('密码可以使用');
                     $.ajax({
                         type: 'post',
