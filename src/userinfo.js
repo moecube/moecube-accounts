@@ -50,8 +50,14 @@ var jqxhr = $.ajax({
 (function () {
     $nickname.change(function () {
         $('#but1').removeAttr('disabled');
-    })
+    });
+    $nickname.keyup(function () {
+        $('#but1').removeAttr('disabled');
+    });
     $form2.find('input').change(function () {
+        $('#but2').removeAttr('disabled');
+    });
+    $form2.find('input').keyup(function () {
         $('#but2').removeAttr('disabled');
     });
 
@@ -180,9 +186,9 @@ window.onload = function () {
         cropper.zoomOut();
     })
 
-    $(".takephoto").on("WheelEvent", function () { return false; })
+    // $(".takephoto").on("WheelEvent", function () { return false; })
 
-    // $('.imageBox').on('mousewheel',function(){
-    //     return false;
-    // })
+    $('.imageBox').on('mousewheel',function(){
+        return false;
+    })
 };
