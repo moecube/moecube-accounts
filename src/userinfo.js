@@ -93,17 +93,17 @@ var jqxhr = $.ajax({
         let id = $id.val().trim();
         let email = $email.val().trim();
         let username = $username.val().trim();
-        let password = $password.val().trim();
-        let password2 = $password2.val().trim();
-        let current_password = $current_password.val().trim();
+        let password = $password.val();
+        let password2 = $password2.val();
+        let current_password = $current_password.val();
 
         if (password != password2) {
             alert('密码不一致');
         } else {
-            let reg = /^.{8}/;
+            let reg = /^.{6}/;
             let ok = password.match(reg);
             if (ok) {
-                let reg = /^.{8,24}$/;
+                let reg = /^.{6,32}$/;
                 let ok = password.match(reg);
                 if (ok || password=='') {
                     //console.log('密码可以使用');
