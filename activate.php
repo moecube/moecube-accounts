@@ -1,10 +1,13 @@
 <?php
 require_once "include/config.php";
+
 $key = $_POST['key'];
 
 $query = $db->prepare('SELECT * FROM tokens WHERE key = :key');
 $query->execute([':key' => $key]);
-$token = $query->fetchObject();
+
+/** @var Token $token */
+$token = $query->fetchObject('Token');
 
 if(!$token->user_id) {
     http_response_code(400);
