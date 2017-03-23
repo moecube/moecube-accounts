@@ -54,12 +54,6 @@ var jqxhr = $.ajax({
     $nickname.keyup(function () {
         $('#but1').removeAttr('disabled');
     });
-    $nickname.keyup(function () {
-        $('#but1').removeAttr('disabled');
-    });
-    $nickname.mouseup(function () {
-        $('#but1').removeAttr('disabled');
-    });
     $form2.find('input').change(function () {
         $('#but2').removeAttr('disabled');
     });
