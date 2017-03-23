@@ -11,7 +11,7 @@ $user_id = $_POST['user_id'];
 $password = $_POST['password'];
 
 
-$sql = 'SELECT * FROM forgotpassword WHERE key=:key AND user_id=:user_id';
+$sql = 'SELECT * FROM tokens WHERE key=:key AND user_id=:user_id';
 $sth = $db->prepare($sql);
 $sth->execute(array(':key' => $key, ':user_id' => $user_id));
 $forgot = $sth->fetch();
@@ -31,7 +31,7 @@ if ($forgot) {
     $sth->execute(array(':password' => $password, ':user_id' => $user_id));
 
     echo '密码修改成功';
-    $sql = 'DELETE FROM forgotpassword WHERE user_id=:user_id';
+    $sql = 'DELETE FROM tokens WHERE user_id=:user_id';
     $sth = $db->prepare($sql);
     $sth->execute(array(':user_id' => $user_id));
 

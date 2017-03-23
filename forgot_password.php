@@ -15,7 +15,7 @@ if ($user) {
     $key = Uuid::uuid1()->toString();
     // var_dump($user_id);
     // var_dump($key);
-    $sql = 'INSERT INTO forgotpassword (user_id,key,time) VALUES(:user_id, :key, now())';
+    $sql = 'INSERT INTO tokens (user_id,key,time) VALUES(:user_id, :key, now())';
     $sth = $db->prepare($sql);
     $sth->execute([':user_id' => $user_id, ':key' => $key]);
 
