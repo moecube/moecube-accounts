@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js'
 import {i18n} from './i18n.js';
 import {php_url} from './config.js';
+import {URL,URLSearchParams} from 'url';
 
 import * as crypto from "crypto";
 
@@ -161,7 +162,7 @@ $(document).ready(function () {
         $password.change(password_change).keyup(password_change);
         $password2.change(password2_change).keyup(password2_change);
 
-        $form.find('[name="sub"]').click(function () {
+        $form.submit(function () {
             let empty = false;
             let email=$email.val().trim();
             let username=$username.val().trim();
@@ -231,7 +232,7 @@ $(document).ready(function () {
         let $id=$("#id");
         let $new_email_ok=$("#new_email_ok");
 
-        $form.find('[name="sub"]').click(function () {
+        $form.submit(function () {
             let emailOrUsername=$emailOrUsername.val().trim();
             let password=$password.val();
             $.ajax({
@@ -272,34 +273,6 @@ $(document).ready(function () {
                 alert(JSON.parse(x.responseText).message);
             });
         });
-
-        // $new_email.change(function(){
-        //     let id=$id.val();
-        //     let password=$password.val();
-        //     let new_email=$new_email.val();
-        //
-        //     let reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-        //     let ok = new_email.match(reg);
-        //     if (ok) {
-        //         console.log('邮箱格式正确');
-        //
-        //         $.ajax({
-        //             type: "POST",
-        //             url: sign_up_url,
-        //             data: {"email": email},
-        //             dataType: "json",
-        //         }).done(function (x) {
-        //             email_ok = x.email.class == 'green' ? true : false;
-        //             $new_email_ok.attr('class', x.email.class).html(x.email.html);
-        //         })
-        //     }
-        //     else {
-        //         console.log('请填写正确的邮箱地址');
-        //         email_ok = false;
-        //         $new_email_ok.attr('class', 'red').html('请填写正确的邮箱地址');
-        //     };
-        //
-        // })
 
         $reset_email.click(function(){
             let id=$id.val();
@@ -365,7 +338,7 @@ $(document).ready(function () {
         let $form = $('#form-forgot');
         let $emailOrUsername = $form.find('[name="emailOrUsername"]');
 
-        $form.find('[name="sub"]').click(function () {
+        $form.submit(function () {
             let emailOrUsername=$emailOrUsername.val().trim();
             $.ajax({
                 type: "POST",
@@ -379,11 +352,12 @@ $(document).ready(function () {
                     message ? alert(message) : alert("出问题了");
                 },
                 error:function(x){
+                    console.log(x);
                     const { message } = x
                     message ? alert(message) : alert("出问题了");
                 }
             });
-        });
+        })
     })();
-    
+
 })
