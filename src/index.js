@@ -229,6 +229,7 @@ $(document).ready(function () {
         let $reset_email=$("#reset_email");
         let $send_activate_email=$("#send_activate_email");
         let $id=$("#id");
+        let $new_email_ok=$("#new_email_ok");
 
         $form.find('[name="sub"]').click(function () {
             let emailOrUsername=$emailOrUsername.val().trim();
@@ -272,11 +273,47 @@ $(document).ready(function () {
             });
         });
 
+        // $new_email.change(function(){
+        //     let id=$id.val();
+        //     let password=$password.val();
+        //     let new_email=$new_email.val();
+        //
+        //     let reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+        //     let ok = new_email.match(reg);
+        //     if (ok) {
+        //         console.log('邮箱格式正确');
+        //
+        //         $.ajax({
+        //             type: "POST",
+        //             url: sign_up_url,
+        //             data: {"email": email},
+        //             dataType: "json",
+        //         }).done(function (x) {
+        //             email_ok = x.email.class == 'green' ? true : false;
+        //             $new_email_ok.attr('class', x.email.class).html(x.email.html);
+        //         })
+        //     }
+        //     else {
+        //         console.log('请填写正确的邮箱地址');
+        //         email_ok = false;
+        //         $new_email_ok.attr('class', 'red').html('请填写正确的邮箱地址');
+        //     };
+        //
+        // })
+
         $reset_email.click(function(){
             let id=$id.val();
             let password=$password.val();
             let new_email=$new_email.val();
 
+            let reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            let ok = new_email.match(reg);
+
+            if (!ok) {
+                $('#new_email_ok').css('red').html('邮箱格式错误');
+                return;
+            }
+            $('#new_email_ok').html('');
             $.ajax({
                 type: "POST",
                 url: profiles_url,
