@@ -228,7 +228,7 @@ $(document).ready(function () {
         let $new_email=$("#new_email");
         let $reset_email=$("#reset_email");
         let $send_activate_email=$("#send_activate_email");
-        let $id=$("id");
+        let $id=$("#id");
 
         $form.find('[name="sub"]').click(function () {
             let emailOrUsername=$emailOrUsername.val().trim();
@@ -241,7 +241,7 @@ $(document).ready(function () {
                     "password": password,
                 }
             }).done(function (x) {
-                if(!x.activate){
+                if(!x.active){
                     $old_email.val(x.email);
                     $id.val(x.id);
                     $('#myModal').modal('show');
@@ -282,17 +282,17 @@ $(document).ready(function () {
                 url: profiles_url,
                 data: {
                     "id": id,
-                    "password": password,
+                    "current_password": password,
                     "email":new_email,
                 }
             }).done(function (x) {
-                alert('发送成功');
+                alert('已发送邮件');
             }).fail(function (x) {
                 try {
                     let message = JSON.parse(x.responseText).message;
-                    message ? alert(message) : alert("修改失败");
+                    message ? alert(message) : alert("出问题了");
                 } catch (error) {
-                    alert("发送失败");
+                    alert("出问题了");
                 }
             });
         })
@@ -307,17 +307,17 @@ $(document).ready(function () {
                 url: profiles_url,
                 data: {
                     "id": id,
-                    "password": password,
+                    "current_password": password,
                     "email":old_email,
                 }
             }).done(function (x) {
-                alert('修改成功');
+                alert('已发送邮件');
             }).fail(function (x) {
                 try {
                     let message = JSON.parse(x.responseText).message;
-                    message ? alert(message) : alert("修改失败");
+                    message ? alert(message) : alert("出问题了");
                 } catch (error) {
-                    alert("修改失败");
+                    alert("出问题了");
                 }
             });
         })

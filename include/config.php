@@ -4,6 +4,9 @@ ini_set("log_errors", true);
 require_once "vendor/autoload.php";
 require_once 'include/sendmail.php';
 
+require_once "model/token.php";
+require_once "model/user.php";
+
 //$dotenv = new Dotenv\Dotenv(__DIR__);
 //$dotenv->load();
 

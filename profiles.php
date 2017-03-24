@@ -17,11 +17,6 @@ $current_password = $_POST['current_password'] ? $_POST['current_password'] : nu
 $avatar = $_FILES["avatar"];
 
 
-if($id != $_SESSION["user_id"]) {
-    http_response_code(403);
-    die (json_encode(["message" => '没有权限']));
-}
-
 $avatar_target = join(DIRECTORY_SEPARATOR, [$upload_target, $id]);
 
 $query = $db->prepare("SELECT * FROM users WHERE id=:id ");
@@ -33,20 +28,19 @@ if (!$user) {
     die (json_encode(["message" => '用户不存在']));
 }
 
-$query = $db->prepare("SELECT username FROM users WHERE username=:username AND id != :id ");
-$query->execute(["username" => $username, "id" => $id]);
-$exists = $query->fetch(PDO::FETCH_ASSOC);
-
-if ($exists) {
-    http_response_code(400);
-    die (json_encode(["message" => '用户名已存在']));
+if($user->active && $id != $_SESSION["user_id"]) {
+    http_response_code(403);
+    die (json_encode(["message" => '没有权限']));
 }
 
-$query = $db->prepare("SELECT email FROM users WHERE email=:email AND id != :id ");
-$query->execute(["email" => $email, "id" => $id]);
-$exists = $query->fetch(PDO::FETCH_ASSOC);
+$query = $db->prepare("SELECT username, email FROM users WHERE (username=:username OR email=:email ) AND id != :id ");
+$query->execute(["username" => $username, "email" => $email, "id" => $id]);
+$exists = $query->fetchObject();
 
-if ($exists) {
+if ($exists->username == $user->username) {
+    http_response_code(400);
+    die (json_encode(["message" => '用户名已存在']));
+}else if($exists->email == $user->email){
     http_response_code(400);
     die (json_encode(["message" => '邮箱已存在']));
 }
@@ -70,7 +64,9 @@ if ($avatar) {
 }
 
 // 修改邮箱
-if($email) {
+if($email && $email != $user->email) {
+
+
     //未激活
     if($user->active == false){
         $key = Uuid::uuid1()->toString();
@@ -114,8 +110,9 @@ if($email) {
     }
 }
 
-$query = $db->prepare("UPDATE users SET username=:username, name=:name, password_hash=:password_hash, email=:email, avatar= :avatar WHERE id=:id ");
-$query->execute(["username" => $username ? $username : $user->username,
+$query = $db->prepare("UPDATE users SET username=:username, name=:name, password_hash=:password_hash, avatar= :avatar WHERE id=:id ");
+$query->execute([
+    "username" => $username ? $username : $user->username,
     "name" => $name ? $name : $user->name,
     "avatar" => $avatar ? $avatar_key : $user->avatar,
     "password_hash" => $password ? hash_pbkdf2("sha256", $password, $user->salt, 64000) : $user->password_hash,

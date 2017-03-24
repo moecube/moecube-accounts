@@ -102,7 +102,7 @@ var jqxhr = $.ajax({
         } else {
             let reg = /^.{6}/;
             let ok = password.match(reg);
-            if (ok) {
+            if (ok || password=='') {
                 let reg = /^.{6,32}$/;
                 let ok = password.match(reg);
                 if (ok || password=='') {
@@ -170,7 +170,6 @@ window.onload = function () {
             cropper = new cropbox(options);
         }
         reader.readAsDataURL(this.files[0]);
-        this.files = [];
     })
     document.querySelector('#btnCrop').addEventListener('click', function () {
         $('#but1').removeAttr('disabled');
