@@ -230,6 +230,14 @@ $(document).ready(function () {
         let $send_activate_email=$("#send_activate_email");
         let $id=$("#id");
 
+        $new_email.on('input', () => {
+            if($new_email.val()){
+                $reset_email.prop('disabled', '')
+            } else {
+                $reset_email.prop('disabled', 'disabled')                
+            }
+        })
+
         $form.find('[name="sub"]').click(function () {
             let emailOrUsername=$emailOrUsername.val().trim();
             let password=$password.val();

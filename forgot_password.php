@@ -21,7 +21,7 @@ if ($user) {
 
     //====================发邮件
     $title = "修改密码";
-    $body = "单击链接 或将链接复制到网页地址栏并回车 来修改密码 http://114.215.243.95:8081/reset_password.html?key=$key&user_id=$user_id";
+    $body = "单击链接 或将链接复制到网页地址栏并回车 来修改密码 http://accounts.moecube.com/reset_password.html?key=$key&user_id=$user_id";
     sendMail($email, $title, $body);
     die(json_encode(["message" => '邮件已发送']));
 } else {

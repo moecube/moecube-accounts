@@ -200,20 +200,19 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             &times;
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">
-                            你需要验证邮箱后才能登陆
-                        </h4>
+                        <p>
+                            验证邮件已发送
+                        </p>
+                        <button id="send_activate_email" type="button" class="btn btn-primary">重发邮件</button>                             
                     </div>
                     <div class="modal-body">
                         <form id="email ">
-                            新邮箱
                             <input type="hidden" id="id"/>
                             <input name='email' type="text" id="old_email" class="form-control hidden" placeholder="email" required=""
                             autofocus="">
                             <input name='email' type="text" id="new_email" class="form-control" placeholder="email" required=""
                             autofocus="">
-                            <button id="reset_email" type="button" class="btn btn-primary">更改邮箱</button>
-                            <button id="send_activate_email" type="button" class="btn btn-primary">发送邮件</button>     
+                            <button id="reset_email" type="button" class="btn btn-primary" disabled>更改邮箱</button>
                         </form>           
                     </div>
                     <div class="modal-footer">
