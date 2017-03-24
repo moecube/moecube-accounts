@@ -332,15 +332,18 @@ $(document).ready(function () {
             let emailOrUsername=$emailOrUsername.val().trim();
             $.ajax({
                 type: "POST",
+                dataType: 'json',
                 url: forgot_password_url,
                 data: {
                     "emailOrUsername": emailOrUsername
                 },
                 success: function (x) {
-                    alert(x.message);
+                    const { message } = x
+                    message ? alert(message) : alert("出问题了");
                 },
                 error:function(x){
-                    alert(JSON.parse(x.responseText).message);
+                    const { message } = x
+                    message ? alert(message) : alert("出问题了");
                 }
             });
         });

@@ -15,7 +15,7 @@ if ($user) {
     $key = Uuid::uuid1()->toString();
     // var_dump($user_id);
     // var_dump($key);
-    $sql = 'INSERT INTO tokens (user_id,key, created_at) VALUES(:user_id, :key, now())';
+    $sql = "INSERT INTO tokens (user_id, key, created_at, type) VALUES(:user_id, :key, now(), 'reset_password')";
     $sth = $db->prepare($sql);
     $sth->execute([':user_id' => $user_id, ':key' => $key]);
 
