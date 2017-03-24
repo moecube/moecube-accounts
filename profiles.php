@@ -28,7 +28,7 @@ if (!$user) {
     die (json_encode(["message" => '用户不存在']));
 }
 
-if($user->active && $id != $_SESSION["user_id"]) {
+if ($user->active && $id != $_SESSION["user_id"]) {
     http_response_code(403);
     die (json_encode(["message" => '没有权限']));
 }
@@ -40,9 +40,11 @@ $exists = $query->fetchObject();
 if ($exists->username == $user->username) {
     http_response_code(400);
     die (json_encode(["message" => '用户名已存在']));
-}else if($exists->email == $user->email){
-    http_response_code(400);
-    die (json_encode(["message" => '邮箱已存在']));
+} else {
+    if ($exists->email == $user->email) {
+        http_response_code(400);
+        die (json_encode(["message" => '邮箱已存在']));
+    }
 }
 
 
@@ -54,21 +56,21 @@ if (($email || $password) && $user->password_hash != hash_pbkdf2("sha256", $curr
 $avatar_key = null;
 
 if ($avatar) {
-    $avatar_key = join(DIRECTORY_SEPARATOR, ["avatars", Uuid::uuid1()->toString()]);    
+    $avatar_key = join(DIRECTORY_SEPARATOR, ["avatars", Uuid::uuid1()->toString()]);
     $ossClient->uploadFile(
         OSS_BUCKET,
-        $avatar_key,        
+        $avatar_key,
         $avatar["tmp_name"],
         [OssClient::OSS_CONTENT_TYPE => $avatar["type"]]
-        );
+    );
 }
 
 // 修改邮箱
-if($email && $email != $user->email) {
+if ($email) {
 
 
     //未激活
-    if($user->active == false){
+    if ($user->active == false){
         $key = Uuid::uuid1()->toString();
         $sql = "INSERT INTO tokens (user_id,key, data, created_at, type) VALUES(:user_id, :key, :data, now(), 'activate')";
         $sth = $db->prepare($sql);
@@ -81,18 +83,19 @@ if($email && $email != $user->email) {
         echo json_encode(["message" => '邮件已发送']);
 
         $query = $db->prepare("UPDATE users SET email=:email WHERE id=:id ");
-        $query->execute(["username" => $username ? $username : $user->username,
+        $query->execute([
+            "username" => $username ? $username : $user->username,
             "email" => $email,
             "id" => $id ? $id : $user->id,
 
         ]);
         die(json_encode(["message" => 'MAIL_SENT']));
-    } else {
+    } elseif ($email != $user->email) {
         //已激活
         $key = Uuid::uuid1()->toString();
         $sql = "INSERT INTO tokens (user_id,key, data, created_at, type) VALUES(:user_id, :key, :data, now(), 'activate')";
         $sth = $db->prepare($sql);
-        $sth->execute([':user_id' => $user -> id, ':key' => $key, ':data' => $email]);
+        $sth->execute([':user_id' => $user->id, ':key' => $key, ':data' => $email]);
 
         //====================发邮件
         $title = "修改邮箱";
@@ -100,7 +103,8 @@ if($email && $email != $user->email) {
         sendMail($email, $title, $body);
 
         $query = $db->prepare("UPDATE users SET username=:username, name=:name, password_hash=:password_hash, avatar= :avatar WHERE id=:id ");
-        $query->execute(["username" => $username ? $username : $user->username,
+        $query->execute([
+            "username" => $username ? $username : $user->username,
             "name" => $name ? $name : $user->name,
             "avatar" => $avatar ? $avatar_key : $user->avatar,
             "password_hash" => $password ? hash_pbkdf2("sha256", $password, $user->salt, 64000) : $user->password_hash,
