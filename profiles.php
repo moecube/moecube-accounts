@@ -33,20 +33,19 @@ if ($user->active && $id != $_SESSION["user_id"]) {
     die (json_encode(["message" => '没有权限']));
 }
 
-$query = $db->prepare("SELECT username, email FROM users WHERE (username=:username OR email=:email ) AND id != :id ");
+$query = $db->prepare("SELECT username, email FROM users WHERE (username=:username OR email=:email) AND id != :id ");
 $query->execute(["username" => $username, "email" => $email, "id" => $id]);
 $exists = $query->fetchObject();
 
-if ($exists->username == $user->username) {
-    http_response_code(400);
-    die (json_encode(["message" => '用户名已存在']));
-} else {
-    if ($exists->email == $user->email) {
+if($exists){
+    if ($exists->username == $username) {
+        http_response_code(400);
+        die (json_encode(["message" => '用户名已存在']));
+    } elseif ($exists->email == $email) {
         http_response_code(400);
         die (json_encode(["message" => '邮箱已存在']));
     }
 }
-
 
 if (($email || $password) && $user->password_hash != hash_pbkdf2("sha256", $current_password, $user->salt, 64000)) {
     http_response_code(400);
@@ -70,7 +69,7 @@ if ($email) {
 
 
     //未激活
-    if ($user->active == false){
+    if ($user->active == false) {
         $key = Uuid::uuid1()->toString();
         $sql = "INSERT INTO tokens (user_id,key, data, created_at, type) VALUES(:user_id, :key, :data, now(), 'activate')";
         $sth = $db->prepare($sql);
@@ -84,10 +83,8 @@ if ($email) {
 
         $query = $db->prepare("UPDATE users SET email=:email WHERE id=:id ");
         $query->execute([
-            "username" => $username ? $username : $user->username,
             "email" => $email,
             "id" => $id ? $id : $user->id,
-
         ]);
         die(json_encode(["message" => 'MAIL_SENT']));
     } elseif ($email != $user->email) {

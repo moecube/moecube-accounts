@@ -7,15 +7,15 @@ $emailOrUsername = $_POST['emailOrUsername'];
 $sql = 'SELECT * FROM users WHERE (email=:emailOrUsername OR username=:emailOrUsername)';
 $sth = $db->prepare($sql);
 $sth->execute([':emailOrUsername' => $emailOrUsername]);
-$user = $sth->fetch();
+$user = $sth->fetchObject();
 
 if ($user) {
-    $user_id = $user['id'];
-    $email = $user['email'];
+    $user_id = $user->id;
+    $email = $user->email;
     $key = Uuid::uuid1()->toString();
     // var_dump($user_id);
     // var_dump($key);
-    $sql = 'INSERT INTO tokens (user_id,key,time) VALUES(:user_id, :key, now())';
+    $sql = 'INSERT INTO tokens (user_id,key, created_at) VALUES(:user_id, :key, now())';
     $sth = $db->prepare($sql);
     $sth->execute([':user_id' => $user_id, ':key' => $key]);
 
@@ -26,6 +26,6 @@ if ($user) {
     die(json_encode(["message" => '邮件已发送']));
 } else {
     http_response_code(400);
-    die(json_encode(["message" => '用户或密码错误']));
+    die(json_encode(["message" => '用户不存在']));
 }
  
