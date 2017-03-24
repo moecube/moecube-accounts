@@ -77,7 +77,7 @@ if ($email) {
 
         //====================发邮件
         $title = "修改邮箱";
-        $body = "单击链接 或将链接复制到网页地址栏并回车 来修改邮箱 http://114.215.243.95:8081/activate.html?key=$key";
+        $body = "单击链接 或将链接复制到网页地址栏并回车 来修改邮箱 http://accounts.moecube.com/activate.html?key=$key";
         sendMail($email, $title, $body);
         echo json_encode(["message" => '邮件已发送']);
 
@@ -96,7 +96,7 @@ if ($email) {
 
         //====================发邮件
         $title = "修改邮箱";
-        $body = "单击链接 或将链接复制到网页地址栏并回车 来修改邮箱 http://114.215.243.95:8081/activate.html?key=$key";
+        $body = "单击链接 或将链接复制到网页地址栏并回车 来修改邮箱 http://accounts.moecube.com/activate.html?key=$key";
         sendMail($email, $title, $body);
 
         $query = $db->prepare("UPDATE users SET username=:username, name=:name, password_hash=:password_hash, avatar= :avatar WHERE id=:id ");
