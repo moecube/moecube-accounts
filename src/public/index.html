@@ -203,7 +203,7 @@
                         <p>
                             验证邮件已发送
                         </p>
-                        <button id="send_activate_email" type="button" class="btn btn-primary">重发邮件</button>                             
+                        <button id="send_activate_email" type="button" class="btn btn-primary">重发邮件</button>
                     </div>
                     <div class="modal-body">
                         <form id="email ">
@@ -212,7 +212,9 @@
                             autofocus="">
                             <input name='email' type="text" id="new_email" class="form-control" placeholder="email" required=""
                             autofocus="">
-                            <button id="reset_email" type="button" class="btn btn-primary" disabled>更改邮箱</button>
+                            <span id="new_email_ok"></span>
+                            <button id="reset_email" type="button" class="btn btn-primary">更改邮箱</button>
+                            <button id="send_activate_email" type="button" class="btn btn-primary" disabled>发送邮件</button>
                         </form>           
                     </div>
                     <div class="modal-footer">

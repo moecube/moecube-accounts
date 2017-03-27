@@ -1,4 +1,5 @@
 import $ from 'jquery';
+
 export var i18n = {
     en: {
         'language': '中文',

@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.css'
 import {php_url} from './config.js';
+import 'url-api-polyfill'
 
 const url = new URL(window.location)
 const key = url.searchParams.get("key")

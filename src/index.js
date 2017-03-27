@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/js/bootstrap.js'
 import {i18n} from './i18n.js';
 import {php_url} from './config.js';
+import 'url-api-polyfill'
+
 
 import * as crypto from "crypto";
 
@@ -161,7 +163,7 @@ $(document).ready(function () {
         $password.change(password_change).keyup(password_change);
         $password2.change(password2_change).keyup(password2_change);
 
-        $form.find('[name="sub"]').click(function () {
+        $form.submit(function () {
             let empty = false;
             let email=$email.val().trim();
             let username=$username.val().trim();
@@ -229,16 +231,17 @@ $(document).ready(function () {
         let $reset_email=$("#reset_email");
         let $send_activate_email=$("#send_activate_email");
         let $id=$("#id");
+        let $new_email_ok=$("#new_email_ok");
 
         $new_email.on('input', () => {
             if($new_email.val()){
                 $reset_email.prop('disabled', '')
             } else {
-                $reset_email.prop('disabled', 'disabled')                
+                $reset_email.prop('disabled', 'disabled')
             }
         })
 
-        $form.find('[name="sub"]').click(function () {
+        $form.submit(function () {
             let emailOrUsername=$emailOrUsername.val().trim();
             let password=$password.val();
             $.ajax({
@@ -285,6 +288,14 @@ $(document).ready(function () {
             let password=$password.val();
             let new_email=$new_email.val();
 
+            let reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            let ok = new_email.match(reg);
+
+            if (!ok) {
+                $('#new_email_ok').css('red').html('邮箱格式错误');
+                return;
+            }
+            $('#new_email_ok').html('');
             $.ajax({
                 type: "POST",
                 url: profiles_url,
@@ -336,7 +347,7 @@ $(document).ready(function () {
         let $form = $('#form-forgot');
         let $emailOrUsername = $form.find('[name="emailOrUsername"]');
 
-        $form.find('[name="sub"]').click(function () {
+        $form.submit(function () {
             let emailOrUsername=$emailOrUsername.val().trim();
             $.ajax({
                 type: "POST",
@@ -350,11 +361,12 @@ $(document).ready(function () {
                     message ? alert(message) : alert("出问题了");
                 },
                 error:function(x){
+                    console.log(x);
                     const { message } = x
                     message ? alert(message) : alert("出问题了");
                 }
             });
-        });
+        })
     })();
-    
+
 })
