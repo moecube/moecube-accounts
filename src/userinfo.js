@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import { i18n } from './i18n.js';
 import { php_url } from './config.js';
 import 'url-api-polyfill'
+import "core-js";
 
 
 var imgfile;

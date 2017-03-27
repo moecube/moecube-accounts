@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.js";
 import {php_url} from "./config.js";
 import "url-api-polyfill";
+import "core-js";
 import * as crypto from "crypto";
 
 console.log(php_url);
