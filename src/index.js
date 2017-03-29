@@ -6,6 +6,7 @@ import {php_url} from "./config.js";
 import "url-api-polyfill";
 import "core-js";
 import * as crypto from "crypto";
+import { i18n} from './i18n.js';
 
 console.log(php_url);
 const url = new URL(window.location)
@@ -51,7 +52,6 @@ $(document).ready(function () {
         let $form = $('#form-signup');
         let $email = $form.find('[name="email"]');
         let $username = $form.find('[name="username"]');
-        let $nickname = $form.find('[name="nickname"]');
         let $password = $form.find('[name="password"]');
         let $password2 = $form.find('[name="password2"]');
         let $sub = $form.find('[name="sub"]');
@@ -86,7 +86,7 @@ $(document).ready(function () {
             else {
                 console.log('请填写正确的邮箱地址');
                 email_ok = false;
-                $email_ok.attr('class', 'red').html('请填写正确的邮箱地址');
+                $email_ok.attr('class', 'red').html(i18n['Please use a correct E-Mail address.']);
             }
             ;
         }
@@ -109,7 +109,7 @@ $(document).ready(function () {
                 })
             } else {
                 username_ok = false;
-                $username_ok.attr('class', 'red').html('用户名不合法');
+                $username_ok.attr('class', 'red').html(i18n['You can not use this username.']);
             }
         }
         let password_change = function () {
@@ -123,24 +123,24 @@ $(document).ready(function () {
                 if (ok) {
                     //console.log('密码可以使用');
                     password_ok = true;
-                    $password_ok.attr('class', 'green').html('密码可以使用');
+                    $password_ok.attr('class', 'green').html(i18n['You can use this password.']);
                 } else {
                     //console.log('密码过长');
                     password_ok = false;
-                    $password_ok.attr('class', 'red').html('密码过长');
+                    $password_ok.attr('class', 'red').html(i18n['Password is too long.']);
                 }
             } else {
                 //console.log('密码过短');
                 password_ok = false;
-                $password_ok.attr('class', 'red').html('密码过短');
+                $password_ok.attr('class', 'red').html(i18n['Password is too short.']);
             }
             if (password == password2) {
                 //console.log('密码不一致');
                 password2_ok = false;
-                $password2_ok.attr('class', 'green').html('密码一致');
+                $password2_ok.attr('class', 'green').html(i18n['Password is correct.']);
             } else {
                 password2_ok = false;
-                $password2_ok.attr('class', 'red').html('密码不一致');
+                $password2_ok.attr('class', 'red').html(i18n['Incorrect password.']);
             }
         }
         let password2_change = function () {
@@ -149,18 +149,18 @@ $(document).ready(function () {
             if (password2 == password) {
                 console.log('密码一致');
                 password2_ok = true;
-                $password2_ok.attr('class', 'green').html('密码一致');
+                $password2_ok.attr('class', 'green').html(i18n['Password is correct.']);
             } else {
                 console.log('密码不一致');
                 password2_ok = false;
-                $password2_ok.attr('class', 'red').html('密码不一致');
+                $password2_ok.attr('class', 'red').html(i18n['Incorrect password.']);
             }
         }
 
-        $email.change(email_change).keyup(email_change);
-        $username.change(username_change).keyup(username_change);
-        $password.change(password_change).keyup(password_change);
-        $password2.change(password2_change).keyup(password2_change);
+        $email.on('input',email_change);
+        $username.on('input',username_change);
+        $password.on('input',password_change);
+        $password2.on('input',password2_change);
 
         $form.submit(function (event) {
             event.preventDefault()
@@ -169,22 +169,21 @@ $(document).ready(function () {
             let username = $username.val().trim();
             let password = $password.val();
             let password2 = $password2.val();
-            let nickname = $nickname.val().trim();
 
             if (email == "") {
-                $email_ok.attr('class', 'red').html('邮箱不能为空');
+                $email_ok.attr('class', 'red').html(i18n['E-Mail address can not be blank.']);
                 empty = true;
             }
             if (username == "") {
-                $username_ok.attr('class', 'red').html('用户名不能为空');
+                $username_ok.attr('class', 'red').html(i18n['User name can not be blank.']);
                 empty = true;
             }
             if (password == "") {
-                $password_ok.attr('class', 'red').html('密码不能为空');
+                $password_ok.attr('class', 'red').html(i18n['Password can not be blank.']);
                 empty = true;
             }
             if (password2 == "") {
-                $password2_ok.attr('class', 'red').html('确认密码不能为空');
+                $password2_ok.attr('class', 'red').html(i18n['Please input your password again.']);
                 empty = true;
             }
 
@@ -197,14 +196,14 @@ $(document).ready(function () {
                         "username": username,
                         "password": password,
                         "password2": password2,
-                        "nickname": nickname,
                         "submit": true
                     },
                     dataType: "json",
 
                 }).done(function (x) {
                     if (typeof x.success == "boolean") {
-                        alert('邮件发送成功');
+                        alert(i18n['Your account has been created.']);
+                        showSignIn();
                         return;
                     }
                     x.email && $email_ok.attr('class', x.email.class).html(x.email.html);
@@ -212,15 +211,15 @@ $(document).ready(function () {
                     x.password && $password_ok.attr('class', x.password.class).html(x.password.html);
                     x.password2 && $password2_ok.attr('class', x.password2.class).html(x.password2.html);
                 }).fail(function () {
-                    alert('请填写正确信息');
+                    alert(i18n['Please check your registration info again.']);
                 })
             } else {
-                alert('请填写正确信息');
+                alert(i18n['Please check your registration info again.']);
             }
         });
 
     })();
-    // ==========================登陆事件====================== 
+    // ==========================登陆事件======================
     (function () {
         let $form = $('#form-signin');
         let $emailOrUsername = $form.find('[name="emailOrUsername"]');
@@ -232,6 +231,8 @@ $(document).ready(function () {
         let $send_activate_email = $("#send_activate_email");
         let $id = $("#id");
         let $new_email_ok = $("#new_email_ok");
+        let $form_reset_email=$("#form-reset_email");
+        let $myModal=$('#myModal');
 
         $new_email.on('input', () => {
             if ($new_email.val()) {
@@ -253,10 +254,11 @@ $(document).ready(function () {
                     "password": password,
                 }
             }).done(function (x) {
+                let url;
                 if (!x.active) {
                     $old_email.val(x.email);
                     $id.val(x.id);
-                    $('#myModal').modal('show');
+                    $myModal.modal('show');
                     return;
                 }
                 if (sso) {
@@ -284,7 +286,7 @@ $(document).ready(function () {
             });
         });
 
-        $reset_email.click(function () {
+        $form_reset_email.submit(function () {
             let id = $id.val();
             let password = $password.val();
             let new_email = $new_email.val();
@@ -293,9 +295,10 @@ $(document).ready(function () {
             let ok = new_email.match(reg);
 
             if (!ok) {
-                $('#new_email_ok').css('red').html('邮箱格式错误');
+                $('#new_email_ok').css('red').html(i18n['Please use a correct E-Mail address.']);
                 return;
             }
+
             $('#new_email_ok').html('');
             $.ajax({
                 type: "POST",
@@ -306,13 +309,14 @@ $(document).ready(function () {
                     "email": new_email,
                 }
             }).done(function (x) {
-                alert('已发送邮件');
+                alert(i18n['Your email has been updated.']);
+                $myModal.modal('hide');
             }).fail(function (x) {
                 try {
                     let message = JSON.parse(x.responseText).message;
-                    message ? alert(message) : alert("出问题了");
+                    message ? alert(message) : alert(i18n["Error"]);
                 } catch (error) {
-                    alert("出问题了");
+                    alert(i18n["Error"]);
                 }
             });
         })
@@ -321,6 +325,7 @@ $(document).ready(function () {
             let id = $id.val();
             let password = $password.val();
             let old_email = $old_email.val();
+
 
             $.ajax({
                 type: "POST",
@@ -331,13 +336,14 @@ $(document).ready(function () {
                     "email": old_email,
                 }
             }).done(function (x) {
-                alert('已发送邮件');
+                alert(i18n['A verification email has been sent to you.']);
+                $myModal.modal('hide');
             }).fail(function (x) {
                 try {
                     let message = JSON.parse(x.responseText).message;
-                    message ? alert(message) : alert("出问题了");
+                    message ? alert(message) : alert(i18n["Error"]);
                 } catch (error) {
-                    alert("出问题了");
+                    alert(i18n["Error"]);
                 }
             });
         })
@@ -347,8 +353,29 @@ $(document).ready(function () {
     (function () {
         let $form = $('#form-forgot');
         let $emailOrUsername = $form.find('[name="emailOrUsername"]');
+        let $sub=$form.find('[name="sub"]');
+        let $time=$form.find('[name="time"]')
+        let canSubmit=true;
+        let waitTime=0;
 
+        function wait(){
+            if(waitTime>0){
+                $time.html(waitTime);
+                waitTime--;
+                setTimeout(wait,1000);
+            }else{
+                $time.html('');
+                canSubmit=true;
+                $sub.removeAttr('disabled');
+            }
+        }
         $form.submit(function (event) {
+            if(!canSubmit)
+                return;
+            canSubmit=false;
+            $sub.attr('disabled','');
+            waitTime=30;
+            wait();
             event.preventDefault()
             let emailOrUsername = $emailOrUsername.val().trim();
             $.ajax({
@@ -359,16 +386,18 @@ $(document).ready(function () {
                     "emailOrUsername": emailOrUsername
                 },
                 success: function (x) {
-                    const {message} = x
-                    message ? alert(message) : alert("出问题了");
+                    showSignIn();
+                    alert(i18n['A password reset email has been sent to you.']);
+                    // const {message} = x
+                    // message ? alert(message) : alert("出问题了");
                 },
                 error: function (x) {
                     console.log(x);
                     const {message} = x
-                    message ? alert(message) : alert("出问题了");
+                    message ? alert(message) : alert(i18n["error"]);
+                    waitTime=0;
                 }
             });
         })
     })();
-
 })

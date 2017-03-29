@@ -51,16 +51,10 @@ var jqxhr = $.ajax({
 
 
 (function () {
-    $nickname.change(function () {
+    $nickname.on('input',function () {
         $('#but1').removeAttr('disabled');
     });
-    $nickname.keyup(function () {
-        $('#but1').removeAttr('disabled');
-    });
-    $form2.find('input').change(function () {
-        $('#but2').removeAttr('disabled');
-    });
-    $form2.find('input').keyup(function () {
+    $form2.find('input').on('input',function () {
         $('#but2').removeAttr('disabled');
     });
 
@@ -80,13 +74,13 @@ var jqxhr = $.ajax({
             processData: false,
             contentType: false
         }).done(function (x) {
-            alert('修改成功');
+            alert(i18n['reset-success']);
         }).fail(function (x) {
             try {
                 let message = JSON.parse(x.responseText).message;
-                message ? alert(message) : alert("修改失败");
+                message ? alert(message) : alert(i18n["reset-fail"]);
             } catch (error) {
-                alert("修改失败");
+                alert(i18n["reset-fail"]);
             }
         });
     });
@@ -101,7 +95,7 @@ var jqxhr = $.ajax({
         let current_password = $current_password.val();
 
         if (password != password2) {
-            alert('密码不一致');
+            alert(i18n['Incorrect password.']);
         } else {
             let reg = /^.{6}/;
             let ok = password.match(reg);
@@ -121,22 +115,22 @@ var jqxhr = $.ajax({
                             current_password: current_password
                         }
                     }).done(function (x) {
-                        alert('修改成功');
+                        alert(i18n['reset-success']);
                     }).fail(function (x) {
                         try {
                             let message = JSON.parse(x.responseText).message;
-                            message ? alert(message) : alert("修改失败");
+                            message ? alert(message) : alert(i18n["reset-fail"]);
                         } catch (error) {
-                            alert("修改失败");
+                            alert(i18n["reset-fail"]);
                         }
                     });
                 } else {
                     //console.log('密码过长');
-                    alert('密码过长');
+                    alert(i18n['Password is too long.']);
                 }
             } else {
                 //console.log('密码过短');
-                alert('密码过短');
+                alert(i18n['Password is too short.']);
             }
         }
     })

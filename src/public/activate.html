@@ -24,15 +24,21 @@
             margin: 50px auto;
             width:300px;
             height:200px;
-            /*background:yellow;*/
+            /*background:#aa9922;*/
             display:flex;
+            flex-direction: column ;
             justify-content: center;
             align-items: center;
+        }
+        span{
+            font-size:20px;
         }
     </style>
 </head>
 <body>
 <div class="box">
+    <span>点击验证邮箱，即可激活你的MoeCube账号。</span>
+    <br/>
     <button id="activate" class=" btn btn-primary">验证邮箱</button>
     <br/>
     <h1 id="text"></h1>

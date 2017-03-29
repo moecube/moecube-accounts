@@ -102,7 +102,7 @@
 
         .biglogo {
             width: 150px;
-            
+
         }
 
         .logofont {
@@ -118,7 +118,7 @@
 <div id="particles-js"></div>
 
 <div class="bigbox">
-    
+
     <!--=========================左边logo===========================-->
     <div class="leftbox">
         <img class="biglogo" src="images/MoeCube.png"><br/>
@@ -146,8 +146,6 @@
             <input name='username' maxlength="40" type="text" id='username' class="form-control" placeholder="username"
                    required="">
             <span data-ok='username_ok'></span>
-            <input name='nickname' maxlength="32" type="text" class="form-control" placeholder="nickname" required="">
-            <span data-ok='nickname_ok'></span>
             <input name='password' id="password" maxlength="32" type="password" class="form-control"
                    placeholder="password" required="">
             <span data-ok='password_ok'></span>
@@ -182,7 +180,7 @@
             <h2 class="forGotBtn form-signin-heading" data-i18n="forgot-password">Forgot Password</h2>
             <input name='emailOrUsername' class="form-control" placeholder="email-address-or-username" required=""
                    autofocus="">
-            <button data-i18n="send-email" name='sub' class="btn btn-lg btn-primary btn-block" type="submit">Send Email</button>
+            <button name='sub' class="btn btn-lg btn-primary btn-block" type="submit"><span data-i18n="send-email">Send Email</span><span name="time"></span></button>
             <button data-i18n="sign-up" class="signUpBtn btn btn-default btn-half-left" type="button">Sign Up</button>
             <button data-i18n="sign-in" class="signInBtn btn btn-default btn-half-right" type="button">Sign In</button>
         </form>
@@ -200,26 +198,27 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                             &times;
                         </button>
-                        <p>
-                            验证邮件已发送
+                        <p data-i18n="Your account has not been verified.">
+                            您的账户还未完成验证，请查看激活邮件，激活后即可登陆。
                         </p>
-                        <button id="send_activate_email" type="button" class="btn btn-primary">重发邮件</button>
+                        <span style="height: 32px; display: block">
+                            <span data-i18n="didnt receive verification email 1">如果您没有收到验证邮件，请点击</span>
+                            <button id="send_activate_email" type="button" class="btn btn-primary" style="margin-top:0" data-i18n="send-email2">重发邮件</button>
+                            <span data-i18n="didnt receive verification email 2">获取验证邮件。</span>
+                        </span>
+                        <span></span>
                     </div>
                     <div class="modal-body">
-                        <form id="email ">
+                        <form id="form-reset_email">
                             <input type="hidden" id="id"/>
-                            <input name='email' type="text" id="old_email" class="form-control hidden" placeholder="email" required=""
-                            autofocus="">
-                            <input name='email' type="text" id="new_email" class="form-control" placeholder="email" required=""
-                            autofocus="">
+                            <input name='email' type="text" id="old_email" class="form-control hidden" placeholder="email" required="">
+                            <input name='email' type="text" id="new_email" class="form-control" placeholder="email" required="">
                             <span id="new_email_ok"></span>
-                            <button id="reset_email" type="button" class="btn btn-primary">更改邮箱</button>
-                            <button id="send_activate_email" type="button" class="btn btn-primary" disabled>发送邮件</button>
-                        </form>           
+                            <button id="reset_email" type="submit" class="btn btn-primary" data-i18n="reset-email">更改邮箱</button>
+                        </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
-                        </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" data-i18n="close">关闭</button>
                     </div>
                 </div>
             </div>

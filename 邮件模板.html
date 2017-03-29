@@ -1,0 +1,75 @@
+<!--===================内部样式版===============-->
+<meta charset="UTF-8">
+<body>
+	<style>
+		.moecubeBox{
+			margin:auto;
+			padding: 10px;
+			background: #84b0e0;
+			border: 1px solid #2d7fd8;
+			width:500px;
+			display: flex;
+			flex-direction: row;
+		}
+		.moecubeBox img{
+			width:150px;
+			height:150px;
+		}
+
+		.moecubeBox button{
+			margin: 10px 0 0 0px;
+			background: #1b74d6;
+			border: 1px #04438a;
+			color:#fff;
+			padding: 5px 10px;
+			border-radius: 5px;
+		}
+		.moecubeBox button:hover{
+			box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+		}
+		.moecubeBox button:focus{
+			outline:0px;
+		}
+		.moecubeBox button:active{
+			background: #04438a;
+			box-shadow: 0px 0px 0px ;
+		}
+
+		.moecubeBox .content{
+			font-size: 12px;
+		}
+		.moecubeBox h3{
+			margin-top: 0;
+		}
+	</style>
+	<div class="moecubeBox">
+		<img src="https://r.my-card.in/accounts/images/MoeCube.png">
+		<div>
+			<h3>验证邮箱</h3>
+			<span class="content">
+				感谢您注册MoeCube账号<br/>
+				您需要验证邮箱后才能登陆<br/>
+				如果不是您本人操作,请无视此信息<br/>
+			</span>
+			<a href="#"><button>验证邮箱</button></a>
+		</div>
+	</div>
+</body>
+
+
+<!--==========================行内样式版=========================-->
+<meta charset="UTF-8">
+<body>
+<div style="margin:auto; padding: 10px;background: #84b0e0;border: 1px solid #2d7fd8;width:500px;display: flex;flex-direction: row;">
+	<img style="width:150px;	height:150px;" src="https://r.my-card.in/accounts/images/MoeCube.png">
+	<div>
+		<h3 style="margin-top: 0;">验证邮箱</h3>
+		<span style="font-size: 12px;">
+			感谢您注册MoeCube账号<br/>
+			您需要验证邮箱后才能登陆<br/>
+			如果不是您本人操作,请无视此信息<br/>
+		</span>
+		<a href="#"><button style="margin: 10px 0 0 0px; background: #1b74d6; border: 1px #04438a; color:#fff; padding: 5px 10px; border-radius: 5px;">验证邮箱</button></a>
+	</div>
+</div>
+</body>
